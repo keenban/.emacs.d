@@ -130,7 +130,6 @@ n                          (interactive)
     :config
     (setq org-log-done t))
 #+END_SRC
-
 ** denote
 #+BEGIN_SRC emacs-lisp 
   (use-package denote
