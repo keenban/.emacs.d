@@ -4,21 +4,21 @@
 #+tangle: ~/.emacs.d/init.el
 * window manager
 ** require exwm
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (require 'exwm)
 #+END_SRC
 ** set the initial workspace number.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (setq exwm-workspace-number 1)
 #+END_SRC
 ** make class name the buffer name.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (add-hook 'exwm-update-class-hook
 	  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
 #+END_SRC
 ** global keybindings
 *** emacs passthrough
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (setq exwm-input-prefix-keys
       '(?\C-x
 	?\C-u
@@ -32,7 +32,7 @@
 (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
 #+END_SRC
 *** workspace
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
   (setq exwm-input-global-keys
         `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
           ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
@@ -54,14 +54,14 @@
                     (number-sequence 0 9))))
 #+END_SRC
 *** brightness
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
                     (lambda () (interactive) (shell-command "xbacklight -dec 5")))
 (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
                     (lambda () (interactive) (shell-command "xbacklight -inc 5")))
 #+END_SRC
 *** volume
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
                     (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
 (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
@@ -70,12 +70,12 @@
                     (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
 #+END_SRC
 ** start exwm
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (exwm-wm-mode)
 #+END_SRC
 * note taking
 ** org
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
   (use-package org
     :bind
     (("C-c l" . org-store-link)
@@ -85,7 +85,7 @@
 #+END_SRC
 
 ** denote
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
   (use-package denote
     :ensure t
     :hook (dired-mode . denote-dired-mode)
@@ -104,7 +104,7 @@
   
 * convenience
 ** yasnippet
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
   (use-package yasnippet
     :ensure t
     :init
@@ -113,13 +113,13 @@
     (yas-global-mode))
 #+END_SRC
 ** vertico
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (use-package vertico
   :init
   (vertico-mode))
 #+END_SRC
 ** magit
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (use-package magit
   :bind
   (("C-. g" . magit)))
@@ -161,7 +161,7 @@
   (use-package kiwix)
 #+END_SRC
 *** email
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (use-package mu4e
   :ensure nil
   :load-path "/usr/share/emacs/site-lisp/mu4e/"
@@ -189,7 +189,7 @@
 #+END_SRC
 
 *** web
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (use-package eww
   :ensure t
   :bind
@@ -205,7 +205,7 @@
   (use-package hyperbole)
 #+END_SRC
 * terminal
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (use-package eat
   :config
   (setq eat-term-terminfo "xterm-256color")
@@ -218,7 +218,7 @@
 #+END_SRC
 * custom
 ** functions
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (defun open-init-file () (interactive) (find-file user-init-file))
 (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
 (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
@@ -229,7 +229,7 @@
   (global-set-key [remap list-buffers] 'ibuffer)
 #+END_SRC
 *** edit file
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
 (global-set-key (kbd "C-. e i") 'open-init-file)
 (global-set-key (kbd "C-. e x") 'open-xinitrc)
 (global-set-key (kbd "C-. e b") 'open-bashrc)
@@ -239,7 +239,7 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 ** modes
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp 
   (which-key-mode)
   (column-number-mode)
 #+END_SRC
