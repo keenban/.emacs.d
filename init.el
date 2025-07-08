@@ -118,8 +118,6 @@ n                          (interactive)
 
 (use-package pdf-tools)
 
-(use-package kiwix)
-
 (use-package mu4e
   :ensure nil
   :load-path "/usr/share/emacs/site-lisp/mu4e/"
