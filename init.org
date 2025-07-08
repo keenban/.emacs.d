@@ -243,6 +243,7 @@
   (which-key-mode)
   (column-number-mode)
 #+END_SRC
+* melpa
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 #+END_SRC
