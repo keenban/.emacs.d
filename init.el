@@ -143,7 +143,9 @@
           ("/[Gmail]/Sent Mail" . ?s)
           ("/[Gmail]/Trash"     . ?t)
           ("/[Gmail]/Drafts"    . ?d)
-          ("/[Gmail]/All Mail"  . ?a))))
+          ("/[Gmail]/All Mail"  . ?a)))
+  :bind
+  ("C-c m" . mu4e))
 
 (use-package eww
   :ensure t
