@@ -2,28 +2,6 @@
 #+author: Keenan Salandy
 #+PROPERTY: header-args :tangle yes :mkdirp yes
 #+tangle: ~/.emacs.d/init.el
-* custom variables
-#+BEGIN_SRC emacs-lisp
-(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-#+END_SRC
-* custom keybinds
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-o") 'other-window)
-  (global-set-key [remap list-buffers] 'ibuffer)
-#+END_SRC
-** edit file
-*** functions
-#+BEGIN_SRC emacs-lisp :tangle yes
-(defun open-init-file () (interactive) (find-file user-init-file))
-(defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
-(defun open-bashrc () (interactive) (find-file "~/.bashrc"))
-#+END_SRC
-*** keybinds
-#+BEGIN_SRC emacs-lisp :tangle yes
-(global-set-key (kbd "C-. e i") 'open-init-file)
-(global-set-key (kbd "C-. e x") 'open-xinitrc)
-(global-set-key (kbd "C-. e b") 'open-bashrc)
-#+END_SRC
 * widow manager
 ** require exwm
 #+BEGIN_SRC emacs-lisp :tangle yes
@@ -164,6 +142,14 @@
 #+BEGIN_SRC emacs-lisp
   (use-package oauth2)
 #+END_SRC
+* markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
+#+END_SRC
+* pinentry
+#+BEGIN_SRC emacs-lisp
+  (use-package pinentry)
+#+END_SRC
 * media
 ** reading
 *** novel
@@ -231,15 +217,29 @@
 #+BEGIN_SRC emacs-lisp
   (use-package emms)
 #+END_SRC
-* markdown
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode)
+* custom
+** functions
+#+BEGIN_SRC emacs-lisp :tangle yes
+(defun open-init-file () (interactive) (find-file user-init-file))
+(defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
+(defun open-bashrc () (interactive) (find-file "~/.bashrc"))
 #+END_SRC
-* pinentry
+** keybinds
 #+BEGIN_SRC emacs-lisp
-  (use-package pinentry)
+  (global-set-key (kbd "M-o") 'other-window)
+  (global-set-key [remap list-buffers] 'ibuffer)
 #+END_SRC
-* modes
+*** edit file
+#+BEGIN_SRC emacs-lisp :tangle yes
+(global-set-key (kbd "C-. e i") 'open-init-file)
+(global-set-key (kbd "C-. e x") 'open-xinitrc)
+(global-set-key (kbd "C-. e b") 'open-bashrc)
+#+END_SRC
+** variables
+#+BEGIN_SRC emacs-lisp
+(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+#+END_SRC
+** modes
 #+BEGIN_SRC emacs-lisp :tangle yes
   (which-key-mode)
   (column-number-mode)
