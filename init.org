@@ -239,12 +239,12 @@ n                          (interactive)
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
 (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
-** variables
+* variables
 #+BEGIN_SRC emacs-lisp
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
   (set-frame-font "JetBrains Mono 14" nil t)
 #+END_SRC
-** modes
+* modes
 #+BEGIN_SRC emacs-lisp 
     (column-number-mode)
 #+END_SRC
