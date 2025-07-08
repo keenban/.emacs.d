@@ -205,7 +205,6 @@ n                          (interactive)
   :bind
   (("C-c w" . eww)))
 #+END_SRC
-
 * functions
 #+BEGIN_SRC emacs-lisp 
 (defun open-init-file () (interactive) (find-file user-init-file))
