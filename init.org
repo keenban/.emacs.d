@@ -214,6 +214,7 @@
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
+  (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
 ** edit file
 #+BEGIN_SRC emacs-lisp 

@@ -156,6 +156,7 @@
 
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key [remap list-buffers] 'ibuffer)
+(global-set-key (kbd "C-c r") 'eval-region)
 
 (global-set-key (kbd "C-c e i") 'open-init-file)
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
