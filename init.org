@@ -73,7 +73,8 @@
 #+BEGIN_SRC emacs-lisp :tangle yes
 (exwm-wm-mode)
 #+END_SRC
-* org
+* note taking
+** org
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package org
     :bind
@@ -83,7 +84,7 @@
     (setq org-log-done t))
 #+END_SRC
 
-* denote
+** denote
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package denote
     :ensure t
@@ -109,7 +110,6 @@
     (setq yas-snippet-dir "~/.emacs.d/snippets")
     :config
     (yas-global-mode))
-
 #+END_SRC
 * terminal
 #+BEGIN_SRC emacs-lisp :tangle yes
