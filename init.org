@@ -214,10 +214,6 @@ n                          (interactive)
 #+BEGIN_SRC emacs-lisp
   (use-package pinentry)
 #+END_SRC
-** oauth
-#+BEGIN_SRC emacs-lisp
-  (use-package oauth2)
-#+END_SRC
 * functions
 #+BEGIN_SRC emacs-lisp 
 (defun open-init-file () (interactive) (find-file user-init-file))
