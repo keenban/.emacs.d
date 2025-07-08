@@ -209,9 +209,12 @@
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
   (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre"))))) ;; with name
 #+END_SRC
+* hyperbole
+#+BEGIN_SRC emacs-lisp
+  (use-package hyperbole)
+#+END_SRC
 * unconfigured packages
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (use-package hyperbole)
   (use-package oauth2)
   (use-package kiwix)
   (use-package markdown-mode)
