@@ -148,9 +148,6 @@ n                          (interactive)
   :bind
   (("C-. w" . eww)))
 
-
-(use-package pinentry)
-
 (use-package oauth2)
 
 (defun open-init-file () (interactive) (find-file user-init-file))
