@@ -148,7 +148,7 @@ n                          (interactive)
 (use-package eww
   :ensure t
   :bind
-  (("C-. w" . eww)))
+  (("C-c w" . eww)))
 
 (defun open-init-file () (interactive) (find-file user-init-file))
 (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
