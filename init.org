@@ -224,7 +224,7 @@
 #+END_SRC
 * variables
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-files (directory-files-recursively "~/dox/notes/" "\\.org$"))
+  (setq org-agenda-files '("~/dox/notes/20250707T180240--agenda__agenda.org"))
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
   (set-frame-font "JetBrains Mono 14" nil t)
 #+END_SRC

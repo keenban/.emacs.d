@@ -162,8 +162,8 @@
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
 (global-set-key (kbd "C-c e b") 'open-bashrc)
 
+(setq org-agenda-files '("~/dox/notes/20250707T180240--agenda__agenda.org"))
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 (set-frame-font "JetBrains Mono 14" nil t)
-(setq-default org-agenda-files "~/dox/notes/20250707T180240--agenda__agenda.org")
 
 (column-number-mode)
