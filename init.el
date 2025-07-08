@@ -166,6 +166,7 @@
 
 (setq org-agenda-files '("~/dox/notes/20250707T180240--agenda__agenda.org"))
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+(setq left-margin-width 5)
 (set-frame-font "JetBrains Mono 14" nil t)
 
 (column-number-mode)
