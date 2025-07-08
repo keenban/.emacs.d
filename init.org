@@ -102,7 +102,8 @@
   (use-package denote-org)
 #+END_SRC
   
-* yasnippet
+* convenience
+** yasnippet
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package yasnippet
     :ensure t
@@ -110,6 +111,18 @@
     (setq yas-snippet-dir "~/.emacs.d/snippets")
     :config
     (yas-global-mode))
+#+END_SRC
+** vertico
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package vertico
+  :init
+  (vertico-mode))
+#+END_SRC
+** magit
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package magit
+  :bind
+  (("C-. g" . magit)))
 #+END_SRC
 * terminal
 #+BEGIN_SRC emacs-lisp :tangle yes
@@ -119,20 +132,6 @@
   :bind
   (("C-. t" . eat)))
 #+END_SRC
-* vertico
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package vertico
-  :init
-  (vertico-mode))
-#+END_SRC
-
-* magit
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package magit
-  :bind
-  (("C-. g" . magit)))
-#+END_SRC
-
 * hyperbole
 #+BEGIN_SRC emacs-lisp
   (use-package hyperbole)
