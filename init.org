@@ -217,9 +217,12 @@
 #+BEGIN_SRC emacs-lisp
   (use-package kiwix)
 #+END_SRC
+* oauth
+#+BEGIN_SRC emacs-lisp
+  (use-package oauth2)
+#+END_SRC
 * unconfigured packages
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (use-package oauth2)
   (use-package markdown-mode)
   (use-package pdf-tools)
   (use-package emms)
