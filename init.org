@@ -124,29 +124,14 @@
   :bind
   (("C-. g" . magit)))
 #+END_SRC
-* terminal
-#+BEGIN_SRC emacs-lisp :tangle yes
-(use-package eat
-  :config
-  (setq eat-term-terminfo "xterm-256color")
-  :bind
-  (("C-. t" . eat)))
-#+END_SRC
-* hyperbole
-#+BEGIN_SRC emacs-lisp
-  (use-package hyperbole)
-#+END_SRC
-* oauth
-#+BEGIN_SRC emacs-lisp
-  (use-package oauth2)
-#+END_SRC
-* markdown
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode)
-#+END_SRC
-* pinentry
+* security
+** pinentry
 #+BEGIN_SRC emacs-lisp
   (use-package pinentry)
+#+END_SRC
+** oauth
+#+BEGIN_SRC emacs-lisp
+  (use-package oauth2)
 #+END_SRC
 * media
 ** reading
@@ -214,6 +199,22 @@
 ** video
 #+BEGIN_SRC emacs-lisp
   (use-package emms)
+#+END_SRC
+* hyperbole
+#+BEGIN_SRC emacs-lisp
+  (use-package hyperbole)
+#+END_SRC
+* terminal
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package eat
+  :config
+  (setq eat-term-terminfo "xterm-256color")
+  :bind
+  (("C-. t" . eat)))
+#+END_SRC
+* markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
 #+END_SRC
 * custom
 ** functions
