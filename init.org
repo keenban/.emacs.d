@@ -2,7 +2,7 @@
 #+author: Keenan Salandy
 #+PROPERTY: header-args :tangle yes :mkdirp yes
 #+tangle: ~/.emacs.d/init.el
-* widow manager
+* window manager
 ** require exwm
 #+BEGIN_SRC emacs-lisp :tangle yes
 (require 'exwm)
