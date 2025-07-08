@@ -213,10 +213,13 @@
 #+BEGIN_SRC emacs-lisp
   (use-package hyperbole)
 #+END_SRC
+* kiwix
+#+BEGIN_SRC emacs-lisp
+  (use-package kiwix)
+#+END_SRC
 * unconfigured packages
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package oauth2)
-  (use-package kiwix)
   (use-package markdown-mode)
   (use-package pdf-tools)
   (use-package emms)
