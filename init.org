@@ -192,23 +192,6 @@
   (("C-. g" . magit)))
 #+END_SRC
 
-* novel
-#+BEGIN_SRC emacs-lisp
-    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-#+END_SRC
-* calibredb
-#+BEGIN_SRC emacs-lisp
-(setq sql-sqlite-program "/usr/bin/sqlite3") ;; for emacs < 29 or no sqlite built-in emacs
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
-(use-package calibredb
-  :defer t
-  :config
-  (setq calibredb-root-dir "~/dox/calibre")
-  ;; for folder driver metadata: it should be .metadata.calibre
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre"))))) ;; with name
-#+END_SRC
 * hyperbole
 #+BEGIN_SRC emacs-lisp
   (use-package hyperbole)
@@ -225,17 +208,36 @@
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode)
 #+END_SRC
-* pdf
-#+BEGIN_SRC emacs-lisp
-  (use-package pdf-tools)
-#+END_SRC
 * emms
 #+BEGIN_SRC emacs-lisp
   (use-package emms)
 #+END_SRC
 * pinentry
+
 #+BEGIN_SRC emacs-lisp
   (use-package pinentry)
+#+END_SRC
+* reading
+** novel
+#+BEGIN_SRC emacs-lisp
+    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+#+END_SRC
+** calibredb
+#+BEGIN_SRC emacs-lisp
+(setq sql-sqlite-program "/usr/bin/sqlite3") ;; for emacs < 29 or no sqlite built-in emacs
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package calibredb
+  :defer t
+  :config
+  (setq calibredb-root-dir "~/dox/calibre")
+  ;; for folder driver metadata: it should be .metadata.calibre
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
+  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre"))))) ;; with name
+#+END_SRC
+** pdf
+#+BEGIN_SRC emacs-lisp
+  (use-package pdf-tools)
 #+END_SRC
 * modes
 #+BEGIN_SRC emacs-lisp :tangle yes
