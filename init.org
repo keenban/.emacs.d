@@ -90,54 +90,16 @@
     :ensure t
     :hook (dired-mode . denote-dired-mode)
     :bind
-    (("C-. n n" . denote)
-     ("C-. n r" . denote-rename-file)
-     ("C-. n l" . denote-link)
-     ("C-. n b" . denote-backlinks)
-     ("C-. n d" . denote-dired)
-     ("C-. n g" . denote-grep))
+    (("C-c n n" . denote)
+     ("C-c n r" . denote-rename-file)
+     ("C-c n l" . denote-link)
+     ("C-c n b" . denote-backlinks)
+     ("C-c n d" . denote-dired)
+     ("C-c n g" . denote-grep))
     :config
     (setq denote-directory (expand-file-name "~/dox/notes/"))
     (denote-rename-buffer-mode 1))
   (use-package denote-org)
-#+END_SRC
-* general
-** hyperbole
-#+BEGIN_SRC emacs-lisp
-  (use-package hyperbole)
-#+END_SRC
-** terminal
-#+BEGIN_SRC emacs-lisp 
-(use-package eat
-  :config
-  (setq eat-term-terminfo "xterm-256color")
-  :bind
-  (("C-. t" . eat)))
-#+END_SRC
-** markdown
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode)
-#+END_SRC
-** yasnippet
-#+BEGIN_SRC emacs-lisp 
-  (use-package yasnippet
-    :ensure t
-    :init
-    (setq yas-snippet-dir "~/.emacs.d/snippets")
-    :config
-    (yas-global-mode))
-#+END_SRC
-** vertico
-#+BEGIN_SRC emacs-lisp 
-(use-package vertico
-  :init
-  (vertico-mode))
-#+END_SRC
-** magit
-#+BEGIN_SRC emacs-lisp 
-(use-package magit
-  :bind
-  (("C-. g" . magit)))
 #+END_SRC
 * security
 ** pinentry
@@ -213,7 +175,59 @@
 
 ** video
 #+BEGIN_SRC emacs-lisp
-  (use-package emms)
+  (use-package emms
+    :bind
+    (("C-c m" . emms-play-file)))
+#+END_SRC
+* general
+** hyperbole
+#+BEGIN_SRC emacs-lisp
+  (use-package hyperbole)
+#+END_SRC
+** terminal
+#+BEGIN_SRC emacs-lisp 
+(use-package eat
+  :config
+  (setq eat-term-terminfo "xterm-256color")
+  :bind
+  (("C-c t" . eat)))
+#+END_SRC
+** markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
+#+END_SRC
+** yasnippet
+#+BEGIN_SRC emacs-lisp 
+  (use-package yasnippet
+    :ensure t
+    :init
+    (setq yas-snippet-dir "~/.emacs.d/snippets")
+    :config
+    (yas-global-mode))
+#+END_SRC
+** vertico
+#+BEGIN_SRC emacs-lisp 
+(use-package vertico
+  :init
+  (vertico-mode))
+#+END_SRC
+** magit
+#+BEGIN_SRC emacs-lisp 
+(use-package magit
+  :bind
+  (("C-c g" . magit)))
+#+END_SRC
+** which-key
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :config
+    (which-key-mode))
+#+END_SRC
+* package management
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
 #+END_SRC
 * custom
 ** functions
@@ -229,9 +243,9 @@
 #+END_SRC
 *** edit file
 #+BEGIN_SRC emacs-lisp 
-(global-set-key (kbd "C-. e i") 'open-init-file)
-(global-set-key (kbd "C-. e x") 'open-xinitrc)
-(global-set-key (kbd "C-. e b") 'open-bashrc)
+(global-set-key (kbd "C-c e i") 'open-init-file)
+(global-set-key (kbd "C-c e x") 'open-xinitrc)
+(global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
 ** variables
 #+BEGIN_SRC emacs-lisp
@@ -239,12 +253,5 @@
 #+END_SRC
 ** modes
 #+BEGIN_SRC emacs-lisp 
-  (which-key-mode)
-  (column-number-mode)
-#+END_SRC
-* package management
-#+BEGIN_SRC emacs-lisp
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize)
+    (column-number-mode)
 #+END_SRC
