@@ -114,7 +114,9 @@ n                          (interactive)
   (setq calibredb-root-dir "~/dox/calibre")
   ;; for folder driver metadata: it should be .metadata.calibre
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre"))))) ;; with name
+  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre")))) ;; with name
+  :bind
+  ("C-c b" . calibredb))
 
 (use-package pdf-tools)
 

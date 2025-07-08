@@ -156,13 +156,15 @@ n                          (interactive)
 (setq sql-sqlite-program "/usr/bin/sqlite3") ;; for emacs < 29 or no sqlite built-in emacs
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
-(use-package calibredb
-  :defer t
-  :config
-  (setq calibredb-root-dir "~/dox/calibre")
-  ;; for folder driver metadata: it should be .metadata.calibre
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre"))))) ;; with name
+     (use-package calibredb
+       :defer t
+       :config
+       (setq calibredb-root-dir "~/dox/calibre")
+       ;; for folder driver metadata: it should be .metadata.calibre
+       (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
+       (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre")))) ;; with name
+       :bind
+       ("C-c b" . calibredb))
 #+END_SRC
 ** pdf-tools
 #+BEGIN_SRC emacs-lisp
