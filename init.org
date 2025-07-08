@@ -210,10 +210,6 @@ n                          (interactive)
     :bind
     (("C-c m" . emms-play-file)))
 #+END_SRC
-** pinentry
-#+BEGIN_SRC emacs-lisp
-  (use-package pinentry)
-#+END_SRC
 * functions
 #+BEGIN_SRC emacs-lisp 
 (defun open-init-file () (interactive) (find-file user-init-file))
