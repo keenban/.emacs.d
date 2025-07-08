@@ -233,8 +233,8 @@
 #+BEGIN_SRC emacs-lisp
   (use-package emms)
 #+END_SRC
-* unconfigured packages
-#+BEGIN_SRC emacs-lisp :tangle yes
+* pinentry
+#+BEGIN_SRC emacs-lisp
   (use-package pinentry)
 #+END_SRC
 * modes
