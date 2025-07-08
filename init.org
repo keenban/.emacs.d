@@ -101,8 +101,23 @@
     (denote-rename-buffer-mode 1))
   (use-package denote-org)
 #+END_SRC
-  
-* convenience
+* general
+** hyperbole
+#+BEGIN_SRC emacs-lisp
+  (use-package hyperbole)
+#+END_SRC
+** terminal
+#+BEGIN_SRC emacs-lisp 
+(use-package eat
+  :config
+  (setq eat-term-terminfo "xterm-256color")
+  :bind
+  (("C-. t" . eat)))
+#+END_SRC
+** markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
+#+END_SRC
 ** yasnippet
 #+BEGIN_SRC emacs-lisp 
   (use-package yasnippet
@@ -199,22 +214,6 @@
 ** video
 #+BEGIN_SRC emacs-lisp
   (use-package emms)
-#+END_SRC
-* hyperbole
-#+BEGIN_SRC emacs-lisp
-  (use-package hyperbole)
-#+END_SRC
-* terminal
-#+BEGIN_SRC emacs-lisp 
-(use-package eat
-  :config
-  (setq eat-term-terminfo "xterm-256color")
-  :bind
-  (("C-. t" . eat)))
-#+END_SRC
-* markdown
-#+BEGIN_SRC emacs-lisp
-  (use-package markdown-mode)
 #+END_SRC
 * custom
 ** functions
