@@ -148,8 +148,6 @@ n                          (interactive)
   :bind
   (("C-. w" . eww)))
 
-(use-package oauth2)
-
 (defun open-init-file () (interactive) (find-file user-init-file))
 (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
 (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
