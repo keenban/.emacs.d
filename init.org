@@ -221,9 +221,12 @@
 #+BEGIN_SRC emacs-lisp
   (use-package oauth2)
 #+END_SRC
+* markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
+#+END_SRC
 * unconfigured packages
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (use-package markdown-mode)
   (use-package pdf-tools)
   (use-package emms)
   (use-package pinentry)
