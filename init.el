@@ -172,5 +172,6 @@
 (global-set-key (kbd "C-c e b") 'open-bashrc)
 
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+(set-frame-font "JetBrains Mono 14" nil t)
 
 (column-number-mode)
