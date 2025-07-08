@@ -225,9 +225,12 @@
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode)
 #+END_SRC
+* pdf
+#+BEGIN_SRC emacs-lisp
+  (use-package pdf-tools)
+#+END_SRC
 * unconfigured packages
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (use-package pdf-tools)
   (use-package emms)
   (use-package pinentry)
 #+END_SRC
