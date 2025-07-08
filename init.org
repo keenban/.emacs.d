@@ -203,7 +203,7 @@ n                          (interactive)
 (use-package eww
   :ensure t
   :bind
-  (("C-. w" . eww)))
+  (("C-c w" . eww)))
 #+END_SRC
 
 * functions
