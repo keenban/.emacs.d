@@ -111,7 +111,7 @@
     (yas-global-mode))
 
 #+END_SRC
-* emulate a terminal
+* terminal
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package eat
   :config
@@ -119,7 +119,6 @@
   :bind
   (("C-. t" . eat)))
 #+END_SRC
-
 * vertico
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package vertico
