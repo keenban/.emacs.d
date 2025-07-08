@@ -51,27 +51,19 @@
 
 (exwm-wm-mode)
 
-(use-package org
-  :bind
-  (("C-c l" . org-store-link)
-   ("C-c a" . org-agenda))
-  :config
-  (setq org-log-done t))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
-(use-package denote
-  :ensure t
-  :hook (dired-mode . denote-dired-mode)
-  :bind
-  (("C-. n n" . denote)
-   ("C-. n r" . denote-rename-file)
-   ("C-. n l" . denote-link)
-   ("C-. n b" . denote-backlinks)
-   ("C-. n d" . denote-dired)
-   ("C-. n g" . denote-grep))
+(use-package hyperbole)
+
+(use-package eat
   :config
-  (setq denote-directory (expand-file-name "~/dox/notes/"))
-  (denote-rename-buffer-mode 1))
-(use-package denote-org)
+  (setq eat-term-terminfo "xterm-256color")
+  :bind
+  (("C-c t" . eat)))
+
+(use-package markdown-mode)
 
 (use-package yasnippet
   :ensure t
@@ -86,11 +78,33 @@
 
 (use-package magit
   :bind
-  (("C-. g" . magit)))
+  (("C-c g" . magit)))
 
-(use-package pinentry)
+(use-package which-key
+  :config
+  (which-key-mode))
 
-(use-package oauth2)
+(use-package org
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda))
+  :config
+  (setq org-log-done t))
+
+(use-package denote
+  :ensure t
+  :hook (dired-mode . denote-dired-mode)
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory (expand-file-name "~/dox/notes/"))
+  (denote-rename-buffer-mode 1))
+(use-package denote-org)
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
@@ -138,17 +152,13 @@
   :bind
   (("C-. w" . eww)))
 
-(use-package emms)
-
-(use-package hyperbole)
-
-(use-package eat
-  :config
-  (setq eat-term-terminfo "xterm-256color")
+(use-package emms
   :bind
-  (("C-. t" . eat)))
+  (("C-c m" . emms-play-file)))
 
-(use-package markdown-mode)
+(use-package pinentry)
+
+(use-package oauth2)
 
 (defun open-init-file () (interactive) (find-file user-init-file))
 (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
@@ -157,13 +167,10 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key [remap list-buffers] 'ibuffer)
 
-(global-set-key (kbd "C-. e i") 'open-init-file)
-(global-set-key (kbd "C-. e x") 'open-xinitrc)
-(global-set-key (kbd "C-. e b") 'open-bashrc)
+(global-set-key (kbd "C-c e i") 'open-init-file)
+(global-set-key (kbd "C-c e x") 'open-xinitrc)
+(global-set-key (kbd "C-c e b") 'open-bashrc)
 
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
-(which-key-mode)
 (column-number-mode)
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
