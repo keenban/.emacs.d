@@ -204,12 +204,6 @@ n                          (interactive)
   (("C-. w" . eww)))
 #+END_SRC
 
-** emms
-#+BEGIN_SRC emacs-lisp
-  (use-package emms
-    :bind
-    (("C-c m" . emms-play-file)))
-#+END_SRC
 * functions
 #+BEGIN_SRC emacs-lisp 
 (defun open-init-file () (interactive) (find-file user-init-file))
