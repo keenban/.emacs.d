@@ -148,9 +148,6 @@ n                          (interactive)
   :bind
   (("C-. w" . eww)))
 
-(use-package emms
-  :bind
-  (("C-c m" . emms-play-file)))
 
 (use-package pinentry)
 
