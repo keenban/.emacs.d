@@ -113,9 +113,7 @@ n                          (interactive)
 #+END_SRC
 ** magit
 #+BEGIN_SRC emacs-lisp 
-(use-package magit
-  :bind
-  (("C-c g" . magit)))
+(use-package magit)
 #+END_SRC
 ** which-key
 #+BEGIN_SRC emacs-lisp
