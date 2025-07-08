@@ -49,29 +49,29 @@
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
-n                          (interactive)
+  			(interactive)
                           (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))))
 #+END_SRC
 *** brightness
 #+BEGIN_SRC emacs-lisp 
-(exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
-                    (lambda () (interactive) (shell-command "xbacklight -dec 5")))
-(exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
-                    (lambda () (interactive) (shell-command "xbacklight -inc 5")))
+  (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
+                      (lambda () (interactive) (shell-command "xbacklight -dec 5")))
+  (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
+                      (lambda () (interactive) (shell-command "xbacklight -inc 5")))
 #+END_SRC
 *** volume
 #+BEGIN_SRC emacs-lisp 
-(exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
-                    (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
-(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
-                    (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
-(exwm-input-set-key (kbd "<XF86AudioMute>")
-                    (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
+  (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
+                      (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
+  (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
+                      (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
+  (exwm-input-set-key (kbd "<XF86AudioMute>")
+                      (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
 #+END_SRC
 ** start exwm
 #+BEGIN_SRC emacs-lisp 
-(exwm-wm-mode)
+  (exwm-wm-mode)
 #+END_SRC
 * package management
 ** melpa

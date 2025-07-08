@@ -18,24 +18,24 @@
 (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
 
 (setq exwm-input-global-keys
-        `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
-          ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
-          ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
-                       (interactive (list (read-shell-command "$ ")))
-                       (start-process-shell-command cmd nil cmd)))
-          ([?\s-f] . (lambda () ;; s-f: Launch firefox.
-                       (interactive)
-                       (start-process-shell-command "firefox-bin" nil "firefox-bin")))
-          ([?\s-t] . (lambda () ;; s-t: Launch terminal.
-                       (interactive)
-                       (start-process-shell-command "st" nil "st")))
-          ;; s-N: Switch to certain workspace.
-          ,@(mapcar (lambda (i)
-                      `(,(kbd (format "s-%d" i)) .
-                        (lambda ()
-n                          (interactive)
-                          (exwm-workspace-switch-create ,i))))
-                    (number-sequence 0 9))))
+      `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
+        ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
+        ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
+                     (interactive (list (read-shell-command "$ ")))
+                     (start-process-shell-command cmd nil cmd)))
+        ([?\s-f] . (lambda () ;; s-f: Launch firefox.
+                     (interactive)
+                     (start-process-shell-command "firefox-bin" nil "firefox-bin")))
+        ([?\s-t] . (lambda () ;; s-t: Launch terminal.
+                     (interactive)
+                     (start-process-shell-command "st" nil "st")))
+        ;; s-N: Switch to certain workspace.
+        ,@(mapcar (lambda (i)
+                    `(,(kbd (format "s-%d" i)) .
+                      (lambda ()
+			(interactive)
+                        (exwm-workspace-switch-create ,i))))
+                  (number-sequence 0 9))))
 
 (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
                     (lambda () (interactive) (shell-command "xbacklight -dec 5")))
