@@ -49,7 +49,7 @@
           ,@(mapcar (lambda (i)
                       `(,(kbd (format "s-%d" i)) .
                         (lambda ()
-                          (interactive)
+n                          (interactive)
                           (exwm-workspace-switch-create ,i))))
                     (number-sequence 0 9))))
 #+END_SRC
@@ -90,7 +90,7 @@
   :config
   (setq eat-term-terminfo "xterm-256color")
   :bind
-  (("C-c t" . eat)))
+  (("C-c RET" . eat)))
 #+END_SRC
 ** markdown-mode
 #+BEGIN_SRC emacs-lisp
@@ -236,7 +236,7 @@
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
 #+END_SRC
-*** edit file
+** edit file
 #+BEGIN_SRC emacs-lisp 
 (global-set-key (kbd "C-c e i") 'open-init-file)
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
@@ -244,7 +244,8 @@
 #+END_SRC
 ** variables
 #+BEGIN_SRC emacs-lisp
-(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+  (set-frame-font "JetBrains Mono 14" nil t)
 #+END_SRC
 ** modes
 #+BEGIN_SRC emacs-lisp 
