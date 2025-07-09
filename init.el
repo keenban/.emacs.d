@@ -168,5 +168,7 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 (setq left-margin-width 5)
 (set-frame-font "JetBrains Mono 14" nil t)
+(setq custom-file "~/.config/emacs-custom.el")
+(load custom-file)
 
 (column-number-mode)
