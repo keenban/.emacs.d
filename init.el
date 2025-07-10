@@ -106,17 +106,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
-(setq sql-sqlite-program "/usr/bin/sqlite3") ;; for emacs < 29 or no sqlite built-in emacs
-
-(use-package calibredb
-  :defer t
+(use-package calibre
   :config
-  (setq calibredb-root-dir "~/dox/calibre")
-  ;; for folder driver metadata: it should be .metadata.calibre
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir))
-  (setq calibredb-library-alist '(("~/dox/calibre" (name . "Calibre")))) ;; with name
+  (setq calibre-libraries '(("calibre" . "/home/keenban/dox/calibre")))
   :bind
-  ("C-c b" . calibredb))
+  ("C-c b" . calibre-library))
 
 (use-package pdf-tools)
 
@@ -125,19 +119,21 @@
   :load-path "/usr/share/emacs/site-lisp/mu4e/"
   
   :config
-  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  ;; this is set to 't' to avoid mail syncing issues when using mbsync
   (setq mu4e-change-filenames-when-moving t)
   
-  ;; Refresh mail using isync every 10 minutes
+  ;; refresh mail using isync every 10 minutes
   (setq mu4e-update-interval (* 10 60))
   (setq mu4e-get-mail-command "mbsync -a")
   (setq mu4e-maildir "~/.mail/gmail")
-  
+
+  ;; set folders
   (setq mu4e-drafts-folder "/[Gmail]/Drafts")
   (setq mu4e-sent-folder   "/[Gmail]/Sent Mail")
   (setq mu4e-refile-folder "/[Gmail]/All Mail")
   (setq mu4e-trash-folder  "/[Gmail]/Trash")
-  
+
+  ;; mailbox shortcuts
   (setq mu4e-maildir-shortcuts
 	'(("/Inbox"             . ?i)
           ("/[Gmail]/Sent Mail" . ?s)
