@@ -1,5 +1,5 @@
-:ensure t
-(use-package hyperbole)
+(use-package hyperbole
+  :ensure t)
 
 (use-package eat
   :ensure t

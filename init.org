@@ -63,8 +63,8 @@
 #+END_SRC
 ** hyperbole
 #+BEGIN_SRC emacs-lisp
-  :ensure t
-  (use-package hyperbole)
+  (use-package hyperbole
+    :ensure t)
 #+END_SRC
 ** eat
 #+BEGIN_SRC emacs-lisp 
