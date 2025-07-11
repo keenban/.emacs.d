@@ -49,7 +49,8 @@
   :config
   (setq denote-directory (expand-file-name "~/dox/notes/"))
   (denote-rename-buffer-mode 1))
-(use-package denote-org)
+(use-package denote-org
+  :ensure t)
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 

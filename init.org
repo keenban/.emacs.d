@@ -130,7 +130,8 @@
     :config
     (setq denote-directory (expand-file-name "~/dox/notes/"))
     (denote-rename-buffer-mode 1))
-  (use-package denote-org)
+  (use-package denote-org
+    :ensure t)
 #+END_SRC
 ** nov.el
 #+BEGIN_SRC emacs-lisp
