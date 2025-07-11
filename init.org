@@ -150,14 +150,6 @@
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 #+END_SRC
-** calibredb
-#+BEGIN_SRC emacs-lisp
-  (use-package calibre
-    :config
-    (setq calibre-libraries '(("calibre" . "/home/keenban/dox/calibre")))
-    :bind
-    ("C-c b" . calibre-library))
-#+END_SRC
 ** pdf-tools
 #+BEGIN_SRC emacs-lisp
   (use-package pdf-tools)
