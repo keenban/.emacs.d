@@ -51,13 +51,11 @@
 
 (exwm-wm-mode)
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
+:ensure t
 (use-package hyperbole)
 
 (use-package eat
+  :ensure t
   :config
   (setq eat-term-terminfo "xterm-256color")
   :bind
@@ -73,10 +71,12 @@
   (yas-global-mode))
 
 (use-package vertico
+  :ensure t
   :init
   (vertico-mode))
 
-(use-package magit)
+(use-package magit
+  :ensure t)
 
 (use-package which-key
   :config
@@ -106,13 +106,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
-(use-package calibre
-  :config
-  (setq calibre-libraries '(("calibre" . "/home/keenban/dox/calibre")))
-  :bind
-  ("C-c b" . calibre-library))
-
-(use-package pdf-tools)
+(use-package pdf-tools
+  :ensure t)
 
 (use-package mu4e
   :ensure nil
