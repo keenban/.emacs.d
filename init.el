@@ -48,7 +48,7 @@
    ("C-c n d" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
-  (setq denote-directory (expand-file-name "~/dox/notes/"))
+  (setq denote-directory (expand-file-name "~/media/doc/notes/"))
   (denote-rename-buffer-mode 1))
 (use-package denote-org
   :ensure t)
@@ -104,10 +104,10 @@
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
 (global-set-key (kbd "C-c e b") 'open-bashrc)
 
-(setq org-agenda-files '("~/dox/notes/20250707T180240--agenda__agenda.org"))
+(setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 (setq left-margin-width 5)
-(set-frame-font "JetBrains Mono 14" nil t)
+(set-frame-font "JetBrains Mono 16" nil t)
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
