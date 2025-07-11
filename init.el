@@ -8,7 +8,8 @@
   :bind
   (("C-c RET" . eat)))
 
-(use-package markdown-mode)
+(use-package markdown-mode
+  :ensure t)
 
 (use-package yasnippet
   :ensure t
