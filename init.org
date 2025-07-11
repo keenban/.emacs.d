@@ -152,7 +152,8 @@
 #+END_SRC
 ** pdf-tools
 #+BEGIN_SRC emacs-lisp
-  (use-package pdf-tools)
+  (use-package pdf-tools
+    :ensure t)
 #+END_SRC
 ** mu4e
 #+BEGIN_SRC emacs-lisp 
