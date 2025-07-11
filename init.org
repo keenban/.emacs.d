@@ -2,8 +2,26 @@
 #+author: Keenan Salandy
 #+PROPERTY: header-args :tangle yes :mkdirp yes
 #+tangle: ~/.emacs.d/init.el
-* package management
-** exwm
+* early initialization
+copied from protesilaos
+https://protesilaos.com/emacs/dotemacs
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/early-init.el
+(setq frame-resize-pixelwise t
+      frame-inhibit-implied-resize 'force
+      frame-title-format '("%b")
+      ring-bell-function 'ignore
+      use-dialog-box t ; only for mouse events, which I seldom use
+      use-file-dialog nil
+      use-short-answers t
+      inhibit-splash-screen t
+      inhibit-startup-screen t
+      inhibit-x-resources t
+      inhibit-startup-echo-area-message user-login-name ; read the docstring
+      inhibit-startup-buffer-menu t)
+#+END_SRC
+* main initialization
+** package management
+*** exwm
 #+BEGIN_SRC emacs-lisp :tangle no
   (use-package exwm
     :ensure nil
@@ -61,12 +79,12 @@
     ;; start exwm
     (exwm-wm-mode))
 #+END_SRC
-** hyperbole
+*** hyperbole
 #+BEGIN_SRC emacs-lisp
   (use-package hyperbole
     :ensure t)
 #+END_SRC
-** eat
+*** eat
 #+BEGIN_SRC emacs-lisp 
   (use-package eat
     :ensure t
@@ -75,12 +93,12 @@
     :bind
     (("C-c RET" . eat)))
 #+END_SRC
-** markdown-mode
+*** markdown-mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t)
 #+END_SRC
-** yasnippet
+*** yasnippet
 #+BEGIN_SRC emacs-lisp 
   (use-package yasnippet
     :ensure t
@@ -89,25 +107,25 @@
     :config
     (yas-global-mode))
 #+END_SRC
-** vertico
+*** vertico
 #+BEGIN_SRC emacs-lisp 
   (use-package vertico
     :ensure t
     :init
     (vertico-mode))
 #+END_SRC
-** magit
+*** magit
 #+BEGIN_SRC emacs-lisp 
   (use-package magit
     :ensure t)
 #+END_SRC
-** which-key
+*** which-key
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
     :config
     (which-key-mode))
 #+END_SRC
-** org
+*** org
 #+BEGIN_SRC emacs-lisp 
   (use-package org
     :bind
@@ -116,7 +134,7 @@
     :config
     (setq org-log-done t))
 #+END_SRC
-** denote
+*** denote
 #+BEGIN_SRC emacs-lisp 
   (use-package denote
     :ensure t
@@ -134,16 +152,16 @@
   (use-package denote-org
     :ensure t)
 #+END_SRC
-** nov.el
+*** nov.el
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 #+END_SRC
-** pdf-tools
+*** pdf-tools
 #+BEGIN_SRC emacs-lisp
   (use-package pdf-tools
     :ensure t)
 #+END_SRC
-** mu4e
+*** mu4e
 #+BEGIN_SRC emacs-lisp 
   (use-package mu4e
     :ensure nil
@@ -174,32 +192,32 @@
     :bind
     ("C-c m" . mu4e))
 #+END_SRC
-** eww
+*** eww
 #+BEGIN_SRC emacs-lisp 
   (use-package eww
     :ensure t
     :bind
     (("C-c w" . eww)))
 #+END_SRC
-* functions
+** functions
 #+BEGIN_SRC emacs-lisp 
   (defun open-init-file () (interactive) (find-file user-init-file))
   (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
   (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
 #+END_SRC
-* keybinds
+** keybinds
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
-** edit file
+*** edit file
 #+BEGIN_SRC emacs-lisp 
   (global-set-key (kbd "C-c e i") 'open-init-file)
   (global-set-key (kbd "C-c e x") 'open-xinitrc)
   (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
-* variables
+** variables
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
@@ -207,11 +225,11 @@
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file)
 #+END_SRC
-* faces
+** faces
 #+BEGIN_SRC emacs-lisp
   (set-frame-font "JetBrains Mono 16" nil t)
 #+END_SRC
-* modes
+** modes
 #+BEGIN_SRC emacs-lisp 
   (column-number-mode)
 #+END_SRC
