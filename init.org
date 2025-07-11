@@ -105,6 +105,7 @@
 ** vertico
 #+BEGIN_SRC emacs-lisp 
   (use-package vertico
+    :ensure t
     :init
     (vertico-mode))
 #+END_SRC
