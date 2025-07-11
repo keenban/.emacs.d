@@ -107,8 +107,9 @@
 (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 (setq left-margin-width 5)
-(set-frame-font "JetBrains Mono 16" nil t)
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+
+(set-frame-font "JetBrains Mono 16" nil t)
 
 (column-number-mode)
