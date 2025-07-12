@@ -28,3 +28,7 @@
 (require 'keenban-mu4e)
 (require 'keenban-eww)
 (require 'keenban-quick-edit)
+
+(setq make-backup-files nil)
+(setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
+(setq create-lockfiles nil)

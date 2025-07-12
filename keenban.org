@@ -274,3 +274,17 @@ now provide
   (require 'keenban-quick-edit)
 #+END_SRC
 
+** The =init.el= basic configurations to disable backups and lockfiles
+from protesilaos
+
+By default, Emacs tries to lock down files so that they are not
+modified by other programs. It also keeps backups. These are features
+I do not need because (i) if I am ever modifying my files externally,
+then I know what I am doing and (ii) all the files I care about are
+either under version control or backed up to a flash drive.
+
+#+begin_src emacs-lisp :tangle "init.el"
+(setq make-backup-files nil)
+(setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
+(setq create-lockfiles nil)
+#+end_src
