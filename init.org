@@ -225,3 +225,13 @@ now set keybindings to execute these functions
 #+BEGIN_SRC emacs-lisp 
   (column-number-mode)
 #+END_SRC
+** load modules
+#+BEGIN_SRC emacs-lisp
+  ;; add custom module directory to load path
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  ;; load files from custom directory
+  (require 'keenban-quick-edit)
+#+END_SRC
+
