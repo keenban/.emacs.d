@@ -18,6 +18,7 @@
 ;; load files from custom directory
 (require 'keenban-hyperbole)
 (require 'keenban-eat)
+(require 'keenban-emms)
 (require 'keenban-markdown-mode)
 (require 'keenban-yasnippet)
 (require 'keenban-vertico)
