@@ -206,6 +206,7 @@ now set keybindings to execute these functions
 #+END_SRC
 ** keybinds
 #+BEGIN_SRC emacs-lisp
+  ;; taken from mastering emacs
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
