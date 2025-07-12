@@ -80,12 +80,12 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     (exwm-wm-mode))
 #+END_SRC
 *** hyperbole
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-hyperbole.el
   (use-package hyperbole
     :ensure t)
 #+END_SRC
 *** eat
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-eat.el 
   (use-package eat
     :ensure t
     :config
@@ -94,12 +94,12 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     (("C-c RET" . eat)))
 #+END_SRC
 *** markdown-mode
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-markdown-mode.el
   (use-package markdown-mode
     :ensure t)
 #+END_SRC
 *** yasnippet
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-yasnippet.el
   (use-package yasnippet
     :ensure t
     :init
@@ -154,7 +154,7 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     :ensure t)
 #+END_SRC
 *** mu4e
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-mu4e.el
   (use-package mu4e
     :ensure nil
     :load-path "/usr/share/emacs/site-lisp/mu4e/"
@@ -185,7 +185,7 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     ("C-c m" . mu4e))
 #+END_SRC
 *** eww
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-eww.el
   (use-package eww
     :ensure t
     :bind
@@ -232,6 +232,17 @@ now set keybindings to execute these functions
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
   ;; load files from custom directory
+  (require 'keenban-hyperbole)
+  (require 'keenban-eat)
+  (require 'keenban-markdown-mode)
+  (require 'keenban-yasnippet)
+  (require 'keenban-vertico)
+  (require 'keenban-magit)
+  (require 'keenban-which-key)
+  (require 'keenban-org)
+  (require 'keenban-denote)
+  (require 'keenban-mu4e)
+  (require 'keenban-eww)
   (require 'keenban-quick-edit)
 #+END_SRC
 
