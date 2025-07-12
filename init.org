@@ -21,6 +21,7 @@ https://protesilaos.com/emacs/dotemacs
 * main initialization
 ** package management
 *** exwm
+i want to only use exwm occasionally, so tangling it to a seperate file makes it much easier to enable and disable
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-exwm.el
   (use-package exwm
     :ensure nil
