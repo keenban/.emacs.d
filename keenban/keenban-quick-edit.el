@@ -5,3 +5,5 @@
 (global-set-key (kbd "C-c e i") 'open-init-file)
 (global-set-key (kbd "C-c e x") 'open-xinitrc)
 (global-set-key (kbd "C-c e b") 'open-bashrc)
+
+(provide 'keenban-quick-edit)

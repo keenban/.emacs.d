@@ -4,3 +4,5 @@
   (setq eat-term-terminfo "xterm-256color")
   :bind
   (("C-c RET" . eat)))
+
+  (provide 'keenban-eat)

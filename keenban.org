@@ -1,11 +1,10 @@
 #+title: my emacs configuration
 #+author: Keenan Salandy
 #+PROPERTY: header-args :tangle yes :mkdirp yes
-#+tangle: ~/.emacs.d/init.el
 * early initialization
 copied from protesilaos
 https://protesilaos.com/emacs/dotemacs
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/early-init.el
+#+BEGIN_SRC emacs-lisp :tangle early-init.el
 (setq frame-resize-pixelwise t
       frame-inhibit-implied-resize 'force
       frame-title-format '("%b")
@@ -22,7 +21,7 @@ https://protesilaos.com/emacs/dotemacs
 ** package management
 *** exwm
 i want to only use exwm occasionally, so tangling it to a seperate file makes it much easier to enable and disable
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-exwm.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-exwm.el
   (use-package exwm
     :ensure nil
     :config
@@ -78,55 +77,71 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   		      (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
     ;; start exwm
     (exwm-wm-mode))
+
+  (provide 'keenban-exwm)
 #+END_SRC
 *** hyperbole
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-hyperbole.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-hyperbole.el
   (use-package hyperbole
     :ensure t)
+
+    (provide 'keenban-hyperbole)
 #+END_SRC
 *** eat
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-eat.el 
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el 
   (use-package eat
     :ensure t
     :config
     (setq eat-term-terminfo "xterm-256color")
     :bind
     (("C-c RET" . eat)))
+
+    (provide 'keenban-eat)
 #+END_SRC
 *** markdown-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-markdown-mode.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown-mode.el
   (use-package markdown-mode
     :ensure t)
+  
+  (provide 'keenban-markdown-mode)
 #+END_SRC
 *** yasnippet
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-yasnippet.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-yasnippet.el
   (use-package yasnippet
     :ensure t
     :init
     (setq yas-snippet-dir "~/.emacs.d/snippets")
     :config
     (yas-global-mode))
+  
+  (provide 'keenban-yasnippet)
 #+END_SRC
 *** vertico
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-vertico.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-vertico.el
   (use-package vertico
     :ensure t
     :init
     (vertico-mode))
+
+  (provide 'keenban-vertico)
 #+END_SRC
 *** magit
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-magit.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
   (use-package magit
     :ensure t)
+
+  (provide 'keenban-magit)
 #+END_SRC
 *** which-key
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-which-key.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which-key.el
   (use-package which-key
     :config
     (which-key-mode))
+
+  (provide 'keenban-which-key)
 #+END_SRC
 *** org
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-org.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
     :bind
     (("C-c l" . org-store-link)
@@ -134,9 +149,11 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     :config
     (setq org-log-done t)
     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org")))
+
+  (provide 'keenban-org)
 #+END_SRC
 *** denote
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-denote.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
   (use-package denote
     :ensure t
     :hook (dired-mode . denote-dired-mode)
@@ -152,9 +169,11 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     (denote-rename-buffer-mode 1))
   (use-package denote-org
     :ensure t)
+
+  (provide 'keenban-denote)
 #+END_SRC
 *** mu4e
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-mu4e.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mu4e.el
   (use-package mu4e
     :ensure nil
     :load-path "/usr/share/emacs/site-lisp/mu4e/"
@@ -183,55 +202,63 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
             ("/[Gmail]/All Mail"  . ?a)))
     :bind
     ("C-c m" . mu4e))
+
+  (provide 'keenban-mu4e)
 #+END_SRC
 *** eww
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-eww.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eww.el
   (use-package eww
     :ensure t
     :bind
     (("C-c w" . eww)))
+
+  (provide 'keenban-eww)
 #+END_SRC
 ** quick edit
 first, define functions to open important files
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-quick-edit.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
   (defun open-init-file () (interactive) (find-file user-init-file))
   (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
   (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
 #+END_SRC
 now set keybindings to execute these functions
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-quick-edit.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
   (global-set-key (kbd "C-c e i") 'open-init-file)
   (global-set-key (kbd "C-c e x") 'open-xinitrc)
   (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
+now provide
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+    (provide 'keenban-quick-edit)
+#+END_SRC
 ** keybinds
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
 ** variables
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
   (setq left-margin-width 5)
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file)
 #+END_SRC
 ** faces
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
   (set-frame-font "JetBrains Mono 16" nil t)
 #+END_SRC
 ** modes
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp :tangle init.el
   (column-number-mode)
 #+END_SRC
 ** load modules
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
 #+END_SRC
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle init.el
   ;; load files from custom directory
   (require 'keenban-hyperbole)
   (require 'keenban-eat)

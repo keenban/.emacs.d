@@ -26,3 +26,5 @@
           ("/[Gmail]/All Mail"  . ?a)))
   :bind
   ("C-c m" . mu4e))
+
+(provide 'keenban-mu4e)

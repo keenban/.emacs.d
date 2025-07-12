@@ -53,3 +53,5 @@
 		      (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
   ;; start exwm
   (exwm-wm-mode))
+
+(provide 'keenban-exwm)

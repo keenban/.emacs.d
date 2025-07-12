@@ -4,3 +4,5 @@
   (setq yas-snippet-dir "~/.emacs.d/snippets")
   :config
   (yas-global-mode))
+
+(provide 'keenban-yasnippet)

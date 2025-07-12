@@ -5,3 +5,5 @@
   :config
   (setq org-log-done t)
   (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org")))
+
+(provide 'keenban-org)
