@@ -212,7 +212,6 @@ now set keybindings to execute these functions
 #+END_SRC
 ** variables
 #+BEGIN_SRC emacs-lisp
-
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
   (setq left-margin-width 5)
   (setq custom-file "~/.emacs.d/custom.el")
