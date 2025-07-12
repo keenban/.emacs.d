@@ -98,6 +98,17 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
     (provide 'keenban-eat)
 #+END_SRC
+*** emms
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-emms.el
+  (use-package emms
+    :ensure t
+    :config
+    (emms-all)
+    (setq emms-player-list '(emms-player-mpv)
+          emms-info-functions '(emms-info-native)))
+
+  (provide 'keenban-emms)
+#+END_SRC
 *** markdown-mode
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown-mode.el
   (use-package markdown-mode
