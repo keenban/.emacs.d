@@ -5,7 +5,7 @@
 
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 (setq left-margin-width 5)
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
 (set-frame-font "JetBrains Mono 16" nil t)
