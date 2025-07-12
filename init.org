@@ -21,7 +21,7 @@ https://protesilaos.com/emacs/dotemacs
 * main initialization
 ** package management
 *** exwm
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-exwm.el
   (use-package exwm
     :ensure nil
     :config
