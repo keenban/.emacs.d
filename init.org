@@ -190,23 +190,24 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     :bind
     (("C-c w" . eww)))
 #+END_SRC
-** functions
-#+BEGIN_SRC emacs-lisp 
+** quick edit
+first, define functions to open important files
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-quick-edit.el
   (defun open-init-file () (interactive) (find-file user-init-file))
   (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
   (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
+#+END_SRC
+now set keybindings to execute these functions
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keenban/keenban-quick-edit.el
+  (global-set-key (kbd "C-c e i") 'open-init-file)
+  (global-set-key (kbd "C-c e x") 'open-xinitrc)
+  (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
 ** keybinds
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
-#+END_SRC
-*** edit file
-#+BEGIN_SRC emacs-lisp 
-  (global-set-key (kbd "C-c e i") 'open-init-file)
-  (global-set-key (kbd "C-c e x") 'open-xinitrc)
-  (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
 ** variables
 #+BEGIN_SRC emacs-lisp
