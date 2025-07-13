@@ -125,15 +125,6 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   
   (provide 'keenban-markdown-mode)
 #+END_SRC
-*** vertico
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-vertico.el
-  (use-package vertico
-    :ensure t
-    :init
-    (vertico-mode))
-
-  (provide 'keenban-vertico)
-#+END_SRC
 *** magit
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
   (use-package magit
@@ -225,7 +216,41 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-eww)
 #+END_SRC
-** quick edit
+*** minibuffer completion
+taken from protesilaos basic configuration
+**** vertico
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
+  (use-package vertico
+    :ensure t
+    :hook (after-init . vertico-mode))
+#+END_SRC
+**** marginalia
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
+  (use-package marginalia
+    :ensure t
+    :hook (after-init . marginalia-mode))
+#+END_SRC
+**** orderless
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
+  (use-package orderless
+    :ensure t
+    :config
+    (setq completion-styles '(orderless basic))
+    (setq completion-category-defaults nil)
+    (setq completion-category-overrides nil))
+#+END_SRC
+**** savehist
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
+  (use-package savehist
+    :ensure nil ; it is built-in
+    :hook (after-init . savehist-mode))
+#+END_SRC
+**** provide
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
+  (provide 'keenban-minibuffer)
+#+END_SRC
+** custom packages
+*** quick edit
 first, define functions to open important files
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
   (defun open-init-file () (interactive) (find-file user-init-file))
@@ -242,33 +267,38 @@ now provide
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
     (provide 'keenban-quick-edit)
 #+END_SRC
-** keybinds
+** general configuration
+*** custom file
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+  (load custom-file)
+#+END_SRC
+*** keybinds
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
-** variables
+*** variables
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-  (setq left-margin-width 5)
-  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
-  (load custom-file)
 #+END_SRC
-** faces
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-frame-font "JetBrains Mono 16" nil t)
-#+END_SRC
-** modes
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (column-number-mode)
-#+END_SRC
-** abbrev
-#+BEGIN_SRC emacs-lisp
-  (use-package abbre
-#+END_SRC
-** load modules
+*** disable backups and lockfiles
+from protesilaos
+
+By default, Emacs tries to lock down files so that they are not
+modified by other programs. It also keeps backups. These are features
+I do not need because (i) if I am ever modifying my files externally,
+then I know what I am doing and (ii) all the files I care about are
+either under version control or backed up to a flash drive.
+
+#+begin_src emacs-lisp :tangle "init.el"
+(setq make-backup-files nil)
+(setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
+(setq create-lockfiles nil)
+#+end_src
+*** load modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
@@ -289,19 +319,10 @@ now provide
   (require 'keenban-eww)
   (require 'keenban-quick-edit)
   (require 'keenban-gnus)
+  (require 'keenban-minibuffer)
 #+END_SRC
 
-** The =init.el= basic configurations to disable backups and lockfiles
-from protesilaos
-
-By default, Emacs tries to lock down files so that they are not
-modified by other programs. It also keeps backups. These are features
-I do not need because (i) if I am ever modifying my files externally,
-then I know what I am doing and (ii) all the files I care about are
-either under version control or backed up to a flash drive.
-
-#+begin_src emacs-lisp :tangle "init.el"
-(setq make-backup-files nil)
-(setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
-(setq create-lockfiles nil)
-#+end_src
+*** faces
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (set-frame-font "JetBrains Mono 16" nil t)
+#+END_SRC
