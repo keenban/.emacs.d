@@ -90,9 +90,11 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 *** hyperbole
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-hyperbole.el
   (use-package hyperbole
-    :ensure t)
-
-    (provide 'keenban-hyperbole)
+    :ensure t
+    :config
+    (add-hook 'text-mode-hook 'hyperbole-mode))
+  
+      (provide 'keenban-hyperbole)
 #+END_SRC
 *** eat
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el 
