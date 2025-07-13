@@ -123,49 +123,6 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   
   (provide 'keenban-markdown-mode)
 #+END_SRC
-** quick edit
-first, define functions to open important files
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
-  (defun open-init-file () (interactive) (find-file user-init-file))
-  (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
-  (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
-#+END_SRC
-now set keybindings to execute these functions
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
-  (global-set-key (kbd "C-c e i") 'open-init-file)
-  (global-set-key (kbd "C-c e x") 'open-xinitrc)
-  (global-set-key (kbd "C-c e b") 'open-bashrc)
-#+END_SRC
-now provide
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
-    (provide 'keenban-quick-edit)
-#+END_SRC
-** keybinds
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  ;; taken from mastering emacs
-  (global-set-key (kbd "M-o") 'other-window)
-  (global-set-key [remap list-buffers] 'ibuffer)
-  (global-set-key (kbd "C-c r") 'eval-region)
-#+END_SRC
-** variables
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-  (setq left-margin-width 5)
-  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
-  (load custom-file)
-#+END_SRC
-** faces
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-frame-font "JetBrains Mono 16" nil t)
-#+END_SRC
-** modes
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (column-number-mode)
-#+END_SRC
-** abbrev
-#+BEGIN_SRC emacs-lisp
-  (use-package abbre
-#+END_SRC
 *** vertico
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-vertico.el
   (use-package vertico
@@ -264,6 +221,49 @@ now provide
 
   (provide 'keenban-eww)
 #+END_SRC
+** quick edit
+first, define functions to open important files
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+  (defun open-init-file () (interactive) (find-file user-init-file))
+  (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
+  (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
+#+END_SRC
+now set keybindings to execute these functions
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+  (global-set-key (kbd "C-c e i") 'open-init-file)
+  (global-set-key (kbd "C-c e x") 'open-xinitrc)
+  (global-set-key (kbd "C-c e b") 'open-bashrc)
+#+END_SRC
+now provide
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+    (provide 'keenban-quick-edit)
+#+END_SRC
+** keybinds
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  ;; taken from mastering emacs
+  (global-set-key (kbd "M-o") 'other-window)
+  (global-set-key [remap list-buffers] 'ibuffer)
+  (global-set-key (kbd "C-c r") 'eval-region)
+#+END_SRC
+** variables
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+  (setq left-margin-width 5)
+  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+  (load custom-file)
+#+END_SRC
+** faces
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (set-frame-font "JetBrains Mono 16" nil t)
+#+END_SRC
+** modes
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (column-number-mode)
+#+END_SRC
+** abbrev
+#+BEGIN_SRC emacs-lisp
+  (use-package abbre
+#+END_SRC
 ** load modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
@@ -275,6 +275,7 @@ now provide
   (require 'keenban-eat)
   (require 'keenban-emms)
   (require 'keenban-markdown-mode)
+  (require 'keenban-yasnippet)
   (require 'keenban-vertico)
   (require 'keenban-magit)
   (require 'keenban-which-key)
