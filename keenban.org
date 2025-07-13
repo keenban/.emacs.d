@@ -123,17 +123,6 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   
   (provide 'keenban-markdown-mode)
 #+END_SRC
-*** yasnippet
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-yasnippet.el
-  (use-package yasnippet
-    :ensure t
-    :init
-    (setq yas-snippet-dir "~/.emacs.d/snippets")
-    :config
-    (yas-global-mode))
-  
-  (provide 'keenban-yasnippet)
-#+END_SRC
 *** vertico
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-vertico.el
   (use-package vertico
