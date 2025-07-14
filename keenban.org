@@ -1,7 +1,7 @@
 #+title: my emacs configuration
 #+author: Keenan Salandy
 #+PROPERTY: header-args :tangle yes :mkdirp yes
-* early initialization
+* initialization
 copied from protesilaos
 https://protesilaos.com/emacs/dotemacs
 #+BEGIN_SRC emacs-lisp :tangle early-init.el
@@ -17,9 +17,9 @@ https://protesilaos.com/emacs/dotemacs
       inhibit-x-resources t
       inhibit-startup-buffer-menu t)
 #+END_SRC
-* main initialization
-** package management
-*** exwm
+* utilities
+** system
+*** window manager
 i want to only use exwm occasionally, so tangling it to a seperate file makes it much easier to enable and disable
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-exwm.el
   (use-package exwm
@@ -80,34 +80,7 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-exwm)
 #+END_SRC
-*** gnus
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-gnus.el
-  (use-package gnus
-    :ensure t)
-
-  (provide 'keenban-gnus)
-#+END_SRC
-*** hyperbole
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-hyperbole.el
-  (use-package hyperbole
-    :ensure t
-    :config
-    (add-hook 'text-mode-hook 'hyperbole-mode))
-
-      (provide 'keenban-hyperbole)
-#+END_SRC
-*** eat
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el
-  (use-package eat
-    :ensure t
-    :config
-    (setq eat-term-terminfo "xterm-256color")
-    :bind
-    (("C-c RET" . eat)))
-
-    (provide 'keenban-eat)
-#+END_SRC
-*** emms
+*** media
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-emms.el
   (use-package emms
     :ensure t
@@ -118,73 +91,23 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-emms)
 #+END_SRC
-*** markdown-mode
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown.el
-  (use-package markdown-mode
-    :ensure t)
-
-  (provide 'keenban-markdown)
-#+END_SRC
-*** magit
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
-  (use-package magit
-    :ensure t)
-
-  (provide 'keenban-magit)
-#+END_SRC
-*** which-key
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which.el
-  (use-package which-key
-    :config
-    (which-key-mode))
-
-  (provide 'keenban-which)
-#+END_SRC
-*** org
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
-  (use-package org
-    :ensure nil
-    :defer t
-    :mode ("\\.org\\'" . org-mode)
-    :bind
-    (("C-c l" . org-store-link)
-     ("C-c a" . org-agenda))
-    :config
-    (setq
-     ;; start collapsed
-     org-startup-folded t
-
-     ;; respect headings
-     org-insert-heading-respect-content t)
-
-     (setq org-log-done t)
-     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
-     (define-abbrev org-mode-abbrev-table ";el" "#+BEGIN_SRC emacs-lisp")
-     (define-abbrev org-mode-abbrev-table ";end" "#+END_SRC"))
-
-    (provide 'keenban-org)
-#+END_SRC
-*** denote
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
-  (use-package denote
+*** terminal
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el
+  (use-package eat
     :ensure t
-    :hook (dired-mode . denote-dired-mode)
-    :bind
-    (("C-c n n" . denote)
-     ("C-c n r" . denote-rename-file)
-     ("C-c n l" . denote-link)
-     ("C-c n b" . denote-backlinks)
-     ("C-c n d" . denote-dired)
-     ("C-c n g" . denote-grep))
     :config
-    (setq denote-directory (expand-file-name "~/media/doc/notes/"))
-    (denote-rename-buffer-mode 1))
-  (use-package denote-org
-    :ensure t)
+    (setq eat-term-terminfo "xterm-256color")
+    :bind
+    (("C-c RET" . eat)))
 
-  (provide 'keenban-denote)
+    (provide 'keenban-eat)
 #+END_SRC
-*** mu4e
+*** files
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+#+END_SRC
+** internet
+*** mail
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mu4e.el
   (use-package mu4e
     :ensure nil
@@ -217,7 +140,14 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-mu4e)
 #+END_SRC
-*** eww
+*** news
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-gnus.el
+  (use-package gnus
+    :ensure t)
+
+  (provide 'keenban-gnus)
+#+END_SRC
+*** web
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eww.el
   (use-package eww
     :ensure t
@@ -226,7 +156,25 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-eww)
 #+END_SRC
-*** minibuffer completion
+** interface
+*** git
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
+  (use-package magit
+    :ensure t)
+
+  (provide 'keenban-magit)
+#+END_SRC
+
+*** hyperbole
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-hyperbole.el
+  (use-package hyperbole
+    :ensure t
+    :config
+    (add-hook 'text-mode-hook 'hyperbole-mode))
+
+      (provide 'keenban-hyperbole)
+#+END_SRC
+*** minibuffer
 taken from protesilaos basic configuration
 **** vertico
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
@@ -259,7 +207,67 @@ taken from protesilaos basic configuration
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (provide 'keenban-minibuffer)
 #+END_SRC
-** custom packages
+**** which-key
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which.el
+  (use-package which-key
+    :config
+    (which-key-mode))
+
+  (provide 'keenban-which)
+#+END_SRC
+** text
+*** markdown
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown.el
+  (use-package markdown-mode
+    :ensure t)
+
+  (provide 'keenban-markdown)
+#+END_SRC
+*** org
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
+  (use-package org
+    :ensure nil
+    :defer t
+    :mode ("\\.org\\'" . org-mode)
+    :bind
+    (("C-c l" . org-store-link)
+     ("C-c a" . org-agenda))
+    :config
+    (setq
+     ;; start collapsed
+     org-startup-folded t
+
+     ;; respect headings
+     org-insert-heading-respect-content t)
+
+     (setq org-log-done t)
+     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
+     (define-abbrev org-mode-abbrev-table ";el" "#+BEGIN_SRC emacs-lisp")
+     (define-abbrev org-mode-abbrev-table ";end" "#+END_SRC"))
+
+    (provide 'keenban-org)
+#+END_SRC
+**** denote
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
+  (use-package denote
+    :ensure t
+    :hook (dired-mode . denote-dired-mode)
+    :bind
+    (("C-c n n" . denote)
+     ("C-c n r" . denote-rename-file)
+     ("C-c n l" . denote-link)
+     ("C-c n b" . denote-backlinks)
+     ("C-c n d" . denote-dired)
+     ("C-c n g" . denote-grep))
+    :config
+    (setq denote-directory (expand-file-name "~/media/doc/notes/"))
+    (denote-rename-buffer-mode 1))
+  (use-package denote-org
+    :ensure t)
+
+  (provide 'keenban-denote)
+#+END_SRC
+** custom
 *** quick edit
 first, define functions to open important files
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
@@ -277,24 +285,20 @@ now provide
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
     (provide 'keenban-edit)
 #+END_SRC
-** general configuration
-*** custom file
+* general configuration
+** custom file
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
   (load custom-file)
 #+END_SRC
-*** keybinds
+** keybinds
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
-*** variables
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-#+END_SRC
-*** disable backups and lockfiles
+** disable backups and lockfiles
 from protesilaos
 
 By default, Emacs tries to lock down files so that they are not
@@ -308,7 +312,11 @@ either under version control or backed up to a flash drive.
 (setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
 (setq create-lockfiles nil)
 #+end_src
-*** load modules
+** faces
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (set-frame-font "JetBrains Mono 16" nil t)
+#+END_SRC
+** load modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
@@ -333,7 +341,3 @@ either under version control or backed up to a flash drive.
   (require 'keenban-scroll)
 #+END_SRC
 
-*** faces
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-frame-font "JetBrains Mono 16" nil t)
-#+END_SRC
