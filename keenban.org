@@ -186,8 +186,7 @@ taken from protesilaos basic configuration
 
   (provide 'keenban-which)
 #+END_SRC
-** text
-*** org
+** org
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
     :ensure nil
