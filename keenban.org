@@ -187,13 +187,6 @@ taken from protesilaos basic configuration
   (provide 'keenban-which)
 #+END_SRC
 ** text
-*** markdown
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown.el
-  (use-package markdown-mode
-    :ensure t)
-
-  (provide 'keenban-markdown)
-#+END_SRC
 *** org
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
