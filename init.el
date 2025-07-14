@@ -1,3 +1,5 @@
+(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
@@ -6,11 +8,11 @@
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-c r") 'eval-region)
 
-(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-
 (setq make-backup-files nil)
 (setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
 (setq create-lockfiles nil)
+
+(set-frame-font "JetBrains Mono 16" nil t)
 
 ;; add custom module directory to load path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
@@ -33,4 +35,15 @@
 (require 'keenban-minibuffer)
 (require 'keenban-scroll)
 
-(set-frame-font "JetBrains Mono 16" nil t)
+;; taken from emacs from scratch
+;; The default is 800 kilobytes.  Measured in bytes.
+(setq gc-cons-threshold (* 50 1000 1000))
+
+(defun efs/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                     (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
