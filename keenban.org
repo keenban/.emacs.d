@@ -91,17 +91,6 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-emms)
 #+END_SRC
-*** terminal
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el
-  (use-package eat
-    :ensure t
-    :config
-    (setq eat-term-terminfo "xterm-256color")
-    :bind
-    (("C-c RET" . eat)))
-
-    (provide 'keenban-eat)
-#+END_SRC
 *** files
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
