@@ -136,7 +136,6 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
 
   (provide 'keenban-gnus)
 #+END_SRC
-#+END_SRC
 ** interface
 *** git
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
