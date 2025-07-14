@@ -210,7 +210,7 @@ taken from protesilaos basic configuration
 
     (provide 'keenban-org)
 #+END_SRC
-**** denote
+*** denote
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
   (use-package denote
     :ensure t
