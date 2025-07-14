@@ -238,6 +238,15 @@ taken from protesilaos basic configuration
 
   (provide 'keenban-denote)
 #+END_SRC
+** programming
+*** colorful
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
+  (use-package rainbow-delimiters
+    :ensure t
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+  (provide 'keenban-prog)
+#+END_SRC
 ** custom
 *** quick edit
 first, define functions to open important files
@@ -310,8 +319,9 @@ either under version control or backed up to a flash drive.
   (require 'keenban-gnus)
   (require 'keenban-minibuffer)
   (require 'keenban-scroll)
+  (require 'keenban-prog)
 #+END_SRC
-* startup performance
+** startup performance
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from emacs from scratch
   ;; The default is 800 kilobytes.  Measured in bytes.
