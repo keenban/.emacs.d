@@ -29,59 +29,59 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     (setq exwm-workspace-number 1)
     ;; make class name the buffer name.
     (add-hook 'exwm-update-class-hook
-              (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+	      (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
     ;; global keybindings
     ;; emacs passthrough
     (setq exwm-input-prefix-keys
   	'(?\C-x
-            ?\C-u
-            ?\C-h
-            ?\M-x
-            ?\M-`
-            ?\M-&
-            ?\M-:
-            ?\C-\M-j  ;; Buffer list
-            ?\C-\ ))  ;; Ctrl+Space
+	    ?\C-u
+	    ?\C-h
+	    ?\M-x
+	    ?\M-`
+	    ?\M-&
+	    ?\M-:
+	    ?\C-\M-j  ;; Buffer list
+	    ?\C-\ ))  ;; Ctrl+Space
     (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
     ;; workspace
     (setq exwm-input-global-keys
   	`(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
   	  ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
   	  ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
-                         (interactive (list (read-shell-command "$ ")))
-                         (start-process-shell-command cmd nil cmd)))
+			 (interactive (list (read-shell-command "$ ")))
+			 (start-process-shell-command cmd nil cmd)))
   	  ([?\s-f] . (lambda () ;; s-f: Launch firefox.
-                         (interactive)
-                         (start-process-shell-command "firefox-bin" nil "firefox-bin")))
+			 (interactive)
+			 (start-process-shell-command "firefox-bin" nil "firefox-bin")))
   	  ([?\s-t] . (lambda () ;; s-t: Launch terminal.
-                         (interactive)
-                         (start-process-shell-command "st" nil "st")))
-            ;; s-N: Switch to certain workspace.
-            ,@(mapcar (lambda (i)
-  		      `(,(kbd (format "s-%d" i)) .
-  			(lambda ()
-        			  (interactive)
-  			  (exwm-workspace-switch-create ,i))))
-  		    (number-sequence 0 9))))
+			 (interactive)
+			 (start-process-shell-command "st" nil "st")))
+	    ;; s-N: Switch to certain workspace.
+	    ,@(mapcar (lambda (i)
+		`(,(kbd (format "s-%d" i)) .
+	      (lambda ()
+				  (interactive)
+		(exwm-workspace-switch-create ,i))))
+	      (number-sequence 0 9))))
     ;; brightness
     (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
-  		      (lambda () (interactive) (shell-command "xbacklight -dec 5")))
+		(lambda () (interactive) (shell-command "xbacklight -dec 5")))
     (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
-  		      (lambda () (interactive) (shell-command "xbacklight -inc 5")))
+		(lambda () (interactive) (shell-command "xbacklight -inc 5")))
     ;; volume
     (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
-  		      (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
+		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
     (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
-  		      (lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
+		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
     (exwm-input-set-key (kbd "<XF86AudioMute>")
-  		      (lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
+		(lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
     ;; start exwm
     (exwm-wm-mode))
 
   (provide 'keenban-exwm)
 #+END_SRC
 *** gnus
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-gnus
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-gnus.el
   (use-package gnus
     :ensure t)
 
@@ -93,11 +93,11 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     :ensure t
     :config
     (add-hook 'text-mode-hook 'hyperbole-mode))
-  
+
       (provide 'keenban-hyperbole)
 #+END_SRC
 *** eat
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el 
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-eat.el
   (use-package eat
     :ensure t
     :config
@@ -114,16 +114,16 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     :config
     (emms-all)
     (setq emms-player-list '(emms-player-mpv)
-          emms-info-functions '(emms-info-native)))
+	  emms-info-functions '(emms-info-native)))
 
   (provide 'keenban-emms)
 #+END_SRC
 *** markdown-mode
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown-mode.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-markdown.el
   (use-package markdown-mode
     :ensure t)
-  
-  (provide 'keenban-markdown-mode)
+
+  (provide 'keenban-markdown)
 #+END_SRC
 *** magit
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
@@ -133,26 +133,36 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   (provide 'keenban-magit)
 #+END_SRC
 *** which-key
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which-key.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which.el
   (use-package which-key
     :config
     (which-key-mode))
 
-  (provide 'keenban-which-key)
+  (provide 'keenban-which)
 #+END_SRC
 *** org
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
+    :ensure nil
+    :defer t
+    :mode ("\\.org\\'" . org-mode)
     :bind
     (("C-c l" . org-store-link)
      ("C-c a" . org-agenda))
     :config
-    (setq org-log-done t)
-    (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
-    (define-abbrev org-mode-abbrev-table ";el" "#+BEGIN_SRC emacs-lisp")
-    (define-abbrev org-mode-abbrev-table ";end" "#+END_SRC"))
+    (setq
+     ;; start collapsed
+     org-startup-folded t
 
-  (provide 'keenban-org)
+     ;; respect headings
+     org-insert-heading-respect-content t)
+
+     (setq org-log-done t)
+     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
+     (define-abbrev org-mode-abbrev-table ";el" "#+BEGIN_SRC emacs-lisp")
+     (define-abbrev org-mode-abbrev-table ";end" "#+END_SRC"))
+
+    (provide 'keenban-org)
 #+END_SRC
 *** denote
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
@@ -179,11 +189,11 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
   (use-package mu4e
     :ensure nil
     :load-path "/usr/share/emacs/site-lisp/mu4e/"
-    
+
     :config
     ;; this is set to 't' to avoid mail syncing issues when using mbsync
     (setq mu4e-change-filenames-when-moving t)
-    
+
     ;; refresh mail using isync every 10 minutes
     (setq mu4e-update-interval (* 10 60))
     (setq mu4e-get-mail-command "mbsync -a")
@@ -198,10 +208,10 @@ i want to only use exwm occasionally, so tangling it to a seperate file makes it
     ;; mailbox shortcuts
     (setq mu4e-maildir-shortcuts
   	'(("/Inbox"             . ?i)
-            ("/[Gmail]/Sent Mail" . ?s)
-            ("/[Gmail]/Trash"     . ?t)
-            ("/[Gmail]/Drafts"    . ?d)
-            ("/[Gmail]/All Mail"  . ?a)))
+	    ("/[Gmail]/Sent Mail" . ?s)
+	    ("/[Gmail]/Trash"     . ?t)
+	    ("/[Gmail]/Drafts"    . ?d)
+	    ("/[Gmail]/All Mail"  . ?a)))
     :bind
     ("C-c m" . mu4e))
 
@@ -252,20 +262,20 @@ taken from protesilaos basic configuration
 ** custom packages
 *** quick edit
 first, define functions to open important files
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
   (defun open-init-file () (interactive) (find-file user-init-file))
   (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
   (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
 #+END_SRC
 now set keybindings to execute these functions
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
   (global-set-key (kbd "C-c e i") 'open-init-file)
   (global-set-key (kbd "C-c e x") 'open-xinitrc)
   (global-set-key (kbd "C-c e b") 'open-bashrc)
 #+END_SRC
 now provide
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-quick-edit.el
-    (provide 'keenban-quick-edit)
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
+    (provide 'keenban-edit)
 #+END_SRC
 ** general configuration
 *** custom file
@@ -308,18 +318,19 @@ either under version control or backed up to a flash drive.
   (require 'keenban-hyperbole)
   (require 'keenban-eat)
   (require 'keenban-emms)
-  (require 'keenban-markdown-mode)
+  (require 'keenban-markdown)
   (require 'keenban-yasnippet)
   (require 'keenban-vertico)
   (require 'keenban-magit)
-  (require 'keenban-which-key)
+  (require 'keenban-which)
   (require 'keenban-org)
   (require 'keenban-denote)
   (require 'keenban-mu4e)
   (require 'keenban-eww)
-  (require 'keenban-quick-edit)
+  (require 'keenban-edit)
   (require 'keenban-gnus)
   (require 'keenban-minibuffer)
+  (require 'keenban-scroll)
 #+END_SRC
 
 *** faces
