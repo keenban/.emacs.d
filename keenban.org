@@ -19,8 +19,9 @@ https://protesilaos.com/emacs/dotemacs
 #+END_SRC
 * utilities
 ** system
+emacs integrations with system utilities
 *** window manager
-i want to only use exwm occasionally, so tangling it to a seperate file makes it much easier to enable and disable
+exwm configuration for using emacs as x window manager
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-exwm.el
   (use-package exwm
     :ensure nil
