@@ -298,17 +298,12 @@ either under version control or backed up to a flash drive.
 #+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; load files from custom directory
-  (require 'keenban-hyperbole)
-  (require 'keenban-eat)
   (require 'keenban-emms)
-  (require 'keenban-markdown)
-  (require 'keenban-yasnippet)
-  (require 'keenban-vertico)
   (require 'keenban-magit)
   (require 'keenban-which)
   (require 'keenban-org)
   (require 'keenban-denote)
-  (require 'keenban-mu4e)
+  (require 'keenban-mail)
   (require 'keenban-eww)
   (require 'keenban-edit)
   (require 'keenban-gnus)
