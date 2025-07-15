@@ -1,4 +1,4 @@
-(defun open-init-file () (interactive) (find-file user-init-file))
+(defun open-init-file () (interactive) (find-file "~/.emacs.d/keenban.org"))
 (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
 (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
 
