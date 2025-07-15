@@ -234,7 +234,7 @@ taken from protesilaos basic configuration
   (provide 'keenban-denote)
 #+END_SRC
 ** programming
-*** colorful
+*** colourful
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
   (use-package rainbow-delimiters
     :ensure t
