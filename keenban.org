@@ -82,6 +82,7 @@ exwm configuration for using emacs as x window manager
   (provide 'keenban-exwm)
 #+END_SRC
 *** media
+emms configuration for using emacs to play with mpv and mpd
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-emms.el
   (use-package emms
     :ensure t
