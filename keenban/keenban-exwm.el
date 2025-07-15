@@ -5,19 +5,19 @@
   (setq exwm-workspace-number 1)
   ;; make class name the buffer name.
   (add-hook 'exwm-update-class-hook
-	      (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   ;; global keybindings
   ;; emacs passthrough
   (setq exwm-input-prefix-keys
 	'(?\C-x
-	    ?\C-u
-	    ?\C-h
-	    ?\M-x
-	    ?\M-`
-	    ?\M-&
-	    ?\M-:
-	    ?\C-\M-j  ;; Buffer list
-	    ?\C-\ ))  ;; Ctrl+Space
+	  ?\C-u
+	  ?\C-h
+	  ?\M-x
+	  ?\M-`
+	  ?\M-&
+	  ?\M-:
+	  ?\C-\M-j  ;; Buffer list
+	  ?\C-\ ))  ;; Ctrl+Space
   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
   ;; workspace
   (setq exwm-input-global-keys
