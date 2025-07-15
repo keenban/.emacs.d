@@ -94,12 +94,13 @@ emms configuration for using emacs to play with mpv and mpd
   (provide 'keenban-emms)
 #+END_SRC
 *** files
+dired configuration
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 ** internet
 *** mail
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mu4e.el
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
   (use-package mu4e
     :ensure nil
     :load-path "/usr/share/emacs/site-lisp/mu4e/"
