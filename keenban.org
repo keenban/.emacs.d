@@ -265,6 +265,10 @@ now provide
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (toggle-frame-fullscreen)
 #+END_SRC 
+*** scratch buffer
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (setq initial-scratch-message "")
+#+END_SRC 
 ** custom file
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
