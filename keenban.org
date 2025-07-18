@@ -95,14 +95,6 @@ dired configuration
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
-** speech
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (use-package emacspeak
-  (load-file "/usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.el")
-  (setq emacspeak-epub-library-directory "/home/keenban/media/doc/book/"
-        emacspeak-epub-bookshelf-directory "/home/keenban/media/doc/book/bsf/"
-        emacspeak-epub-db-file "/home/keenban/media/doc/book/.bookshelf.bsf")
-#+END_SRC
 ** mail
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
   (use-package mu4e
