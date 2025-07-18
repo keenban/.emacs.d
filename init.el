@@ -1,39 +1,40 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
+(use-package emacspeak
+(load-file "/usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.el")
+(setq emacspeak-epub-library-directory "/home/keenban/media/doc/book/"
+      emacspeak-epub-bookshelf-directory "/home/keenban/media/doc/book/bsf/"
+      emacspeak-epub-db-file "/home/keenban/media/doc/book/.bookshelf.bsf")
+
+(set-face-attribute 'default nil :family "Monospace")
+(set-face-attribute 'default nil :height 160)
+
+(toggle-frame-fullscreen)
+
+(setq initial-scratch-message "")
+
+;; Hide advertisement from minibuffer
+(defun display-startup-echo-area-message () )
+
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
 ;; taken from mastering emacs
+;; easier to switch with 2 keys
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key [remap list-buffers] 'ibuffer)
-(global-set-key (kbd "C-c r") 'eval-region)
-
-(setq make-backup-files nil)
-(setq backup-inhibited nil) ; Not sure if needed, given `make-backup-files'
-(setq create-lockfiles nil)
-
-(set-frame-font "JetBrains Mono 16" nil t)
 
 ;; add custom module directory to load path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
 
 ;; load files from custom directory
-(require 'keenban-hyperbole)
-(require 'keenban-eat)
-(require 'keenban-emms)
-(require 'keenban-markdown)
-(require 'keenban-yasnippet)
-(require 'keenban-vertico)
-(require 'keenban-magit)
-(require 'keenban-which)
-(require 'keenban-org)
 (require 'keenban-denote)
-(require 'keenban-mu4e)
-(require 'keenban-eww)
 (require 'keenban-edit)
-(require 'keenban-gnus)
+(require 'keenban-git)
+(require 'keenban-mail)
+(require 'keenban-media)
 (require 'keenban-minibuffer)
-(require 'keenban-scroll)
+(require 'keenban-org)
+(require 'keenban-prog)
 
 ;; taken from emacs from scratch
 ;; The default is 800 kilobytes.  Measured in bytes.

@@ -1,11 +1,9 @@
-(setq frame-resize-pixelwise t
-      frame-inhibit-implied-resize 'force
-      frame-title-format '("%b")
-      ring-bell-function 'ignore
-      use-dialog-box t ; only for mouse events, which I seldom use
-      use-file-dialog nil
-      use-short-answers t
-      inhibit-splash-screen t
+(setq inhibit-splash-screen t
       inhibit-startup-screen t
-      inhibit-x-resources t
-      inhibit-startup-buffer-menu t)
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message t
+      inhibit-startup-buffer-menu t
+      menu-bar-mode nil
+      tool-bar-mode nil
+      tooltip-mode nil)
+(set-scroll-bar-mode nil)

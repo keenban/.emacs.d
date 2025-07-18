@@ -17,4 +17,8 @@
   :ensure nil ; it is built-in
   :hook (after-init . savehist-mode))
 
+(use-package which-key
+  :config
+  (which-key-mode))
+
 (provide 'keenban-minibuffer)
