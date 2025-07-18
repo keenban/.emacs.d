@@ -275,6 +275,8 @@ now provide
   (defun display-startup-echo-area-message () )
 #+END_SRC 
 ** custom file
+move the custom file to a seperate file in emacs directory
+this allows the init.el to be tangled to without overwriting custom set options
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
   (load custom-file)
@@ -282,6 +284,7 @@ now provide
 ** keybinds
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
+  ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
   (global-set-key [remap list-buffers] 'ibuffer)
   (global-set-key (kbd "C-c r") 'eval-region)
