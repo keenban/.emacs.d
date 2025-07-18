@@ -136,63 +136,6 @@ dired configuration
 
   (provide 'keenban-mail)
 #+END_SRC
-*** news
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-gnus.el
-  (use-package gnus
-    :ensure t)
-
-  (provide 'keenban-gnus)
-#+END_SRC
-** interface
-*** git
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-magit.el
-  (use-package magit
-    :ensure t)
-
-  (provide 'keenban-magit)
-#+END_SRC
-
-*** minibuffer
-taken from protesilaos basic configuration
-**** vertico
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
-  (use-package vertico
-    :ensure t
-    :hook (after-init . vertico-mode))
-#+END_SRC
-**** marginalia
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
-  (use-package marginalia
-    :ensure t
-    :hook (after-init . marginalia-mode))
-#+END_SRC
-**** orderless
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
-  (use-package orderless
-    :ensure t
-    :config
-    (setq completion-styles '(orderless basic))
-    (setq completion-category-defaults nil)
-    (setq completion-category-overrides nil))
-#+END_SRC
-**** savehist
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
-  (use-package savehist
-    :ensure nil ; it is built-in
-    :hook (after-init . savehist-mode))
-#+END_SRC
-**** provide
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
-  (provide 'keenban-minibuffer)
-#+END_SRC
-**** which-key
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-which.el
-  (use-package which-key
-    :config
-    (which-key-mode))
-
-  (provide 'keenban-which)
-#+END_SRC
 ** org
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
