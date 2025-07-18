@@ -220,6 +220,13 @@ taken from protesilaos basic configuration
   (provide 'keenban-minibuffer)
 #+END_SRC
 ** programming
+*** git
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-git.el
+  (use-package magit
+    :ensure t)
+
+  (provide 'keenban-git)
+#+END_SRC
 *** colourful
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
   (use-package rainbow-delimiters
