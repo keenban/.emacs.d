@@ -286,8 +286,6 @@ this allows the init.el to be tangled to without overwriting custom set options
   ;; taken from mastering emacs
   ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
-  (global-set-key [remap list-buffers] 'ibuffer)
-  (global-set-key (kbd "C-c r") 'eval-region)
 #+END_SRC
 ** disable backups and lockfiles
 from protesilaos
