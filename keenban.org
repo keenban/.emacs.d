@@ -294,17 +294,13 @@ this allows the init.el to be tangled to without overwriting custom set options
 #+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; load files from custom directory
-  (require 'keenban-emms)
-  (require 'keenban-magit)
-  (require 'keenban-which)
-  (require 'keenban-org)
   (require 'keenban-denote)
-  (require 'keenban-mail)
-  (require 'keenban-eww)
   (require 'keenban-edit)
-  (require 'keenban-gnus)
+  (require 'keenban-git)
+  (require 'keenban-mail)
+  (require 'keenban-media)
   (require 'keenban-minibuffer)
-  (require 'keenban-scroll)
+  (require 'keenban-org)
   (require 'keenban-prog)
 #+END_SRC
 ** startup performance
