@@ -261,6 +261,10 @@ now provide
   (set-face-attribute 'default nil :family "Monospace")
   (set-face-attribute 'default nil :height 160)
 #+END_SRC
+*** fullscreen
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (toggle-frame-fullscreen)
+#+END_SRC 
 ** custom file
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
