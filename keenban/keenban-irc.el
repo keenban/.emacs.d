@@ -8,7 +8,7 @@
 (add-to-list 'erc-modules 'services)
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-use-auth-source-for-nickserv-password t)
-(add-to-list 'erc-nickserv-alist '(GGn nil nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
+(add-to-list 'erc-nickserv-alist '(GGn "services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 
 (defun tmp/irc-login (network nick)
   (message "hook has been called")
