@@ -12,7 +12,7 @@
 
 (defun tmp/irc-login (network nick)
   (message "hook has been called")
-  (when (eq network 'server)
+  (when (eq network 'GGn)
     (message "when has passed")))
 
 (add-hook 'erc-nickserv-identified-hook 'tmp/irc-login)
