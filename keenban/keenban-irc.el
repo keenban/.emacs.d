@@ -1,16 +1,4 @@
 (use-package erc
-  :custom
-  ;; Protect me from accidentally sending excess lines.
-  (erc-inhibit-multiline-input t)
-  (erc-send-whitespace-lines t)
-  (erc-ask-about-multiline-input t)
-  ;; Reconnect automatically using a fancy strategy.
-  (erc-server-reconnect-function #'erc-server-delayed-check-reconnect)
-  (erc-server-reconnect-timeout 30)
-  
-  ;; Show new buffers in the current window instead of a split.
-  (erc-interactive-display 'buffer)
-
   :config
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
   
@@ -37,11 +25,11 @@
    ("C-c i r" . irc-join-red)
    ("C-c i m" . irc-join-mam)))
 
-(provide 'keenban-irc)
-
 (defun tmp/irc-login (network nick)
   (message "hook has been called")
   (when (eq network 'server)
     (message "when has passed")))
 
 (add-hook 'erc-nickserv-identified-hook 'tmp/irc-login)
+
+(provide 'keenban-irc)
