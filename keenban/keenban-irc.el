@@ -1,4 +1,6 @@
 (require 'erc)
+(require 'erc-services)
+
 ;; hide annoying messages
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
