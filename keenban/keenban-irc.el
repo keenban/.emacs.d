@@ -11,15 +11,17 @@
 (setq erc-use-auth-source-for-nickserv-password t)
 (add-to-list 'erc-nickserv-alist '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 
-(defun tmp/irc-login (network nick)
-  (message "hook has been called")
+(defun my/irc-login (network nick)
   (when (eq network 'GGn)
-    (message "when has passed")))
+    ;; need to get password decrypted 
+    (erc-server-send (format "/msg Vertico ENTER #gazellegames %s" nick))))
+
+(add-hook 'erc-nickserv-identified-hook 'my/irc-login)
+
 (defun irc-join-ggn ()
   (interactive)
   (erc-tls :server "irc.gazellegames.net" :port +7000 :nick "keenban"))
 
-(add-hook 'erc-nickserv-identified-hook 'tmp/irc-login)
 (defun irc-join-red ()
   (interactive)
   (erc-tls :server "irc.scratch-network.net" :port +7000 :nick "keenban"))
