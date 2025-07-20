@@ -15,7 +15,17 @@
   (message "hook has been called")
   (when (eq network 'GGn)
     (message "when has passed")))
+(defun irc-join-ggn ()
+  (interactive)
+  (erc-tls :server "irc.gazellegames.net" :port +7000 :nick "keenban"))
 
 (add-hook 'erc-nickserv-identified-hook 'tmp/irc-login)
+(defun irc-join-red ()
+  (interactive)
+  (erc-tls :server "irc.scratch-network.net" :port +7000 :nick "keenban"))
+
+(defun irc-join-mam ()
+  (interactive)
+  (erc-tls :server "irc.myanonamouse.net" :port 6697 :nick "keenban"))
 
 (provide 'keenban-irc)
