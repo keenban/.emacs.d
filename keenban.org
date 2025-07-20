@@ -130,6 +130,57 @@ dired configuration
 
   (provide 'keenban-mail)
 #+END_SRC
+*** irc
+my personal irc setup
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (require 'erc)
+#+END_SRC
+i like to hide the join, part, and quit messages. they tend to clutter up the chat in a busy channel
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+#+END_SRC
+i like to automatically sign in with nickserv and any other irc login bot
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  ;; use services for authentication
+  (require 'erc-services)
+  (require 'auth-sources)
+  (add-to-list 'erc-modules 'services)
+
+  ;; use nickserv automatically, with credentials loaded from ~/.authinfo.gpg
+  (setq erc-prompt-for-nickserv-password nil)
+  (setq erc-use-auth-source-for-nickserv-password t)
+  (add-to-list 'erc-nickserv-alist '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (defun my/irc-login (network nick)
+    (when (eq network 'GGn)
+      ;; need to get password decrypted 
+      (erc-server-send (format "/msg Vertico ENTER #gazellegames %s" nick))))
+
+  (add-hook 'erc-nickserv-identified-hook 'my/irc-login)
+#+END_SRC
+
+define join commands
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (defun irc-join-ggn ()
+    (interactive)
+    (erc-tls :server "irc.gazellegames.net" :port +7000 :nick "keenban"))
+
+  (defun irc-join-red ()
+    (interactive)
+    (erc-tls :server "irc.scratch-network.net" :port +7000 :nick "keenban"))
+
+  (defun irc-join-mam ()
+    (interactive)
+    (erc-tls :server "irc.myanonamouse.net" :port 6697 :nick "keenban"))
+#+END_SRC
+
+provide to make it visible
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (provide 'keenban-irc)
+#+END_SRC
 ** org
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
@@ -268,6 +319,10 @@ now provide
   ;; Hide advertisement from minibuffer
   (defun display-startup-echo-area-message () )
 #+END_SRC 
+*** pinentry
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (setq epa-pinentry-mode 'loopback)
+#+END_SRC
 ** custom file
 move the custom file to a seperate file in emacs directory
 this allows the init.el to be tangled to without overwriting custom set options
@@ -281,6 +336,7 @@ this allows the init.el to be tangled to without overwriting custom set options
   ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
 #+END_SRC
+
 ** load modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
@@ -296,6 +352,7 @@ this allows the init.el to be tangled to without overwriting custom set options
   (require 'keenban-minibuffer)
   (require 'keenban-org)
   (require 'keenban-prog)
+  (require 'keenban-irc)
 #+END_SRC
 ** startup performance
 #+BEGIN_SRC emacs-lisp :tangle init.el
