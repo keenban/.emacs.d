@@ -49,4 +49,6 @@
 (global-set-key (kbd "C-c i g") #'my/irc-ggn)
 (global-set-key (kbd "C-c i l") #'my/irc-libera)
 
+(setq erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
+
 (provide 'keenban-irc)

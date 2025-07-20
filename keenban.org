@@ -207,8 +207,13 @@ define functions to connect to the server.
   ;; set key binding
   (global-set-key (kbd "C-c i g") #'my/irc-ggn)
   (global-set-key (kbd "C-c i l") #'my/irc-libera)
-  
 #+END_SRC
+
+When I join servers, I would like to automatically enter
+the channels that are relevant to me.
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
+  (setq erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
+#+END_SRC 
 
 In order for this module to be visible to Emacs,
 we must announce it as a feature.
