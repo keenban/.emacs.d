@@ -1,11 +1,5 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
-(use-package emacspeak
-(load-file "/usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.el")
-(setq emacspeak-epub-library-directory "/home/keenban/media/doc/book/"
-      emacspeak-epub-bookshelf-directory "/home/keenban/media/doc/book/bsf/"
-      emacspeak-epub-db-file "/home/keenban/media/doc/book/.bookshelf.bsf")
-
 (set-face-attribute 'default nil :family "Monospace")
 (set-face-attribute 'default nil :height 160)
 
@@ -15,6 +9,8 @@
 
 ;; Hide advertisement from minibuffer
 (defun display-startup-echo-area-message () )
+
+(setq epa-pinentry-mode 'loopback)
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
@@ -35,6 +31,7 @@
 (require 'keenban-minibuffer)
 (require 'keenban-org)
 (require 'keenban-prog)
+(require 'keenban-irc)
 
 ;; taken from emacs from scratch
 ;; The default is 800 kilobytes.  Measured in bytes.

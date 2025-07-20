@@ -95,7 +95,9 @@ dired configuration
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
-** mail
+
+** communication
+*** mail
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
   (use-package mu4e
     :ensure nil
