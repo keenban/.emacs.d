@@ -1,21 +1,46 @@
+;; basic requirements for irc, and credential authentication
 (require 'erc)
-
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
-
-;; use services for authentication
 (require 'erc-services)
-(add-to-list 'erc-modules 'services)
+(require 'auth-source)
 
-;; use nickserv automatically, with credentials loaded from ~/.authinfo.gpg
+;; Use services for authentication
+(add-to-list 'erc-modules 'services)
+(erc-update-modules)
+
+;; disable nickserv prompt
 (setq erc-prompt-for-nickserv-password nil)
+
+;; use ~/.authsource.gpg for credentials
 (setq erc-use-auth-source-for-nickserv-password t)
-(add-to-list 'erc-nickserv-alist '(site "NickServ!services@services.site.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
+
+;; recognize GGn NickServ bot
+(add-to-list 'erc-nickserv-alist 
+                 '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 
 (defun my/irc-login (network nick)
-  (when (eq network 'site)
-    ;; need to get password decrypted 
-    (erc-server-send (format "/msg Bot ENTER #channel %s" nick))))
+  "Send ENTER command to Vertigo after successful NickServ identification."
+  (when (eq network 'GGn)
+    (let* ((creds (auth-source-search :host "irc.gazellegames.net"
+                                      :user "Vertigo"
+                                      :require '(:secret)
+                                      :max 1))
+           (secret (when creds (plist-get (car creds) :secret))))
+      (when secret
+        (erc-server-send 
+         (format "PRIVMSG Vertigo :ENTER #gazellegames %s %s" 
+                 nick 
+                 (if (functionp secret) (funcall secret) secret)))))))
 
-(add-hook 'erc-nickserv-identified-hook 'my/irc-login)
+(add-hook 'erc-nickserv-identified-hook #'my/irc-login)
+
+;; hide these messages
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+;; define user function to join server
+  (defun irc-ggn () 
+      (interactive) 
+      (erc-tls :server "irc.gazellegames.net" :port 7000))
+  ;; set key binding
+    (global-set-key (kbd "C-c i g") #'irc-ggn)
 
 (provide 'keenban-irc)
