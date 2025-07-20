@@ -37,10 +37,16 @@
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; define user function to join server
-  (defun irc-ggn () 
-      (interactive) 
-      (erc-tls :server "irc.gazellegames.net" :port 7000))
-  ;; set key binding
-    (global-set-key (kbd "C-c i g") #'irc-ggn)
+(defun my/irc-ggn () 
+  (interactive) 
+  (erc-tls :server "irc.gazellegames.net" :port 7000))
+
+(defun my/irc-libera ()
+  (interactive)
+  (erc-tls :server "irc.libera.chat" :port 6697))
+
+;; set key binding
+(global-set-key (kbd "C-c i g") #'irc-ggn)
+(global-set-key (kbd "C-c i l") #'irc-libera)
 
 (provide 'keenban-irc)

@@ -195,12 +195,19 @@ I like to join specific servers regularly. In order
 to make it easier for myself, I like to set keybinds and
 define functions to connect to the server.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
-;; define user function to join server
-  (defun irc-ggn () 
-      (interactive) 
-      (erc-tls :server "irc.gazellegames.net" :port 7000))
+  ;; define user function to join server
+  (defun my/irc-ggn () 
+    (interactive) 
+    (erc-tls :server "irc.gazellegames.net" :port 7000))
+
+  (defun my/irc-libera ()
+    (interactive)
+    (erc-tls :server "irc.libera.chat" :port 6697))
+
   ;; set key binding
-    (global-set-key (kbd "C-c i g") #'irc-ggn)
+  (global-set-key (kbd "C-c i g") #'irc-ggn)
+  (global-set-key (kbd "C-c i l") #'irc-libera)
+  
 #+END_SRC
 
 In order for this module to be visible to Emacs,
