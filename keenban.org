@@ -363,6 +363,13 @@ now provide
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
+*** buffer menu
+The default list-buffers menu bound to C-x C-b is dramatically
+improved upon by the ibuffer menu.
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  ;; replace C-x C-b with ibuffer
+  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
+#+END_SRC
 ** custom file
 move the custom file to a seperate file in emacs directory
 this allows the init.el to be tangled to without overwriting custom set options

@@ -12,6 +12,9 @@
 
 (setq epa-pinentry-mode 'loopback)
 
+;; replace C-x C-b with ibuffer
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
+
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
