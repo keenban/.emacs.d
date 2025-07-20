@@ -13,7 +13,7 @@
 ;; use ~/.authsource.gpg for credentials
 (setq erc-use-auth-source-for-nickserv-password t)
 
-;; recognize GGn NickServ bot
+;; recognize NickServ bot
 (add-to-list 'erc-nickserv-alist 
                  '(Network "NickServ!services@services.network.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 
