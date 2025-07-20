@@ -15,19 +15,19 @@
 
 ;; recognize GGn NickServ bot
 (add-to-list 'erc-nickserv-alist 
-                 '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
+                 '(Network "NickServ!services@services.network.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 
 (defun my/irc-login (network nick)
   "Send ENTER command to Vertigo after successful NickServ identification."
-  (when (eq network 'GGn)
-    (let* ((creds (auth-source-search :host "irc.gazellegames.net"
-                                      :user "Vertigo"
+  (when (eq network 'Network)
+    (let* ((creds (auth-source-search :host "irc.network.net"
+                                      :user "Robot"
                                       :require '(:secret)
                                       :max 1))
            (secret (when creds (plist-get (car creds) :secret))))
       (when secret
         (erc-server-send 
-         (format "PRIVMSG Vertigo :ENTER #gazellegames %s %s" 
+         (format "PRIVMSG Robot :ENTER #channel %s %s" 
                  nick 
                  (if (functionp secret) (funcall secret) secret)))))))
 
@@ -37,16 +37,16 @@
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; define user function to join server
-(defun my/irc-ggn () 
+(defun my/irc-network () 
   (interactive) 
-  (erc-tls :server "irc.gazellegames.net" :port 7000))
+  (erc-tls :server "irc.network.net" :port 7000))
 
 (defun my/irc-libera ()
   (interactive)
   (erc-tls :server "irc.libera.chat" :port 6697))
 
 ;; set key binding
-(global-set-key (kbd "C-c i g") #'my/irc-ggn)
+(global-set-key (kbd "C-c i g") #'my/irc-network)
 (global-set-key (kbd "C-c i l") #'my/irc-libera)
 
 (setq erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
