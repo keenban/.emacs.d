@@ -46,7 +46,7 @@
   (erc-tls :server "irc.libera.chat" :port 6697))
 
 ;; set key binding
-(global-set-key (kbd "C-c i g") #'irc-ggn)
-(global-set-key (kbd "C-c i l") #'irc-libera)
+(global-set-key (kbd "C-c i g") #'my/irc-ggn)
+(global-set-key (kbd "C-c i l") #'my/irc-libera)
 
 (provide 'keenban-irc)
