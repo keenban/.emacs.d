@@ -428,6 +428,30 @@ improved upon by the ibuffer menu.
   ;; replace C-x C-b with ibuffer
   (define-key (current-global-map) [remap list-buffers] 'ibuffer)
 #+END_SRC
+*** padding
+
+When editing text files i like to have a little room to breathe on the left and right margins.
+It is known that a medium line length improves comprehension and reading speed. [1]
+1. [[https://www.sciencedirect.com/science/article/abs/pii/S1071581901904586][The influence of reading speed and line length on the effectiveness of reading from screen]]
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (defun my/focus ()
+    ;; set margins
+    (set-window-margins (selected-window) 25 25)
+    
+    ;; set fringe to white to make margin blend in
+    (set-face-attribute 'fringe nil :background "white")
+
+    ;; display relative line numbers
+    (setq display-line-numbers 'relative))
+#+END_SRC
+
+I then want to enable this in all text buffers,
+as it should not be default in every buffer.
+#+BEGIN_SRC emacs-lisp
+  ;; Create hook to enable these upon entering a text buffer.
+  (add-hook 'text-mode #'my/focus)
+#+END_SRC 
+
 ** custom file
 move the custom file to a seperate file in emacs directory
 this allows the init.el to be tangled to without overwriting custom set options
