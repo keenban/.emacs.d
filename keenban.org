@@ -240,12 +240,19 @@ we must announce it as a feature.
      ;; respect headings
      org-insert-heading-respect-content t)
 
-     (setq org-log-done t)
-     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
-     (define-abbrev org-mode-abbrev-table "kel" "#+BEGIN_SRC emacs-lisp")
-     (define-abbrev org-mode-abbrev-table "kend" "#+END_SRC"))
+    ;; edit header faces
+    (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
+    (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
+    (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
+    (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
+    (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
 
-    (provide 'keenban-org)
+    (setq org-log-done t)
+    (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
+    (define-abbrev org-mode-abbrev-table "kel" "#+BEGIN_SRC emacs-lisp")
+    (define-abbrev org-mode-abbrev-table "kend" "#+END_SRC"))
+
+  (provide 'keenban-org)
 #+END_SRC
 *** denote
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
@@ -260,10 +267,6 @@ we must announce it as a feature.
      ("C-c n d" . denote-dired)
      ("C-c n g" . denote-grep))
     :config
-    (set-face-attribute 'org-level-1 nil :height 240)
-    (set-face-attribute 'org-level-2 nil :height 220)
-    (set-face-attribute 'org-level-3 nil :height 200)
-    (set-face-attribute 'org-level-4 nil :height 180)
     (setq denote-directory (expand-file-name "~/media/doc/notes/"))
     (denote-rename-buffer-mode 1))
   (use-package denote-org
