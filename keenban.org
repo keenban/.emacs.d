@@ -396,9 +396,12 @@ now provide
 *** faces
 **** default
 #+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-face-attribute 'default nil :family "Monospace")
-  (set-face-attribute 'default nil :height 160)
+  (set-face-attribute 'default nil :family "Monospace" :height 160)
 #+END_SRC
+**** line number
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'line-number nil :foreground "grey75")
+#+END_SRC 
 *** fullscreen
 Sometimes, I prefer emacs to start in fullscreen mode.
 This helps me stay focused and productive.
