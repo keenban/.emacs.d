@@ -99,7 +99,7 @@ benefit of a shared kill ring across all of my programs.
     (exwm-wm-mode))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window.el
   ;; make module available to emacs
   (provide 'keenban-window)
 #+END_SRC

@@ -60,3 +60,6 @@
 
   ;; Start EXWM.
   (exwm-wm-mode))
+
+;; make module available to emacs
+(provide 'keenban-window)
