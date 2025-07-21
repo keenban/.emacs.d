@@ -70,10 +70,12 @@
 ;; emms configuration for using emacs to play with mpv and mpd
 (use-package emms
   :ensure t
+  :defer t
+  :custom
+  (emms-player-list '(emms-player-mpv))
+  (emms-info-functions '(emms-info-native))
   :config
   (emms-all)
-  (setq emms-player-list '(emms-player-mpv)
-  	emms-info-functions '(emms-info-native)))
 
 ;;   Here lays my configuration of the default file manager in Emacs: Dired.
 
