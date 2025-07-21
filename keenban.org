@@ -361,7 +361,9 @@ now provide
   (set-face-attribute 'default nil :height 160)
 #+END_SRC
 *** fullscreen
-#+BEGIN_SRC emacs-lisp :tangle init.el
+Sometimes, I prefer emacs to start in fullscreen mode.
+This helps me stay focused and productive.
+#+BEGIN_SRC emacs-lisp
   (toggle-frame-fullscreen)
 #+END_SRC 
 *** scratch buffer
