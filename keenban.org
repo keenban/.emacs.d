@@ -18,22 +18,36 @@ what I am immediately trying to do.
         tooltip-mode nil)
   (set-scroll-bar-mode nil)
 #+END_SRC
+
 * utilities
 ** system
-emacs integrations with system utilities
+
+This section contains modules for all of my Emacs integrations with the external system.
+The system this is built for is GNU/Linux, and all features are untested on other
+operating systems.
+
 *** window manager
-exwm configuration for using emacs as x window manager
+
+At times, I like to launch directly into Emacs when I start my graphical session.
+This is where EXWM comes into play. I can start my X Server and load into Emacs.
+This gives me the power of controlling other windows (terminal emulator, signal-desktop,
+and web browser) through the unified interface of Emacs. It comes with the additional
+benefit of a shared kill ring across all of my programs.
+
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window.el
   (use-package exwm
+    ;; Do not try to install EXWM if it is not found.
     :ensure nil
+    
     :config
-    ;; set the initial workspace number.
+    ;; Set the initial workspace number.
     (setq exwm-workspace-number 1)
-    ;; make class name the buffer name.
+
+    ;; Make class name the buffer name.
     (add-hook 'exwm-update-class-hook
   	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-    ;; global keybindings
-    ;; emacs passthrough
+
+    ;; Passthrough some keys to Emacs
     (setq exwm-input-prefix-keys
   	'(?\C-x
   	  ?\C-u
@@ -45,7 +59,8 @@ exwm configuration for using emacs as x window manager
   	  ?\C-\M-j  ;; Buffer list
   	  ?\C-\ ))  ;; Ctrl+Space
     (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-    ;; workspace
+
+    ;; Define workspace management keys
     (setq exwm-input-global-keys
   	`(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
   	  ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
@@ -65,49 +80,64 @@ exwm configuration for using emacs as x window manager
   				  (interactive)
   		(exwm-workspace-switch-create ,i))))
   	      (number-sequence 0 9))))
-    ;; brightness
+    
+    ;; Define brightness adjustment keys.
     (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
   		(lambda () (interactive) (shell-command "xbacklight -dec 5")))
     (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
   		(lambda () (interactive) (shell-command "xbacklight -inc 5")))
-    ;; volume
+
+    ;; Define volume adjustment keys.
     (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
   		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
     (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
   		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
     (exwm-input-set-key (kbd "<XF86AudioMute>")
   		(lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
-    ;; start exwm
-    (exwm-wm-mode))
 
+    ;; Start EXWM.
+    (exwm-wm-mode))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window
+  ;; make module available to emacs
   (provide 'keenban-window)
 #+END_SRC
+
 *** media
+
 emms configuration for using emacs to play with mpv and mpd
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-media.el
-    (use-package emms
-      :ensure t
-      :config
-      (emms-all)
-      (setq emms-player-list '(emms-player-mpv)
-    	  emms-info-functions '(emms-info-native))
-      (setq dired-guess-shell-alist-user
-  	  '(("\\.mkv" "mpv")))
+  (use-package emms
+    :ensure t
+    :config
+    (emms-all)
+    (setq emms-player-list '(emms-player-mpv)
+  	  emms-info-functions '(emms-info-native)))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-media.el
     (provide 'keenban-media)
-#+END_SRC 
+#+END_SRC
+
 *** files
-dired configuration
+Here lays my configuration of the default file manager in Emacs: Dired.
+
+I prefer Dired to show sizes in a human readable format (128K) rather than in bytes.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 
-i need to add something to use emms-open-dired with a dired keybind
-#+BEGIN_SRC emacs-lisp
-  (keymap-set dired-mode-map "P" #'emms-add-dired)
-#+END_SRC
-
+When using dired, I like to be able to open media files directly with mpv or mpd.
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  ;; Set default program for opening media in dired
+  (setq dired-guess-shell-alist-user
+        '(("\\.mkv" "mpv")
+  	("\\.mp4" "mpv")
+  	("\\.webm" "mpv")
+  	("\\.flac" "mpd")
+  	("\\.mp3" "mpd")
+  	("\\.ogg" "mpd")))
+#+END_SRC 
 ** communication
 *** mail
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
