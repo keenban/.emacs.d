@@ -400,6 +400,7 @@ now provide
     (provide 'keenban-edit)
 #+END_SRC
 * General Configuration
+This section contains all of my general Emacs configuration.
 ** User Interface
 *** Faces
 **** Default
