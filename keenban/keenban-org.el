@@ -15,6 +15,7 @@
 
   ;; edit header faces
   (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
+  (set-face-attribute 'org-hide nil :height 1.5)
   (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
   (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
   (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)

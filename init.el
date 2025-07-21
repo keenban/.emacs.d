@@ -1,7 +1,15 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
-(set-face-attribute 'default nil :family "Monospace")
-(set-face-attribute 'default nil :height 160)
+;; Set default program for opening media in dired
+(setq dired-guess-shell-alist-user
+      '(("\\.mkv" "mpv")
+	("\\.mp4" "mpv")
+	("\\.webm" "mpv")
+	("\\.flac" "mpd")
+	("\\.mp3" "mpd")
+	("\\.ogg" "mpd")))
+
+(set-face-attribute 'default nil :family "Monospace" :height 160)
 
 (setq initial-scratch-message "")
 
@@ -12,6 +20,16 @@
 
 ;; replace C-x C-b with ibuffer
 (define-key (current-global-map) [remap list-buffers] 'ibuffer)
+
+(defun my/focus ()
+  ;; set margins
+  (set-window-margins (selected-window) 25 25)
+  
+  ;; set fringe to white to make margin blend in
+  (set-face-attribute 'fringe nil :background "white")
+
+  ;; display relative line numbers
+  (setq display-line-numbers 'relative))
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
@@ -35,7 +53,6 @@
 (require 'keenban-irc)
 
 ;; taken from emacs from scratch
-;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (defun efs/display-startup-time ()
