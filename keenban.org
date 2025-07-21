@@ -98,6 +98,11 @@ dired configuration
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 
+i need to add something to use emms-open-dired with a dired keybind
+#+BEGIN_SRC emacs-lisp
+  (keymap-set dired-mode-map "P" #'emms-add-dired)
+#+END_SRC
+
 ** communication
 *** mail
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
