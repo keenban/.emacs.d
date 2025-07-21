@@ -13,9 +13,16 @@
    ;; respect headings
    org-insert-heading-respect-content t)
 
-   (setq org-log-done t)
-   (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
-   (define-abbrev org-mode-abbrev-table "kel" "#+BEGIN_SRC emacs-lisp")
-   (define-abbrev org-mode-abbrev-table "kend" "#+END_SRC"))
+  ;; edit header faces
+  (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
+  (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
+  (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
+  (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
+  (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
 
-  (provide 'keenban-org)
+  (setq org-log-done t)
+  (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
+  (define-abbrev org-mode-abbrev-table "kel" "#+BEGIN_SRC emacs-lisp")
+  (define-abbrev org-mode-abbrev-table "kend" "#+END_SRC"))
+
+(provide 'keenban-org)

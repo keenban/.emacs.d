@@ -3,8 +3,6 @@
 (set-face-attribute 'default nil :family "Monospace")
 (set-face-attribute 'default nil :height 160)
 
-(toggle-frame-fullscreen)
-
 (setq initial-scratch-message "")
 
 ;; Hide advertisement from minibuffer

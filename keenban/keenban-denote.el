@@ -9,10 +9,6 @@
    ("C-c n d" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
-  (set-face-attribute 'org-level-1 nil :height 240)
-  (set-face-attribute 'org-level-2 nil :height 220)
-  (set-face-attribute 'org-level-3 nil :height 200)
-  (set-face-attribute 'org-level-4 nil :height 180)
   (setq denote-directory (expand-file-name "~/media/doc/notes/"))
   (denote-rename-buffer-mode 1))
 (use-package denote-org
