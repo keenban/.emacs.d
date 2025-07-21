@@ -1,6 +1,6 @@
 #+title: my emacs configuration
 #+author: Keenan Salandy
-#+PROPERTY: header-args :tangle yes :mkdirp yes
+#+PROPERTY: header-args :mkdirp yes
 * initialization
 #+BEGIN_SRC emacs-lisp :tangle early-init.el
   (setq inhibit-splash-screen t
