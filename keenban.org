@@ -1,7 +1,7 @@
-#+title: my emacs configuration
+#+title: My Emacs Configuration
 #+author: Keenan Salandy
 #+PROPERTY: header-args :mkdirp yes
-* initialization
+* Early Initialization
 
 When I start Emacs, I want it to be as blank as possible.
 This is because I find additional noise to distract from
@@ -19,14 +19,14 @@ what I am immediately trying to do.
   (set-scroll-bar-mode nil)
 #+END_SRC
 
-* utilities
-** system
+* Utilities
+** System
 
 This section contains modules for all of my Emacs integrations with the external system.
 The system this is built for is GNU/Linux, and all features are untested on other
 operating systems.
 
-*** window manager
+*** Window Manager
 
 At times, I like to launch directly into Emacs when I start my graphical session.
 This is where EXWM comes into play. I can start my X Server and load into Emacs.
@@ -104,7 +104,7 @@ benefit of a shared kill ring across all of my programs.
   (provide 'keenban-window)
 #+END_SRC
 
-*** media
+*** Media
 
 emms configuration for using emacs to play with mpv and mpd
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-media.el
@@ -119,7 +119,7 @@ emms configuration for using emacs to play with mpv and mpd
     (provide 'keenban-media)
 #+END_SRC
 
-*** files
+*** Files
 Here lays my configuration of the default file manager in Emacs: Dired.
 
 I prefer Dired to show sizes in a human readable format (128K) rather than in bytes.
@@ -138,8 +138,10 @@ When using dired, I like to be able to open media files directly with mpv or mpd
   	("\\.mp3" "mpd")
   	("\\.ogg" "mpd")))
 #+END_SRC 
-** communication
-*** mail
+** Communication
+This section contains my communication modules.
+*** Mail
+This is my configuration of mu4e, a mail client for Emacs.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-mail.el
   (use-package mu4e
     :ensure nil
@@ -172,7 +174,7 @@ When using dired, I like to be able to open media files directly with mpv or mpd
 
   (provide 'keenban-mail)
 #+END_SRC
-*** irc
+*** IRC
 This section contains all of the configuration for my Emacs IRC environment.
 
 Here we will require "erc", one of two built-in IRC clients in Emacs.
@@ -263,7 +265,8 @@ we must announce it as a feature.
   (provide 'keenban-irc)
 #+END_SRC
 
-** org
+** Org
+Org mode is the apex of human invention. Here is my configuration.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-org.el
   (use-package org
     :ensure nil
@@ -298,7 +301,8 @@ we must announce it as a feature.
 
   (provide 'keenban-org)
 #+END_SRC
-*** denote
+*** Denote
+Thank you protesilaos for denote. I tried to understand Org Roam but I am too dumb.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
   (use-package denote
     :ensure t
@@ -318,21 +322,21 @@ we must announce it as a feature.
 
   (provide 'keenban-denote)
 #+END_SRC
-** minibuffer
+** Minibuffer
 taken from protesilaos basic configuration
-*** vertico
+*** Vertico
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (use-package vertico
     :ensure t
     :hook (after-init . vertico-mode))
 #+END_SRC
-*** marginalia
+*** Marginalia
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (use-package marginalia
     :ensure t
     :hook (after-init . marginalia-mode))
 #+END_SRC
-*** orderless
+*** Orderless
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (use-package orderless
     :ensure t
@@ -341,31 +345,35 @@ taken from protesilaos basic configuration
     (setq completion-category-defaults nil)
     (setq completion-category-overrides nil))
 #+END_SRC
-*** savehist
+*** Savehist
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (use-package savehist
     :ensure nil ; it is built-in
     :hook (after-init . savehist-mode))
 #+END_SRC
-*** which-key
+*** Which-Key
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (use-package which-key
     :config
     (which-key-mode))
 #+END_SRC
-*** provide
+*** Provide
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-minibuffer.el
   (provide 'keenban-minibuffer)
 #+END_SRC
-** programming
-*** git
+** Programming
+*** Git
+Magit is like the gates to heaven. I did not use version control enough before magit.
+Now, it's just too easy.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-git.el
   (use-package magit
     :ensure t)
 
   (provide 'keenban-git)
 #+END_SRC
-*** colourful
+*** Colourful
+When editing emacs lisp, it's nice to have different colours for different list levels.
+This assists in keeping track of which level you are nested into at any given time.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
   (use-package rainbow-delimiters
     :ensure t
@@ -373,8 +381,8 @@ taken from protesilaos basic configuration
 
   (provide 'keenban-prog)
 #+END_SRC
-** custom
-*** quick edit
+** Custom
+*** Quick Edit
 first, define functions to open important files
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
   (defun open-init-file () (interactive) (find-file "~/.emacs.d/keenban.org"))
@@ -391,44 +399,44 @@ now provide
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
     (provide 'keenban-edit)
 #+END_SRC
-* general configuration
-** user interface
-*** faces
-**** default
+* General Configuration
+** User Interface
+*** Faces
+**** Default
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (set-face-attribute 'default nil :family "Monospace" :height 160)
 #+END_SRC
-**** line number
+**** Line Number
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'line-number nil :foreground "grey75")
 #+END_SRC 
-*** fullscreen
+*** Fullscreen
 Sometimes, I prefer emacs to start in fullscreen mode.
 This helps me stay focused and productive.
 #+BEGIN_SRC emacs-lisp
   (toggle-frame-fullscreen)
 #+END_SRC 
-*** scratch buffer
+*** Scratch Buffer
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq initial-scratch-message "")
 #+END_SRC 
-*** startup message
+*** Startup Message
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; Hide advertisement from minibuffer
   (defun display-startup-echo-area-message () )
 #+END_SRC 
-*** pinentry
+*** Pinentry
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
-*** buffer menu
+*** Buffer Menu
 The default list-buffers menu bound to C-x C-b is dramatically
 improved upon by the ibuffer menu.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; replace C-x C-b with ibuffer
   (define-key (current-global-map) [remap list-buffers] 'ibuffer)
 #+END_SRC
-*** padding
+*** Padding
 
 When editing text files i like to have a little room to breathe on the left and right margins.
 It is known that a medium line length improves comprehension and reading speed. [1]
@@ -452,21 +460,21 @@ as it should not be default in every buffer.
   (add-hook 'text-mode #'my/focus)
 #+END_SRC 
 
-** custom file
+** Custom File
 move the custom file to a seperate file in emacs directory
 this allows the init.el to be tangled to without overwriting custom set options
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
   (load custom-file)
 #+END_SRC
-** keybinds
+** Keybinds
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
 #+END_SRC
 
-** load modules
+** Load Modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
@@ -483,7 +491,7 @@ this allows the init.el to be tangled to without overwriting custom set options
   (require 'keenban-prog)
   (require 'keenban-irc)
 #+END_SRC
-** startup performance
+** Startup Performance
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from emacs from scratch
   (setq gc-cons-threshold (* 50 1000 1000))
