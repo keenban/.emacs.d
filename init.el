@@ -5,8 +5,6 @@
 ;; benefit of a shared kill ring across all of my programs.
 
 (use-package exwm
-  ;; not currently in use
-  :disabled
   ;; Do not try to install EXWM if it is not found.
   :ensure nil
   
@@ -298,6 +296,13 @@
 
 (set-face-attribute 'default nil :family "Monospace" :height 160)
 
+(set-face-attribute 'line-number nil :foreground "grey75")
+
+;; Sometimes, I prefer emacs to start in fullscreen mode.
+;; This helps me stay focused and productive.
+
+(toggle-frame-fullscreen)
+
 (setq initial-scratch-message "")
 
 ;; Hide advertisement from minibuffer
@@ -335,9 +340,6 @@
 ;; easier to switch with 2 keys
 (global-set-key (kbd "M-o") 'other-window)
 
-;; add custom module directory to load path
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
-
 ;; taken from emacs from scratch
 (setq gc-cons-threshold (* 50 1000 1000))
 
@@ -349,4 +351,3 @@
            gcs-done))
 
 (add-hook 'emacs-startup-hook #'efs/display-startup-time)
-
