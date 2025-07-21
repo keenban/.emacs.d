@@ -80,12 +80,14 @@ exwm configuration for using emacs as x window manager
 *** media
 emms configuration for using emacs to play with mpv and mpd
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-media.el
-  (use-package emms
-    :ensure t
-    :config
-    (emms-all)
-    (setq emms-player-list '(emms-player-mpv)
-  	  emms-info-functions '(emms-info-native)))
+    (use-package emms
+      :ensure t
+      :config
+      (emms-all)
+      (setq emms-player-list '(emms-player-mpv)
+    	  emms-info-functions '(emms-info-native))
+      (setq dired-guess-shell-alist-user
+  	  '(("\\.mkv" "mpv")))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-media.el
     (provide 'keenban-media)
