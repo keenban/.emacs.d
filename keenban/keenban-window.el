@@ -1,13 +1,16 @@
 (use-package exwm
+  ;; Do not try to install EXWM if it is not found.
   :ensure nil
+  
   :config
-  ;; set the initial workspace number.
+  ;; Set the initial workspace number.
   (setq exwm-workspace-number 1)
-  ;; make class name the buffer name.
+
+  ;; Make class name the buffer name.
   (add-hook 'exwm-update-class-hook
 	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-  ;; global keybindings
-  ;; emacs passthrough
+
+  ;; Passthrough some keys to Emacs
   (setq exwm-input-prefix-keys
 	'(?\C-x
 	  ?\C-u
@@ -19,7 +22,8 @@
 	  ?\C-\M-j  ;; Buffer list
 	  ?\C-\ ))  ;; Ctrl+Space
   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-  ;; workspace
+
+  ;; Define workspace management keys
   (setq exwm-input-global-keys
 	`(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
 	  ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
@@ -39,19 +43,23 @@
 				  (interactive)
 		(exwm-workspace-switch-create ,i))))
 	      (number-sequence 0 9))))
-  ;; brightness
+  
+  ;; Define brightness adjustment keys.
   (exwm-input-set-key (kbd "<XF86MonBrightnessDown>")
 		(lambda () (interactive) (shell-command "xbacklight -dec 5")))
   (exwm-input-set-key (kbd "<XF86MonBrightnessUp>")
 		(lambda () (interactive) (shell-command "xbacklight -inc 5")))
-  ;; volume
+
+  ;; Define volume adjustment keys.
   (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
 		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
   (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
 		(lambda () (interactive) (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
   (exwm-input-set-key (kbd "<XF86AudioMute>")
 		(lambda () (interactive) (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
-  ;; start exwm
+
+  ;; Start EXWM.
   (exwm-wm-mode))
 
+;; make module available to emacs
 (provide 'keenban-window)

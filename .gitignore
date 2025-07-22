@@ -8,3 +8,10 @@
 /transient/
 /url/
 /projects
+ebdb
+.emacs.desktop
+bookmarks
+custom.el
+eshell/
+ielm-history.eld
+nov-places

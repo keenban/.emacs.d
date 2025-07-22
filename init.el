@@ -1,20 +1,35 @@
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
-(use-package emacspeak
-(load-file "/usr/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.el")
-(setq emacspeak-epub-library-directory "/home/keenban/media/doc/book/"
-      emacspeak-epub-bookshelf-directory "/home/keenban/media/doc/book/bsf/"
-      emacspeak-epub-db-file "/home/keenban/media/doc/book/.bookshelf.bsf")
+;; Set default program for opening media in dired
+(setq dired-guess-shell-alist-user
+      '(("\\.mkv" "mpv")
+	("\\.mp4" "mpv")
+	("\\.webm" "mpv")
+	("\\.flac" "mpd")
+	("\\.mp3" "mpd")
+	("\\.ogg" "mpd")))
 
-(set-face-attribute 'default nil :family "Monospace")
-(set-face-attribute 'default nil :height 160)
-
-(toggle-frame-fullscreen)
+(set-face-attribute 'default nil :family "Monospace" :height 160)
 
 (setq initial-scratch-message "")
 
 ;; Hide advertisement from minibuffer
 (defun display-startup-echo-area-message () )
+
+(setq epa-pinentry-mode 'loopback)
+
+;; replace C-x C-b with ibuffer
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
+
+(defun my/focus ()
+  ;; set margins
+  (set-window-margins (selected-window) 25 25)
+  
+  ;; set fringe to white to make margin blend in
+  (set-face-attribute 'fringe nil :background "white")
+
+  ;; display relative line numbers
+  (setq display-line-numbers 'relative))
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
@@ -35,9 +50,9 @@
 (require 'keenban-minibuffer)
 (require 'keenban-org)
 (require 'keenban-prog)
+(require 'keenban-irc)
 
 ;; taken from emacs from scratch
-;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (defun efs/display-startup-time ()
