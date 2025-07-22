@@ -9,6 +9,7 @@
 (setq erc-prompt-for-nickserv-password nil
       erc-use-auth-source-for-nickserv-password t
       erc-hide-list '("JOIN" "PART" "QUIT")
+      erc-track-exclude'("JOIN" "PART" "QUIT")
       erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
 
 (setq org-hide-leading-stars t
