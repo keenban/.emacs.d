@@ -388,6 +388,7 @@ first, define functions to open important files
   (defun open-init-file () (interactive) (find-file "~/.emacs.d/keenban.org"))
   (defun open-xinitrc () (interactive) (find-file "~/.xinitrc"))
   (defun open-bashrc () (interactive) (find-file "~/.bashrc"))
+  (defun open-vids () (interactive) (dired "~/media/vid"))
 #+END_SRC
 now set keybindings to execute these functions
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-edit.el
@@ -460,7 +461,13 @@ as it should not be default in every buffer.
   ;; Create hook to enable these upon entering a text buffer.
   (add-hook 'text-mode #'my/focus)
 #+END_SRC 
-
+*** Modeline
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (add-hook 'after-init-hook #'display-battery-mode)
+  (add-hook 'after-init-hook #'display-time-mode)
+  (setq display-time-24hr-format t)
+  (setq display-time-default-load-average nil)
+#+END_SRC 
 ** Custom File
 move the custom file to a seperate file in emacs directory
 this allows the init.el to be tangled to without overwriting custom set options

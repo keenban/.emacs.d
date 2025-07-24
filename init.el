@@ -31,6 +31,9 @@
   ;; display relative line numbers
   (setq display-line-numbers 'relative))
 
+(add-hook 'after-init-hook #'display-battery-mode)
+(add-hook 'after-init-hook #'display-time-mode)
+
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
