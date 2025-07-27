@@ -437,15 +437,9 @@ now provide
 #+END_SRC
 * General Configuration
 This section contains all of my general Emacs configuration.
-** User Interface
-*** Faces
-**** Default
+** Theme
 #+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-face-attribute 'default nil :family "Monospace" :height 160)
-#+END_SRC
-**** Line Number
-#+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'line-number nil :foreground "grey75")
+  (load-theme 'modus-vivendi-tinted)
 #+END_SRC 
 *** Fullscreen
 Sometimes, I prefer emacs to start in fullscreen mode.
@@ -454,6 +448,10 @@ This helps me stay focused and productive.
   (toggle-frame-fullscreen)
 #+END_SRC 
 *** Scratch Buffer
+** Faces
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (set-face-attribute 'default nil :height 160)
+#+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq initial-scratch-message "")
 #+END_SRC 
