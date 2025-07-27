@@ -458,11 +458,7 @@ This section contains all of my general Emacs configuration.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
-*** Padding
 
-When editing text files i like to have a little room to breathe on the left and right margins.
-It is known that a medium line length improves comprehension and reading speed. [1]
-1. [[https://www.sciencedirect.com/science/article/abs/pii/S1071581901904586][The influence of reading speed and line length on the effectiveness of reading from screen]]
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (defun my/focus ()
     ;; set margins
