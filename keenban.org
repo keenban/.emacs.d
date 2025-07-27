@@ -441,20 +441,20 @@ This section contains all of my general Emacs configuration.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (load-theme 'modus-vivendi-tinted)
 #+END_SRC 
-*** Scratch Buffer
 ** Faces
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (set-face-attribute 'default nil :height 160)
 #+END_SRC
+** Scratch Buffer
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq initial-scratch-message "")
 #+END_SRC 
-*** Startup Message
+** Startup Message
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; Hide advertisement from minibuffer
-  (defun display-startup-echo-area-message () )
+  (defun display-startup-echo-area-message ())
 #+END_SRC 
-*** Pinentry
+** Pinentry
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
