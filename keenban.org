@@ -441,12 +441,6 @@ This section contains all of my general Emacs configuration.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (load-theme 'modus-vivendi-tinted)
 #+END_SRC 
-*** Fullscreen
-Sometimes, I prefer emacs to start in fullscreen mode.
-This helps me stay focused and productive.
-#+BEGIN_SRC emacs-lisp
-  (toggle-frame-fullscreen)
-#+END_SRC 
 *** Scratch Buffer
 ** Faces
 #+BEGIN_SRC emacs-lisp :tangle init.el
