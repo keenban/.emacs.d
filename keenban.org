@@ -3,9 +3,9 @@
 #+PROPERTY: header-args :mkdirp yes
 * Early Initialization
 
-When I start Emacs, I want it to be as blank as possible.
-This is because I find additional noise to distract from
-what I am immediately trying to do.
+When I start Emacs, I want it to be as blank as possible.  This is
+because I find additional noise to distract from what I am immediately
+trying to do.
 
 #+BEGIN_SRC emacs-lisp :tangle early-init.el
   (setq inhibit-splash-screen t
@@ -22,16 +22,17 @@ what I am immediately trying to do.
 * Utilities
 ** System
 
-This section contains modules for all of my Emacs integrations with the external system.
-The system this is built for is GNU/Linux, and all features are untested on other
-operating systems.
+This section contains modules for all of my Emacs integrations with
+the external system.  The system this is built for is GNU/Linux, and
+all features are untested on other operating systems.
 
 *** Window Manager
 
-At times, I like to launch directly into Emacs when I start my graphical session.
-This is where EXWM comes into play. I can start my X Server and load into Emacs.
-This gives me the power of controlling other windows (terminal emulator, signal-desktop,
-and web browser) through the unified interface of Emacs. It comes with the additional
+At times, I like to launch directly into Emacs when I start my
+graphical session.  This is where EXWM comes into play. I can start my
+X Server and load into Emacs.  This gives me the power of controlling
+other windows (terminal emulator, signal-desktop, and web browser)
+through the unified interface of Emacs. It comes with the additional
 benefit of a shared kill ring across all of my programs.
 
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window.el
@@ -120,14 +121,17 @@ emms configuration for using emacs to play with mpv and mpd
 #+END_SRC
 
 *** Files
-Here lays my configuration of the default file manager in Emacs: Dired.
+Here lays my configuration of the default file manager in Emacs:
+Dired.
 
-I prefer Dired to show sizes in a human readable format (128K) rather than in bytes.
+I prefer Dired to show sizes in a human readable format (128K) rather
+than in bytes.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 
-When using dired, I like to be able to open media files directly with mpv or mpd.
+When using dired, I like to be able to open media files directly with
+mpv or mpd.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; Set default program for opening media in dired
   (setq dired-guess-shell-alist-user
@@ -175,13 +179,14 @@ This is my configuration of mu4e, a mail client for Emacs.
   (provide 'keenban-mail)
 #+END_SRC
 *** IRC
-This section contains all of the configuration for my Emacs IRC environment.
+This section contains all of the configuration for my Emacs IRC
+environment.
 
 Here we will require "erc", one of two built-in IRC clients in Emacs.
-In order to utilize the automatic nickserv identification fucntionalities,
-we will have to bring in erc-services as an erc module.
-Further, we should require auth-source in order to read encrypted credentials
-that may be needed by other IRC bots.
+In order to utilize the automatic nickserv identification
+fucntionalities, we will have to bring in erc-services as an erc
+module.  Further, we should require auth-source in order to read
+encrypted credentials that may be needed by other IRC bots.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; basic requirements for irc, and credential authentication
   (require 'erc)
@@ -193,8 +198,8 @@ that may be needed by other IRC bots.
   (erc-update-modules)
 #+END_SRC
 
-We will now configure the automatic NickServ identification,
-and allow it to recognize various formats provided by different servers.
+We will now configure the automatic NickServ identification, and allow
+it to recognize various formats provided by different servers.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; disable nickserv prompt
   (setq erc-prompt-for-nickserv-password nil)
@@ -207,9 +212,9 @@ and allow it to recognize various formats provided by different servers.
                    '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 #+END_SRC
 
-Some IRC Servers contain additional verification past NickServ.
-This allows any further IRC bot to be authenticated with
-credentials loaded from ~/.authinfo.gpg
+Some IRC Servers contain additional verification past NickServ. This
+allows any further IRC bot to be authenticated with credentials loaded
+from ~/.authinfo.gpg.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (defun my/irc-login (network nick)
     "Send ENTER command to Vertigo after successful NickServ identification."
@@ -235,9 +240,9 @@ bothersome to me. I prefer to hide the messages entirely.
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 #+END_SRC
 
-I like to join specific servers regularly. In order
-to make it easier for myself, I like to set keybinds and
-define functions to connect to the server.
+I like to join specific servers regularly. In order to make it easier
+for myself, I like to set keybinds and define functions to connect to
+the server.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; define user function to join server
   (defun my/irc-ggn () 
@@ -253,14 +258,14 @@ define functions to connect to the server.
   (global-set-key (kbd "C-c i l") #'my/irc-libera)
 #+END_SRC
 
-When I join servers, I would like to automatically enter
-the channels that are relevant to me.
+When I join servers, I would like to automatically enter the channels
+that are relevant to me.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (setq erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
 #+END_SRC 
 
-In order for this module to be visible to Emacs,
-we must announce it as a feature.
+In order for this module to be visible to Emacs, we must announce it
+as a feature.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (provide 'keenban-irc)
 #+END_SRC
@@ -302,7 +307,8 @@ Org mode is the apex of human invention. Here is my configuration.
   (provide 'keenban-org)
 #+END_SRC
 *** Denote
-Thank you protesilaos for denote. I tried to understand Org Roam but I am too dumb.
+Thank you protesilaos for denote. I tried to understand Org Roam but I
+am too dumb.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
   (use-package denote
     :ensure t
@@ -364,8 +370,8 @@ taken from protesilaos basic configuration
 #+END_SRC
 ** Programming
 *** Git
-Magit is like the gates to heaven. I did not use version control enough before magit.
-Now, it's just too easy.
+Magit is like the gates to heaven. I did not use version control
+enough before magit.  Now, it's just too easy.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-git.el
   (use-package magit
     :ensure t)
@@ -373,8 +379,9 @@ Now, it's just too easy.
   (provide 'keenban-git)
 #+END_SRC
 *** Colourful
-When editing emacs lisp, it's nice to have different colours for different list levels.
-This assists in keeping track of which level you are nested into at any given time.
+When editing emacs lisp, it's nice to have different colours for
+different list levels. This assists in keeping track of which level
+you are nested into at any given time.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
   (use-package rainbow-delimiters
     :ensure t
@@ -470,8 +477,8 @@ as it should not be default in every buffer.
   (setq display-time-default-load-average nil)
 #+END_SRC 
 ** Custom File
-move the custom file to a seperate file in emacs directory
-this allows the init.el to be tangled to without overwriting custom set options
+move the custom file to a seperate file in emacs directory this allows
+the init.el to be tangled to without overwriting custom set options
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
   (load custom-file)
