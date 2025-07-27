@@ -9,30 +9,71 @@
 	("\\.mp3" "mpd")
 	("\\.ogg" "mpd")))
 
-(set-face-attribute 'default nil :family "Monospace" :height 160)
+(require 'consult)
+
+;; Replace C-x b
+(define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
+
+;; Replace C-x l
+(define-key (current-global-map) [remap count-lines-page] 'consult-line)
+
+(load-theme 'modus-vivendi-tinted)
+
+(set-face-attribute 'default nil :height 160)
 
 (setq initial-scratch-message "")
 
 ;; Hide advertisement from minibuffer
-(defun display-startup-echo-area-message () )
+(defun display-startup-echo-area-message ())
 
 (setq epa-pinentry-mode 'loopback)
 
-;; replace C-x C-b with ibuffer
-(define-key (current-global-map) [remap list-buffers] 'ibuffer)
+(setq display-time-format "%R")
+(setq display-time-24hr-format t)
+(setq display-time-default-load-average nil)
+(display-time-mode t)
+(display-battery-mode t)
 
-(defun my/focus ()
-  ;; set margins
-  (set-window-margins (selected-window) 25 25)
-  
-  ;; set fringe to white to make margin blend in
-  (set-face-attribute 'fringe nil :background "white")
+  (setq-default mode-line-format
+                '("%e"
+                  my-modeline-buffer-name
+          	" %* "
+          	my-modeline-major-mode
+          	mode-line-format-right-align
+  		my-modeline-misc))
 
-  ;; display relative line numbers
-  (setq display-line-numbers 'relative))
+  (defvar-local my-modeline-misc
+      '(:eval
+        (when (mode-line-window-selected-p)
+  	mode-line-misc-info)))
 
-(add-hook 'after-init-hook #'display-battery-mode)
-(add-hook 'after-init-hook #'display-time-mode)
+  (put 'my-modeline-misc 'risky-local-variable t)
+
+  (put 'my-modeline-time 'risky-local-variable t)
+
+  (defvar-local my-modeline-buffer-name
+      '(:eval
+        (when (mode-line-window-selected-p)
+          (propertize
+  	 (format " %s " (buffer-name))
+  	 'face 'my-modeline-face))))
+
+  (put 'my-modeline-buffer-name 'risky-local-variable t)
+
+  (defvar-local my-modeline-major-mode
+    '(:eval (propertize 
+             (capitalize 
+              (replace-regexp-in-string "-mode$" "" 
+               (symbol-name major-mode)))
+             'face 'bold)))
+
+  (put 'my-modeline-major-mode 'risky-local-variable t)
+
+  (setq mode-line-right-align-edge 'right-fringe)
+
+  (defface my-modeline-face
+    '((t :background "#5f509f" :foreground "white" :inherit bold :box "000000"))
+    "Face with a lavender background for use on the mode line.")
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
@@ -40,6 +81,9 @@
 ;; taken from mastering emacs
 ;; easier to switch with 2 keys
 (global-set-key (kbd "M-o") 'other-window)
+
+;; replace C-x C-b with ibuffer
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
 
 ;; add custom module directory to load path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))

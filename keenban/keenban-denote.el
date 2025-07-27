@@ -10,6 +10,7 @@
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory (expand-file-name "~/media/doc/notes/"))
+  (setq denote-rename-confirmations nil)
   (denote-rename-buffer-mode 1))
 (use-package denote-org
   :ensure t)
