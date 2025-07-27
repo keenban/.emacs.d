@@ -398,6 +398,14 @@ you are nested into at any given time.
 
   (provide 'keenban-prog)
 #+END_SRC
+** Reader
+#+BEGIN_SRC emacs-lisp :tangle keenban/reader.el
+  (use-package nov
+    :vc (:url "https://depp.brause.cc/nov.el.git")
+    :config
+    (setq nov-text-width 70)
+    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+#+END_SRC 
 ** Custom
 *** Quick Edit
 first, define functions to open important files
