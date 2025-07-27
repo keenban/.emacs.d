@@ -458,13 +458,6 @@ This section contains all of my general Emacs configuration.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
-*** Buffer Menu
-The default list-buffers menu bound to C-x C-b is dramatically
-improved upon by the ibuffer menu.
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  ;; replace C-x C-b with ibuffer
-  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
-#+END_SRC
 *** Padding
 
 When editing text files i like to have a little room to breathe on the left and right margins.
@@ -503,12 +496,19 @@ the init.el to be tangled to without overwriting custom set options
   (load custom-file)
 #+END_SRC
 ** Keybinds
+
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
 #+END_SRC
 
+The default list-buffers menu bound to C-x C-b is dramatically
+improved upon by the ibuffer menu.
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  ;; replace C-x C-b with ibuffer
+  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
+#+END_SRC
 ** Load Modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
