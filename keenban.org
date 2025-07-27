@@ -406,6 +406,16 @@ you are nested into at any given time.
     (setq nov-text-width 70)
     (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 #+END_SRC 
+** Consult
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (require 'consult)
+
+  ;; Replace C-x b
+  (define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
+
+  ;; Replace C-x l
+  (define-key (current-global-map) [remap count-lines-page] 'consult-line)
+#+END_SRC
 ** Custom
 *** Quick Edit
 first, define functions to open important files
