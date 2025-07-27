@@ -178,6 +178,14 @@ This is my configuration of mu4e, a mail client for Emacs.
 
   (provide 'keenban-mail)
 #+END_SRC
+*** News
+Newsticker is a built-in news reader (gnus so complicated)
+#+BEGIN_SRC emacs-lisp
+  (setq newsticker-url-list
+        '(("WSJ Opinion" "https://feeds.content.dowjones.io/public/rss/RSSOpinion")
+  	("WSJ World News" "https://feeds.content.dowjones.io/public/rss/RSSWorldNews")
+  	("Ruslan's Tech Blog" "https://codelearn.me/feed.xml")))
+#+END_SRC
 *** IRC
 This section contains all of the configuration for my Emacs IRC
 environment.
