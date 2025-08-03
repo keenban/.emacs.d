@@ -3,9 +3,9 @@
 #+PROPERTY: header-args :mkdirp yes
 * Early Initialization
 
-When I start Emacs, I want it to be as blank as possible.
-This is because I find additional noise to distract from
-what I am immediately trying to do.
+When I start Emacs, I want it to be as blank as possible.  This is
+because I find additional noise to distract from what I am immediately
+trying to do.
 
 #+BEGIN_SRC emacs-lisp :tangle early-init.el
   (setq inhibit-splash-screen t
@@ -22,16 +22,17 @@ what I am immediately trying to do.
 * Utilities
 ** System
 
-This section contains modules for all of my Emacs integrations with the external system.
-The system this is built for is GNU/Linux, and all features are untested on other
-operating systems.
+This section contains modules for all of my Emacs integrations with
+the external system.  The system this is built for is GNU/Linux, and
+all features are untested on other operating systems.
 
 *** Window Manager
 
-At times, I like to launch directly into Emacs when I start my graphical session.
-This is where EXWM comes into play. I can start my X Server and load into Emacs.
-This gives me the power of controlling other windows (terminal emulator, signal-desktop,
-and web browser) through the unified interface of Emacs. It comes with the additional
+At times, I like to launch directly into Emacs when I start my
+graphical session.  This is where EXWM comes into play. I can start my
+X Server and load into Emacs.  This gives me the power of controlling
+other windows (terminal emulator, signal-desktop, and web browser)
+through the unified interface of Emacs. It comes with the additional
 benefit of a shared kill ring across all of my programs.
 
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-window.el
@@ -120,14 +121,17 @@ emms configuration for using emacs to play with mpv and mpd
 #+END_SRC
 
 *** Files
-Here lays my configuration of the default file manager in Emacs: Dired.
+Here lays my configuration of the default file manager in Emacs:
+Dired.
 
-I prefer Dired to show sizes in a human readable format (128K) rather than in bytes.
+I prefer Dired to show sizes in a human readable format (128K) rather
+than in bytes.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 #+END_SRC
 
-When using dired, I like to be able to open media files directly with mpv or mpd.
+When using dired, I like to be able to open media files directly with
+mpv or mpd.
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; Set default program for opening media in dired
   (setq dired-guess-shell-alist-user
@@ -174,14 +178,23 @@ This is my configuration of mu4e, a mail client for Emacs.
 
   (provide 'keenban-mail)
 #+END_SRC
+*** News
+Newsticker is a built-in news reader (gnus so complicated)
+#+BEGIN_SRC emacs-lisp
+  (setq newsticker-url-list
+        '(("WSJ Opinion" "https://feeds.content.dowjones.io/public/rss/RSSOpinion")
+  	("WSJ World News" "https://feeds.content.dowjones.io/public/rss/RSSWorldNews")
+  	("Ruslan's Tech Blog" "https://codelearn.me/feed.xml")))
+#+END_SRC
 *** IRC
-This section contains all of the configuration for my Emacs IRC environment.
+This section contains all of the configuration for my Emacs IRC
+environment.
 
 Here we will require "erc", one of two built-in IRC clients in Emacs.
-In order to utilize the automatic nickserv identification fucntionalities,
-we will have to bring in erc-services as an erc module.
-Further, we should require auth-source in order to read encrypted credentials
-that may be needed by other IRC bots.
+In order to utilize the automatic nickserv identification
+fucntionalities, we will have to bring in erc-services as an erc
+module.  Further, we should require auth-source in order to read
+encrypted credentials that may be needed by other IRC bots.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; basic requirements for irc, and credential authentication
   (require 'erc)
@@ -193,8 +206,8 @@ that may be needed by other IRC bots.
   (erc-update-modules)
 #+END_SRC
 
-We will now configure the automatic NickServ identification,
-and allow it to recognize various formats provided by different servers.
+We will now configure the automatic NickServ identification, and allow
+it to recognize various formats provided by different servers.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; disable nickserv prompt
   (setq erc-prompt-for-nickserv-password nil)
@@ -207,9 +220,9 @@ and allow it to recognize various formats provided by different servers.
                    '(GGn "NickServ!services@services.gazellegames.net" nil "NickServ" "IDENTIFY" nil nil "Password accepted - you are now recognized."))
 #+END_SRC
 
-Some IRC Servers contain additional verification past NickServ.
-This allows any further IRC bot to be authenticated with
-credentials loaded from ~/.authinfo.gpg
+Some IRC Servers contain additional verification past NickServ. This
+allows any further IRC bot to be authenticated with credentials loaded
+from ~/.authinfo.gpg.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (defun my/irc-login (network nick)
     "Send ENTER command to Vertigo after successful NickServ identification."
@@ -235,9 +248,9 @@ bothersome to me. I prefer to hide the messages entirely.
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 #+END_SRC
 
-I like to join specific servers regularly. In order
-to make it easier for myself, I like to set keybinds and
-define functions to connect to the server.
+I like to join specific servers regularly. In order to make it easier
+for myself, I like to set keybinds and define functions to connect to
+the server.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   ;; define user function to join server
   (defun my/irc-ggn () 
@@ -253,14 +266,14 @@ define functions to connect to the server.
   (global-set-key (kbd "C-c i l") #'my/irc-libera)
 #+END_SRC
 
-When I join servers, I would like to automatically enter
-the channels that are relevant to me.
+When I join servers, I would like to automatically enter the channels
+that are relevant to me.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (setq erc-autojoin-channels-alist '((Libera.Chat "#emacs" "#erc")))
 #+END_SRC 
 
-In order for this module to be visible to Emacs,
-we must announce it as a feature.
+In order for this module to be visible to Emacs, we must announce it
+as a feature.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-irc.el
   (provide 'keenban-irc)
 #+END_SRC
@@ -285,24 +298,26 @@ Org mode is the apex of human invention. Here is my configuration.
 
     ;; edit header faces
     (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
-    (set-face-attribute 'org-hide nil :height 1.5)
     (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
     (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
     (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
     (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
+    (set-face-attribute 'org-level-5 nil :weight 'bold)
 
     ;; hide leading stars in header
     (setq org-hide-leading-stars t)
 
     (setq org-log-done t)
     (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
-    (define-abbrev org-mode-abbrev-table "kel" "#+BEGIN_SRC emacs-lisp")
-    (define-abbrev org-mode-abbrev-table "kend" "#+END_SRC"))
+    (define-abbrev org-mode-abbrev-table "myel" "#+BEGIN_SRC emacs-lisp")
+    (define-abbrev org-mode-abbrev-table "mysh" "#+BEGIN_SRC shell")
+    (define-abbrev org-mode-abbrev-table "myend" "#+END_SRC"))
 
   (provide 'keenban-org)
 #+END_SRC
 *** Denote
-Thank you protesilaos for denote. I tried to understand Org Roam but I am too dumb.
+Thank you protesilaos for denote. I tried to understand Org Roam but I
+am too dumb.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-denote.el
   (use-package denote
     :ensure t
@@ -364,8 +379,8 @@ taken from protesilaos basic configuration
 #+END_SRC
 ** Programming
 *** Git
-Magit is like the gates to heaven. I did not use version control enough before magit.
-Now, it's just too easy.
+Magit is like the gates to heaven. I did not use version control
+enough before magit.  Now, it's just too easy.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-git.el
   (use-package magit
     :ensure t)
@@ -373,14 +388,33 @@ Now, it's just too easy.
   (provide 'keenban-git)
 #+END_SRC
 *** Colourful
-When editing emacs lisp, it's nice to have different colours for different list levels.
-This assists in keeping track of which level you are nested into at any given time.
+When editing emacs lisp, it's nice to have different colours for
+different list levels. This assists in keeping track of which level
+you are nested into at any given time.
 #+BEGIN_SRC emacs-lisp :tangle keenban/keenban-prog.el
   (use-package rainbow-delimiters
     :ensure t
     :hook (prog-mode . rainbow-delimiters-mode))
 
   (provide 'keenban-prog)
+#+END_SRC
+** Reader
+#+BEGIN_SRC emacs-lisp :tangle keenban/reader.el
+  (use-package nov
+    :vc (:url "https://depp.brause.cc/nov.el.git")
+    :config
+    (setq nov-text-width 70)
+    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+#+END_SRC 
+** Consult
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (require 'consult)
+
+  ;; Replace C-x b
+  (define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
+
+  ;; Replace C-x l
+  (define-key (current-global-map) [remap count-lines-page] 'consult-line)
 #+END_SRC
 ** Custom
 *** Quick Edit
@@ -403,86 +437,99 @@ now provide
 #+END_SRC
 * General Configuration
 This section contains all of my general Emacs configuration.
-** User Interface
-*** Faces
-**** Default
+** Theme
 #+BEGIN_SRC emacs-lisp :tangle init.el
-  (set-face-attribute 'default nil :family "Monospace" :height 160)
+  (load-theme 'modus-vivendi-tinted)
+#+END_SRC 
+** Faces
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  (set-face-attribute 'default nil :height 160)
 #+END_SRC
-**** Line Number
-#+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'line-number nil :foreground "grey75")
-#+END_SRC 
-*** Fullscreen
-Sometimes, I prefer emacs to start in fullscreen mode.
-This helps me stay focused and productive.
-#+BEGIN_SRC emacs-lisp
-  (toggle-frame-fullscreen)
-#+END_SRC 
-*** Scratch Buffer
+** Scratch Buffer
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq initial-scratch-message "")
 #+END_SRC 
-*** Startup Message
+** Startup Message
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; Hide advertisement from minibuffer
-  (defun display-startup-echo-area-message () )
+  (defun display-startup-echo-area-message ())
 #+END_SRC 
-*** Pinentry
+** Pinentry
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq epa-pinentry-mode 'loopback)
 #+END_SRC
-*** Buffer Menu
-The default list-buffers menu bound to C-x C-b is dramatically
-improved upon by the ibuffer menu.
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  ;; replace C-x C-b with ibuffer
-  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
-#+END_SRC
-*** Padding
 
-When editing text files i like to have a little room to breathe on the left and right margins.
-It is known that a medium line length improves comprehension and reading speed. [1]
-1. [[https://www.sciencedirect.com/science/article/abs/pii/S1071581901904586][The influence of reading speed and line length on the effectiveness of reading from screen]]
+** Modeline
 #+BEGIN_SRC emacs-lisp :tangle init.el
-  (defun my/focus ()
-    ;; set margins
-    (set-window-margins (selected-window) 25 25)
-    
-    ;; set fringe to white to make margin blend in
-    (set-face-attribute 'fringe nil :background "white")
-
-    ;; display relative line numbers
-    (setq display-line-numbers 'relative))
-#+END_SRC
-
-I then want to enable this in all text buffers,
-as it should not be default in every buffer.
-#+BEGIN_SRC emacs-lisp
-  ;; Create hook to enable these upon entering a text buffer.
-  (add-hook 'text-mode #'my/focus)
-#+END_SRC 
-*** Modeline
-#+BEGIN_SRC emacs-lisp :tangle init.el
-  (add-hook 'after-init-hook #'display-battery-mode)
-  (add-hook 'after-init-hook #'display-time-mode)
+  (setq display-time-format "%R")
   (setq display-time-24hr-format t)
   (setq display-time-default-load-average nil)
-#+END_SRC 
+  (display-time-mode t)
+  (display-battery-mode t)
+
+    (setq-default mode-line-format
+                  '("%e"
+                    my-modeline-buffer-name
+            	" %* "
+            	my-modeline-major-mode
+            	mode-line-format-right-align
+    		my-modeline-misc))
+
+    (defvar-local my-modeline-misc
+        '(:eval
+          (when (mode-line-window-selected-p)
+    	mode-line-misc-info)))
+
+    (put 'my-modeline-misc 'risky-local-variable t)
+
+    (put 'my-modeline-time 'risky-local-variable t)
+
+    (defvar-local my-modeline-buffer-name
+        '(:eval
+          (when (mode-line-window-selected-p)
+            (propertize
+    	 (format " %s " (buffer-name))
+    	 'face 'my-modeline-face))))
+
+    (put 'my-modeline-buffer-name 'risky-local-variable t)
+
+    (defvar-local my-modeline-major-mode
+      '(:eval (propertize 
+               (capitalize 
+                (replace-regexp-in-string "-mode$" "" 
+                 (symbol-name major-mode)))
+               'face 'bold)))
+
+    (put 'my-modeline-major-mode 'risky-local-variable t)
+
+    (setq mode-line-right-align-edge 'right-fringe)
+
+    (defface my-modeline-face
+      '((t :background "#5f509f" :foreground "white" :inherit bold :box "000000"))
+      "Face with a lavender background for use on the mode line.")
+
+#+END_SRC
 ** Custom File
-move the custom file to a seperate file in emacs directory
-this allows the init.el to be tangled to without overwriting custom set options
+move the custom file to a seperate file in emacs directory this allows
+the init.el to be tangled to without overwriting custom set options
 #+BEGIN_SRC emacs-lisp :tangle init.el
   (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
   (load custom-file)
 #+END_SRC
 ** Keybinds
+
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; taken from mastering emacs
   ;; easier to switch with 2 keys
   (global-set-key (kbd "M-o") 'other-window)
 #+END_SRC
 
+The default list-buffers menu bound to C-x C-b is dramatically
+improved upon by the ibuffer menu.
+#+BEGIN_SRC emacs-lisp :tangle init.el
+  ;; replace C-x C-b with ibuffer
+  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
+#+END_SRC
 ** Load Modules
 #+BEGIN_SRC emacs-lisp :tangle init.el
   ;; add custom module directory to load path
