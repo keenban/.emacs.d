@@ -33,6 +33,8 @@
 
 (add-hook 'after-init-hook #'display-battery-mode)
 (add-hook 'after-init-hook #'display-time-mode)
+(setq display-time-24hr-format t)
+(setq display-time-default-load-average nil)
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
