@@ -20,12 +20,12 @@
   (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
   (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
   (set-face-attribute 'org-level-5 nil :weight 'bold)
-
+  
   ;; hide leading stars in header
   (setq org-hide-leading-stars t)
 
   (setq org-log-done t)
-  (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda.org"))
+  (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org"))
   (define-abbrev org-mode-abbrev-table "myel" "#+BEGIN_SRC emacs-lisp")
   (define-abbrev org-mode-abbrev-table "mysh" "#+BEGIN_SRC shell")
   (define-abbrev org-mode-abbrev-table "myend" "#+END_SRC"))
