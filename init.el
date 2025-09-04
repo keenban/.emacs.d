@@ -1,29 +1,4 @@
-(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-
-;; Set default program for opening media in dired
-(setq dired-guess-shell-alist-user
-      '(("\\.mkv" "mpv")
-	("\\.mp4" "mpv")
-	("\\.webm" "mpv")
-	("\\.flac" "mpd")
-	("\\.mp3" "mpd")
-	("\\.ogg" "mpd")))
-
-(require 'consult)
-
-;; Replace C-x b
-(define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
-
-;; Replace C-x l
-(define-key (current-global-map) [remap count-lines-page] 'consult-line)
-
-(load-theme 'modus-vivendi-tinted)
-
-(set-face-attribute 'default nil :height 160)
-
 (setq initial-scratch-message "")
-
-;; Hide advertisement from minibuffer
 (defun display-startup-echo-area-message ())
 
 (setq epa-pinentry-mode 'loopback)
@@ -34,79 +9,123 @@
 (display-time-mode t)
 (display-battery-mode t)
 
-  (setq-default mode-line-format
-                '("%e"
-                  my-modeline-buffer-name
-          	" %* "
-          	my-modeline-major-mode
-          	mode-line-format-right-align
-  		my-modeline-misc))
-
-  (defvar-local my-modeline-misc
-      '(:eval
-        (when (mode-line-window-selected-p)
-  	mode-line-misc-info)))
-
-  (put 'my-modeline-misc 'risky-local-variable t)
-
-  (put 'my-modeline-time 'risky-local-variable t)
-
-  (defvar-local my-modeline-buffer-name
-      '(:eval
-        (when (mode-line-window-selected-p)
-          (propertize
-  	 (format " %s " (buffer-name))
-  	 'face 'my-modeline-face))))
-
-  (put 'my-modeline-buffer-name 'risky-local-variable t)
-
-  (defvar-local my-modeline-major-mode
-    '(:eval (propertize 
-             (capitalize 
-              (replace-regexp-in-string "-mode$" "" 
-               (symbol-name major-mode)))
-             'face 'bold)))
-
-  (put 'my-modeline-major-mode 'risky-local-variable t)
-
-  (setq mode-line-right-align-edge 'right-fringe)
-
-  (defface my-modeline-face
-    '((t :background "#5f509f" :foreground "white" :inherit bold :box "000000"))
-    "Face with a lavender background for use on the mode line.")
-
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
-;; taken from mastering emacs
-;; easier to switch with 2 keys
+(use-package emms
+  :ensure t
+  :config
+  (emms-all)
+  (setq emms-player-list '(emms-player-mpv)
+	  emms-info-functions '(emms-info-native)))
+
+(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+
+(setq dired-guess-shell-alist-user
+      '(("\\.mkv" "mpv")
+	("\\.mp4" "mpv")
+	("\\.webm" "mpv")
+	("\\.flac" "mpd")
+	("\\.mp3" "mpd")
+	("\\.ogg" "mpd")))
+
+(use-package org
+  :ensure nil
+  :mode ("\\.org\\'" . org-mode)
+  :bind
+  (("C-c l" . org-store-link)
+   ("C-c a" . org-agenda))
+  :config
+  (setq
+   org-startup-folded t
+   org-insert-heading-respect-content t
+   org-hide-leading-stars t
+   org-log-done t)
+
+  (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
+  (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
+  (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
+  (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
+  (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
+  (set-face-attribute 'org-level-5 nil :weight 'bold)
+
+  (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org"))
+
+    (define-abbrev org-mode-abbrev-table "myel" "#+BEGIN_SRC emacs-lisp")
+  (define-abbrev org-mode-abbrev-table "mysh" "#+BEGIN_SRC shell")
+  (define-abbrev org-mode-abbrev-table "myend" "#+END_SRC"))
+
+(use-package denote
+  :ensure t
+  :hook (dired-mode . denote-dired-mode)
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory (expand-file-name "~/media/doc/notes/"))
+  (setq denote-rename-confirmations nil)
+  (denote-rename-buffer-mode 1))
+
+(use-package denote-journal
+  :ensure t
+  :commands ( denote-journal-new-entry
+	      denote-journal-new-or-existing-entry
+	      denote-journal-link-or-create-entry )
+  :hook (calendar-mode . denote-journal-calendar-mode)
+  :bind
+  (("C-c n j" . denote-journal-new-or-existing-entry))
+  :config
+  (setq denote-journal-directory
+	(expand-file-name "journal" denote-directory))
+  (setq denote-journal-keyword "journal")
+  (setq denote-journal-title-format 'day-date-month-year))
+
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
+
+(use-package marginalia
+  :ensure t
+  :hook (after-init . marginalia-mode))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+	completion-category-defaults nil
+	completion-category-overrides nil))
+
+(use-package savehist
+  :ensure nil ; it is built-in
+  :hook (after-init . savehist-mode))
+
+(use-package which-key
+  :ensure nil
+  :hook (after-init . which-key-mode))
+
+(use-package magit
+  :ensure t)
+
+(use-package nov
+  :vc (:url "https://depp.brause.cc/nov.el.git")
+  :config
+  (setq nov-text-width 70)
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
+(use-package consult
+  :ensure t
+  :config
+  (define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
+  (define-key (current-global-map) [remap count-lines-page] 'consult-line))
+
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "M-o") 'other-window)
 
-;; replace C-x C-b with ibuffer
-(define-key (current-global-map) [remap list-buffers] 'ibuffer)
+(setq ispell-program-name "/usr/bin/aspell")
 
-;; add custom module directory to load path
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/keenban/"))
-
-;; load files from custom directory
-(require 'keenban-denote)
-(require 'keenban-edit)
-(require 'keenban-git)
-(require 'keenban-mail)
-(require 'keenban-media)
-(require 'keenban-minibuffer)
-(require 'keenban-org)
-(require 'keenban-prog)
-(require 'keenban-irc)
-
-;; taken from emacs from scratch
-(setq gc-cons-threshold (* 50 1000 1000))
-
-(defun efs/display-startup-time ()
-  (message "Emacs loaded in %s with %d garbage collections."
-           (format "%.2f seconds"
-                   (float-time
-                     (time-subtract after-init-time before-init-time)))
-           gcs-done))
-
-(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+(load-theme 'modus-vivendi-tinted)
+(set-face-attribute 'default nil :height 160)
