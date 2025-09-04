@@ -120,15 +120,13 @@
 
 (setq ispell-program-name "/usr/bin/aspell")
 
-(use-package modus-themes
-  :config
-  (setq modus-themes-headings
-	'((0 . (variable-pitch bold 1.75))
-	  (1 . (variable-pitch bold 1.5))
-	  (2 . (variable-pitch bold 1.375))
-	  (3 . (variable-pitch bold 1.25))
-	  (4 . (variable-pitch bold 1.125))
-          (5 . (bold))))
-  (load-theme 'modus-vivendi-tinted))
+(setq modus-themes-headings
+      '((0 . (variable-pitch bold 1.75))
+	(1 . (variable-pitch bold 1.5))
+	(2 . (variable-pitch bold 1.375))
+	(3 . (variable-pitch bold 1.25))
+	(4 . (variable-pitch bold 1.125))
+        (5 . (bold))))
+(load-theme 'modus-vivendi-tinted)
 
 (set-face-attribute 'default nil :height 160)
