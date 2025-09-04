@@ -42,16 +42,9 @@
    org-hide-leading-stars t
    org-log-done t)
 
-  (set-face-attribute 'org-document-title nil :height 1.75 :weight 'heavy)
-  (set-face-attribute 'org-level-1 nil :height 1.5 :weight 'bold)
-  (set-face-attribute 'org-level-2 nil :height 1.375 :weight 'bold)
-  (set-face-attribute 'org-level-3 nil :height 1.25 :weight 'bold)
-  (set-face-attribute 'org-level-4 nil :height 1.125 :weight 'bold)
-  (set-face-attribute 'org-level-5 nil :weight 'bold)
-
   (setq org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org"))
 
-    (define-abbrev org-mode-abbrev-table "myel" "#+BEGIN_SRC emacs-lisp")
+  (define-abbrev org-mode-abbrev-table "myel" "#+BEGIN_SRC emacs-lisp")
   (define-abbrev org-mode-abbrev-table "mysh" "#+BEGIN_SRC shell")
   (define-abbrev org-mode-abbrev-table "myend" "#+END_SRC"))
 
@@ -132,10 +125,10 @@
   (setq modus-themes-headings
 	'((0 . (variable-pitch bold 1.75))
 	  (1 . (variable-pitch bold 1.5))
-	  (1 . (variable-pitch bold 1.375))
-	  (1 . (variable-pitch bold 1.25))
-	  (1 . (variable-pitch bold 1.125))
-          (2 . (bold))))
+	  (2 . (variable-pitch bold 1.375))
+	  (3 . (variable-pitch bold 1.25))
+	  (4 . (variable-pitch bold 1.125))
+          (5 . (bold))))
   (load-theme 'modus-vivendi-tinted))
 
 (set-face-attribute 'default nil :height 160)
