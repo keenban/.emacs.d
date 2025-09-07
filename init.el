@@ -1,6 +1,6 @@
 (setq epa-pinentry-mode 'loopback)
 
-(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
 
 (load-theme 'modus-vivendi-tinted t)
@@ -30,7 +30,7 @@
         completion-category-overrides nil))
 
 (use-package consult
-  :ensure t
+2  :ensure t
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap count-lines-page] . consult-line)))
 
