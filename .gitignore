@@ -15,3 +15,10 @@ custom.el
 eshell/
 ielm-history.eld
 nov-places
+/games/
+/xkcd/
+/newsticker/
+/multisession/
+/ede-projects.el
+/diary
+/bbdb
