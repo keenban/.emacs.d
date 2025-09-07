@@ -1,99 +1,92 @@
-  (use-package emms
-    :ensure t
-    :config
-    (emms-all)
-    (setq emms-player-list '(emms-player-mpv)
-  	  emms-info-functions '(emms-info-native)))
+(setq epa-pinentry-mode 'loopback)
 
-  (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
+(load custom-file 'noerror)
 
-  (use-package org
-    :ensure nil
-    :defer t
-    :mode ("\\.org\\'" . org-mode)
-    :bind
-    (("C-c l" . org-store-link)
-     ("C-c a" . org-agenda))
-    :config
-    (setq
-     org-startup-folded t
-     org-insert-heading-respect-content t
-     org-hide-leading-stars t
-     org-log-done t
-     org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org"))
+(load-theme 'modus-vivendi-tinted t)
+(set-face-attribute 'default nil :height 160)
 
-  (use-package denote
-    :ensure t
-    :hook (dired-mode . denote-dired-mode)
-    :bind
-    (("C-c n n" . denote)
-     ("C-c n r" . denote-rename-file)
-     ("C-c n l" . denote-link)
-     ("C-c n b" . denote-backlinks)
-     ("C-c n d" . denote-dired)
-     ("C-c n g" . denote-grep))
-    :config
-    (setq denote-directory (expand-file-name "~/media/doc/notes/")
-    denote-rename-confirmations nil)
-    (denote-rename-buffer-mode 1))
+(global-set-key (kbd "M-o") 'other-window)
+(define-key (current-global-map) [remap list-buffers] 'ibuffer)
 
-  (use-package denote-journal
-    :ensure t
-    :commands ( denote-journal-new-entry
-  	      denote-journal-new-or-existing-entry
-  	      denote-journal-link-or-create-entry )
-    :hook (calendar-mode . denote-journal-calendar-mode)
-    :bind
-    (("C-c n j" . denote-journal-new-or-existing-entry))
-    :config
-    (setq denote-journal-directory
-  	  (expand-file-name "journal" denote-directory))
-    (setq denote-journal-keyword "journal")
-    (setq denote-journal-title-format 'day-date-month-year))
+(add-hook 'after-init-hook #'savehist-mode)
+(add-hook 'after-init-hook #'which-key-mode)
 
-  (use-package vertico
-    :ensure t
-    :hook (after-init . vertico-mode))
+(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
-  (use-package marginalia
-    :ensure t
-    :hook (after-init . marginalia-mode))
+(use-package vertico
+  :ensure t
+  :hook (after-init . vertico-mode))
 
-  (use-package orderless
-    :ensure t
-    :config
-    (setq completion-styles '(orderless basic))
-    (setq completion-category-defaults nil)
-    (setq completion-category-overrides nil))
+(use-package marginalia
+  :ensure t
+  :hook (after-init . marginalia-mode))
 
-  (use-package savehist
-    :ensure nil ; it is built-in
-    :hook (after-init . savehist-mode))
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides nil))
 
-  (use-package which-key
-    :config
-    (which-key-mode))
+(use-package consult
+  :ensure t
+  :bind (([remap switch-to-buffer] . consult-buffer)
+         ([remap count-lines-page] . consult-line)))
 
-  (use-package magit
-    :ensure t)
+(use-package org
+  :ensure nil
+  :defer t
+  :mode ("\\.org\\'" . org-mode)
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda))
+  :config
+  (setq org-startup-folded t
+        org-insert-heading-respect-content t
+        org-hide-leading-stars t
+        org-log-done t
+        org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org")))
 
-  (use-package nov
-    :vc (:url "https://depp.brause.cc/nov.el.git")
-    :config
-    (setq nov-text-width 70)
-    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+(use-package denote
+  :ensure t
+  :hook (dired-mode . denote-dired-mode)
+  :bind (("C-c n n" . denote)
+         ("C-c n r" . denote-rename-file)
+         ("C-c n l" . denote-link)
+         ("C-c n b" . denote-backlinks)
+         ("C-c n d" . denote-dired)
+         ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory (expand-file-name "~/media/doc/notes/")
+        denote-rename-confirmations nil)
+  (denote-rename-buffer-mode 1))
 
-  (require 'consult)
-  (define-key (current-global-map) [remap switch-to-buffer] 'consult-buffer)
-  (define-key (current-global-map) [remap count-lines-page] 'consult-line)
+(use-package denote-journal
+  :ensure t
+  :commands (denote-journal-new-entry
+             denote-journal-new-or-existing-entry
+             denote-journal-link-or-create-entry)
+  :hook (calendar-mode . denote-journal-calendar-mode)
+  :bind (("C-c n j" . denote-journal-new-or-existing-entry))
+  :config
+  (setq denote-journal-directory (expand-file-name "journal" denote-directory)
+        denote-journal-keyword "journal"
+        denote-journal-title-format 'day-date-month-year)))
 
-  (load-theme 'modus-vivendi-tinted)
-  (set-face-attribute 'default nil :height 160)
-  (setq initial-scratch-message "")
-  (defun display-startup-echo-area-message ())
-  (setq epa-pinentry-mode 'loopback)
+(use-package magit
+  :ensure t)
 
-  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
-  (load custom-file)
-  (global-set-key (kbd "M-o") 'other-window)
-  (define-key (current-global-map) [remap list-buffers] 'ibuffer)
+(use-package emms
+  :ensure t
+  :config
+  (emms-all)
+  (setq emms-player-list '(emms-player-mpv)
+        emms-info-functions '(emms-info-native)))
+
+(use-package nov
+  :vc (:url "https://depp.brause.cc/nov.el.git")
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  (setq nov-text-width 70))
+
+
