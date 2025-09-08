@@ -15,7 +15,7 @@
 	(fg-heading-6 magenta-cooler)
 	(fg-heading-7 magenta-cooler)
 	(fg-heading-8 magenta-cooler)))
-(setq modus-themes-heading
+(setq modus-themes-headings
       (quote ((0 . (1.75))
 	      (1 . (1.5))
 	      (2 . (1.375))
