@@ -3,7 +3,6 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
 
-(load-theme 'modus-vivendi-tinted t)
 (set-face-attribute 'default nil :height 160)
 (setq modus-vivendi-tinted-palette-overrides
       '((fg-heading-0 magenta-cooler)
@@ -21,6 +20,7 @@
 	      (2 . (1.375))
 	      (3 . (1.25))
 	      (t . (1.125)))))
+(load-theme 'modus-vivendi-tinted t)
 
 (global-set-key (kbd "M-o") 'other-window)
 (define-key (current-global-map) [remap list-buffers] 'ibuffer)
