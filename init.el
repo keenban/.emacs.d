@@ -33,6 +33,7 @@
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap count-lines-page] . consult-line)))
 
+
 (use-package org
   :defer t
   :mode ("\\.org\\'" . org-mode)
@@ -43,7 +44,7 @@
         org-insert-heading-respect-content t
         org-hide-leading-stars t
         org-log-done t
-        org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org")))
+        org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org")))
 
 (use-package denote
   :hook (dired-mode . denote-dired-mode)
