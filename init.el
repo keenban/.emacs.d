@@ -5,6 +5,22 @@
 
 (load-theme 'modus-vivendi-tinted t)
 (set-face-attribute 'default nil :height 160)
+(setq modus-vivendi-tinted-palette-overrides
+      '((fg-heading-0 magenta-cooler)
+	(fg-heading-1 magenta-cooler)
+	(fg-heading-2 magenta-cooler)
+	(fg-heading-3 magenta-cooler)
+	(fg-heading-4 magenta-cooler)
+	(fg-heading-5 magenta-cooler)
+	(fg-heading-6 magenta-cooler)
+	(fg-heading-7 magenta-cooler)
+	(fg-heading-8 magenta-cooler)))
+(setq modus-themes-heading
+      (quote ((0 . (1.75))
+	      (1 . (1.5))
+	      (2 . (1.375))
+	      (3 . (1.25))
+	      (t . (1.125)))))
 
 (global-set-key (kbd "M-o") 'other-window)
 (define-key (current-global-map) [remap list-buffers] 'ibuffer)
