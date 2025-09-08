@@ -14,28 +14,26 @@
 
 (setq-default dired-listing-switches "--all --color=auto --human-readable -l")
 
+(require 'use-package)
+(setq use-package-always-ensure t)
+
 (use-package vertico
-  :ensure t
   :hook (after-init . vertico-mode))
 
 (use-package marginalia
-  :ensure t
   :hook (after-init . marginalia-mode))
 
 (use-package orderless
-  :ensure t
   :config
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides nil))
 
 (use-package consult
-2  :ensure t
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap count-lines-page] . consult-line)))
 
 (use-package org
-  :ensure nil
   :defer t
   :mode ("\\.org\\'" . org-mode)
   :bind (("C-c l" . org-store-link)
@@ -48,7 +46,6 @@
         org-agenda-files '("~/media/doc/notes/20250707T180240--agenda__agenda_important_todo.org")))
 
 (use-package denote
-  :ensure t
   :hook (dired-mode . denote-dired-mode)
   :bind (("C-c n n" . denote)
          ("C-c n r" . denote-rename-file)
@@ -62,7 +59,6 @@
   (denote-rename-buffer-mode 1))
 
 (use-package denote-journal
-  :ensure t
   :commands (denote-journal-new-entry
              denote-journal-new-or-existing-entry
              denote-journal-link-or-create-entry)
@@ -73,11 +69,9 @@
         denote-journal-keyword "journal"
         denote-journal-title-format 'day-date-month-year)))
 
-(use-package magit
-  :ensure t)
+(use-package magit)
 
 (use-package emms
-  :ensure t
   :config
   (emms-all)
   (setq emms-player-list '(emms-player-mpv)
