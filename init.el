@@ -67,6 +67,16 @@
         org-log-done t
         org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org")))
 
+(use-package org-capture
+  :ensure nil
+  :bind ("C-c c" . org-capture)
+  :config
+  (setq org-capture-templates
+	'(("f" "Fleeting thoughts and ideas" entry
+	   (file+headline "~/media/doc/notes/20250909T140227--inbox__important.org" "Fleeting")
+	   "* %^{Title}\n:PROPERTIES:\n:CAPTURED: %U\n:CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n:END:\n\n%?"
+	   :empty-lines-after 1))))
+
 (use-package denote
   :hook (dired-mode . denote-dired-mode)
   :bind (("C-c n n" . denote)
