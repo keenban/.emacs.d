@@ -28,7 +28,6 @@
   (load-theme 'modus-vivendi-tinted t))
 
 (global-set-key (kbd "M-o") 'other-window)
-(define-key (current-global-map) [remap list-buffers] 'ibuffer)
 
 (add-hook 'after-init-hook #'savehist-mode)
 (add-hook 'after-init-hook #'which-key-mode)
