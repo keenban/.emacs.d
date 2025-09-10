@@ -1,15 +1,30 @@
-(setq epa-pinentry-mode 'loopback)
+(use-package emacs
+  :config
+  (setq epa-pinentry-mode 'loopback)
 
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+  (setq custom-file (concat user-emacs-directory "custom.el"))
+  (load custom-file 'noerror)
 
-(set-face-attribute 'default nil :height 160)
-
-(use-package modus-themes
-  :ensure nil
-  :init
+  (set-face-attribute 'default nil :height 160)
+  (require-theme 'modus-themes)
+  (setq modus-themes-mixed-fonts t
+	modus-themes-prompts '(italic bold))
+  (setq	modus-themes-headings
+	(quote ((0 . (1.75))
+		(1 . (1.5))
+		(2 . (1.375))
+		(3 . (1.25))
+		(t . (1.125)))))
   (setq modus-vivendi-tinted-palette-overrides
-	'((fg-heading-0 magenta-cooler)
+	'((bg-mode-line-active bg-lavender)
+	  (bg-paren-match bg-magenta-intense)
+	  (bg-prose-block-contents bg-dim)
+          (bg-prose-block-delimiter bg-dim)
+          (fg-prose-block-delimiter fg-main)
+	  (underline-err red-faint)
+          (underline-warning yellow-faint)
+          (underline-note cyan-faint)
+	  (fg-heading-0 magenta-cooler)
 	  (fg-heading-1 magenta-cooler)
 	  (fg-heading-2 magenta-cooler)
 	  (fg-heading-3 magenta-cooler)
@@ -17,17 +32,11 @@
 	  (fg-heading-5 magenta-cooler)
 	  (fg-heading-6 magenta-cooler)
 	  (fg-heading-7 magenta-cooler)
-	  (fg-heading-8 magenta-cooler)))
-  (setq modus-themes-headings
-	(quote ((0 . (1.75))
-		(1 . (1.5))
-		(2 . (1.375))
-		(3 . (1.25))
-		(t . (1.125)))))
-  :config
+	  (fg-heading-8 magenta-cooler)
+	  (comment yellow-faint)
+	  (string green-warmer)))
+	
   (load-theme 'modus-vivendi-tinted t))
-
-(global-set-key (kbd "M-o") 'other-window)
 
 (add-hook 'after-init-hook #'savehist-mode)
 (add-hook 'after-init-hook #'which-key-mode)
@@ -51,7 +60,6 @@
   :ensure t
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap count-lines-page] . consult-line)))
-
 
 (use-package org
   :defer t
