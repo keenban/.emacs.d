@@ -98,7 +98,8 @@
         denote-journal-keyword "journal"
         denote-journal-title-format 'day-date-month-year))
 
-(use-package magit)
+(use-package magit
+  :ensure t)
 
 (use-package emms
   :config
