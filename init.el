@@ -71,6 +71,7 @@
          ("C-c a" . org-agenda))
   :config
   (setq org-startup-folded t
+	org-startup-indented t
         org-insert-heading-respect-content t
         org-hide-leading-stars t
         org-log-done t
