@@ -32,22 +32,23 @@
 (add-hook 'after-init-hook #'savehist-mode)
 (add-hook 'after-init-hook #'which-key-mode)
 
-(require 'use-package)
-(setq use-package-always-ensure t)
-
 (use-package vertico
+  :ensure t
   :hook after-init)
 
 (use-package marginalia
+  :ensure t
   :hook after-init)
 
 (use-package orderless
+  :ensure t
   :config
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides nil))
 
 (use-package consult
+  :ensure t
   :bind (([remap switch-to-buffer] . consult-buffer)
          ([remap count-lines-page] . consult-line)))
 
@@ -65,7 +66,6 @@
         org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org")))
 
 (use-package org-capture
-  :ensure nil
   :bind ("C-c c" . org-capture)
   :config
   (setq org-capture-templates
@@ -75,6 +75,7 @@
 	   :empty-lines-after 1))))
 
 (use-package denote
+  :ensure t
   :hook (dired-mode . denote-dired-mode)
   :bind (("C-c n n" . denote)
          ("C-c n r" . denote-rename-file)
@@ -88,6 +89,7 @@
   (denote-rename-buffer-mode 1))
 
 (use-package denote-journal
+  :ensure t
   :commands (denote-journal-new-entry
              denote-journal-new-or-existing-entry
              denote-journal-link-or-create-entry)
@@ -102,6 +104,7 @@
   :ensure t)
 
 (use-package emms
+  :ensure t
   :config
   (emms-all)
   (setq emms-player-list '(emms-player-mpv)
