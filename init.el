@@ -58,7 +58,7 @@
 (add-hook 'after-init-hook #'vertico-mode)
 
 (require 'marginalia)
-(add-hook 'after-init-hook 'marginalia-mode)
+(add-hook 'after-init-hook #'marginalia-mode)
 
 (require 'orderless)
 (setq completion-styles '(orderless basic)
