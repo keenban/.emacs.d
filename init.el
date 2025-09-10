@@ -32,8 +32,6 @@
 (add-hook 'after-init-hook #'savehist-mode)
 (add-hook 'after-init-hook #'which-key-mode)
 
-(setq-default dired-listing-switches "--all --color=auto --human-readable -l")
-
 (require 'use-package)
 (setq use-package-always-ensure t)
 
