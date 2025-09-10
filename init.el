@@ -123,5 +123,3 @@
   :mode ("\\.epub\\'" . nov-mode)
   :config
   (setq nov-text-width 70))
-
-
