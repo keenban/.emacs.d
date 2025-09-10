@@ -39,7 +39,9 @@
   (load-theme 'modus-vivendi-tinted t))
 
 (add-hook 'after-init-hook #'savehist-mode)
-(add-hook 'after-init-hook #'which-key-mode)
+
+(use-package which-key
+  :hook after-init)
 
 (use-package vertico
   :ensure t
