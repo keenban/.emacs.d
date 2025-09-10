@@ -38,7 +38,8 @@
 	
   (load-theme 'modus-vivendi-tinted t))
 
-(add-hook 'after-init-hook #'savehist-mode)
+(use-package savehist
+  :hook after-init)
 
 (use-package which-key
   :hook after-init)
