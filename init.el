@@ -88,6 +88,13 @@
     "Fleeting")
    "* %^{Title}\n:PROPERTIES:\n:CAPTURED: %U\n:CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n:END:\n\n%?"
    :empty-lines-after 1)))
+(with-eval-after-load 'org-capture
+       (add-to-list 'org-capture-templates
+                    '("j" "Journal" entry
+                      (file denote-journal-path-to-new-or-existing-entry)
+                      "* %U %?\n%i\n%a"
+                      :kill-buffer t
+                      :empty-lines 1)))
 
 (require 'denote)
 (add-hook 'dired-mode-hook 'denote-dired-mode)
