@@ -12,9 +12,6 @@
  'vertico 'marginalia 'orderless 'consult
  'magit 'emms 'denote 'denote-journal)
 
-(unless (package-installed-p 'nov)
-  (package-vc-install "https://depp.brause.cc/nov.el.git"))
-
 (setq custom-file
       (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror 'nomessage)
@@ -131,6 +128,9 @@
 (emms-all)
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
+
+(unless (package-installed-p 'nov)
+  (package-vc-install "https://depp.brause.cc/nov.el.git"))
 
 (setq nov-text-width 70)
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
