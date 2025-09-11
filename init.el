@@ -19,6 +19,8 @@
       (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
 
+(setq initial-scratch-message nil)
+(setq inhibit-startup-echo-area-message (user-login-name))
 (setq epa-pinentry-mode 'loopback)
 
 (set-face-attribute 'default nil :height 160)
