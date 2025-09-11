@@ -24,7 +24,6 @@
 
 (setq epa-pinentry-mode 'loopback)
 
-(set-face-attribute 'default nil :height 160)
 (require-theme 'modus-themes)
 (setq modus-themes-mixed-fonts t modus-themes-prompts
       '(italic bold))

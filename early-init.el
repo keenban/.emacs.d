@@ -7,3 +7,4 @@
       tool-bar-mode nil
       tooltip-mode nil)
 (set-scroll-bar-mode nil)
+(set-face-attribute 'default nil :height 160 :background "#0d0e1c")
