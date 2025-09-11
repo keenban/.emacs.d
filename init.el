@@ -20,7 +20,7 @@
 (load custom-file 'noerror)
 
 (setq initial-scratch-message nil)
-(setq inhibit-startup-echo-area-message (user-login-name))
+(defun display-startup-echo-area-message () nil)
 (setq epa-pinentry-mode 'loopback)
 
 (set-face-attribute 'default nil :height 160)
