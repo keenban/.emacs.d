@@ -17,7 +17,7 @@
 
 (setq custom-file
       (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+(load custom-file 'noerror 'nomessage)
 
 (setq initial-scratch-message nil)
 (setq inhibit-startup-echo-area-message "keenban")
