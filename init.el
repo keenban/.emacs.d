@@ -47,6 +47,9 @@
 	(comment yellow-faint) (string green-warmer)))
 (load-theme 'modus-vivendi-tinted t)
 
+(require 'bbdb)
+(setq bbdb-default-country "Canada")
+
 (require 'savehist)
 (add-hook 'after-init-hook #'savehist-mode)
 
