@@ -112,6 +112,15 @@
 (setq magit-no-message '("Turning on magit-auto-revert-mode"))
 
 (require 'emms-setup)
+
+;; suppress startup cache message
+(with-eval-after-load 'emms-cache
+  (defun emms-cache-restore ()
+    "Restore the track cache from a file, quietly."
+    (interactive)
+    (load emms-cache-file t t t) ;; set NOMESSAGE to t
+    (setq emms-cache-dirty nil)))
+
 (emms-all)
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
