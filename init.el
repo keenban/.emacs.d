@@ -109,6 +109,7 @@
       denote-journal-title-format 'day-date-month-year)
 
 (require 'magit)
+(setq magit-no-message '("Turning on magit-auto-revert-mode"))
 
 (require 'emms-setup)
 (emms-all)
