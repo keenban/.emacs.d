@@ -125,6 +125,13 @@
 (global-set-key [remap count-lines-page] 'consult-line)
 
 ;;; ---------------------------------------------------------------------------
+;;; Dired configuration
+;;; ---------------------------------------------------------------------------
+
+(setq dired-listing-switches "-alh --group-directories-first --time-style=long-iso"
+      dired-free-space nil)
+
+;;; ---------------------------------------------------------------------------
 ;;; Org Mode configuration
 ;;; ---------------------------------------------------------------------------
 
