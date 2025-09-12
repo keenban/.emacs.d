@@ -128,7 +128,7 @@
 ;;; Dired configuration
 ;;; ---------------------------------------------------------------------------
 
-(setq dired-listing-switches "-algo --group-directories-first --time-style=long-iso"
+(setq dired-listing-switches "-ahgo --group-directories-first --time-style=long-iso"
       dired-free-space nil)
 
 ;;; ---------------------------------------------------------------------------
