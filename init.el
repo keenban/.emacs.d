@@ -126,56 +126,87 @@
 (global-set-key [remap switch-to-buffer] 'consult-buffer)
 (global-set-key [remap count-lines-page] 'consult-line)
 
+;;; ---------------------------------------------------------------------------
+;;; Org Mode configuration
+;;; ---------------------------------------------------------------------------
+
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; Keybindings
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-(setq org-startup-folded t org-startup-indented t
+
+;; Basic Org settings
+(setq org-startup-folded t
+      org-startup-indented t
       org-insert-heading-respect-content t
-      org-hide-leading-stars t org-log-done t
-      org-agenda-files
-      '("~/media/doc/notes/20250707T180240--agenda.org"))
+      org-hide-leading-stars t
+      org-log-done t
+      org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org"))
+
+;; Capture templates
 (setq org-capture-templates
-'(("f" "Fleeting thoughts and ideas" entry
-   (file+headline
-    "~/media/doc/notes/20250909T140227--inbox__important.org"
-    "Fleeting")
-   "* %^{Title}\n:PROPERTIES:\n:CAPTURED: %U\n:CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n:END:\n\n%?"
-   :empty-lines-after 1)))
+      '(("f" "Fleeting thoughts and ideas" entry
+         (file+headline
+          "~/media/doc/notes/20250909T140227--inbox__important.org"
+          "Fleeting")
+         "* %^{Title}\n:PROPERTIES:\n:CAPTURED: %U\n:CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n:END:\n\n%?"
+         :empty-lines-after 1)))
+
 (with-eval-after-load 'org-capture
-       (add-to-list 'org-capture-templates
-                    '("j" "Journal" entry
-                      (file denote-journal-path-to-new-or-existing-entry)
-                      "* %U %?\n%i\n%a"
-                      :kill-buffer t
-                      :empty-lines 1)))
+  (add-to-list 'org-capture-templates
+               '("j" "Journal" entry
+                 (file denote-journal-path-to-new-or-existing-entry)
+                 "* %U %?\n%i\n%a"
+                 :kill-buffer t
+                 :empty-lines 1)))
+
+;;; ---------------------------------------------------------------------------
+;;; Denote (note-taking and journaling)
+;;; ---------------------------------------------------------------------------
 
 (require 'denote)
 (add-hook 'dired-mode-hook 'denote-dired-mode)
+
+;; Keybindings
 (global-set-key (kbd "C-c n n") 'denote)
 (global-set-key (kbd "C-c n r") 'denote-rename-file)
 (global-set-key (kbd "C-c n l") 'denote-link)
 (global-set-key (kbd "C-c n b") 'denote-backlinks)
 (global-set-key (kbd "C-c n d") 'denote-dired)
 (global-set-key (kbd "C-c n g") 'denote-grep)
+
+;; Basic settings
 (setq denote-directory (expand-file-name "~/media/doc/notes/")
       denote-rename-confirmations nil)
 (denote-rename-buffer-mode 1)
 
 (require 'denote-journal)
 (add-hook 'calendar-mode-hook 'denote-journal-calendar-mode)
+
 (global-set-key (kbd "C-c n j") 'denote-journal-new-or-existing-entry)
+
 (setq denote-journal-directory (expand-file-name "journal" denote-directory)
       denote-journal-keyword "journal"
       denote-journal-title-format 'day-date-month-year)
 
+;;; ---------------------------------------------------------------------------
+;;; Git integration
+;;; ---------------------------------------------------------------------------
+
 (require 'magit)
+;; Suppress startup message
 (setq magit-no-message '("Turning on magit-auto-revert-mode"))
+
+;;; ---------------------------------------------------------------------------
+;;; EMMS (Emacs Multimedia System)
+;;; ---------------------------------------------------------------------------
 
 (require 'emms-setup)
 
-;; suppress startup cache message
+;; Suppress startup cache message
 (with-eval-after-load 'emms-cache
   (defun emms-cache-restore ()
     "Restore the track cache from a file, quietly."
