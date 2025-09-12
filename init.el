@@ -25,7 +25,7 @@
 
 ;; Packages to ensure are present
 (ensure-package-installed
- 'vertico 'marginalia 'orderless 'consult
+ 'vertico 'marginalia 'orderless 'consult 'company
  'magit 'emms 'denote 'denote-journal 'bbdb 'nov)
 
 ;;; ---------------------------------------------------------------------------
@@ -162,8 +162,16 @@
       org-startup-indented t
       org-insert-heading-respect-content t
       org-hide-leading-stars t
+      org-hide-emphasis-markers t
       org-log-done t
       org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org"))
+
+(add-hook 'org-mode 'variable-pitch-mode)
+
+;; Spell Checking
+(add-hook 'text-mode-hook 'flyspell-mode)
+(require 'company)
+(add-hook 'text-mode-hook 'company-mode)
 
 ;; Capture templates
 (setq org-capture-templates
