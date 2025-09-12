@@ -1,4 +1,6 @@
 (require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -10,7 +12,7 @@
 
 (ensure-package-installed
  'vertico 'marginalia 'orderless 'consult
- 'magit 'emms 'denote 'denote-journal 'bbdb)
+ 'magit 'emms 'denote 'denote-journal 'bbdb 'nov)
 
 (setq custom-file
       (concat user-emacs-directory "custom.el"))
@@ -132,9 +134,7 @@
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
 
-(unless (package-installed-p 'nov)
-  (package-vc-install "https://depp.brause.cc/nov.el.git"))
-
+(require 'nov)
 (setq nov-text-width 70)
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (setq nov-text-width 70)
