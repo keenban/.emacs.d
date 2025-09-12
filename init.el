@@ -1,73 +1,115 @@
+;;; init.el --- Keenban's Emacs configuration -*- lexical-binding: t; -*-
+
+;;; ---------------------------------------------------------------------------
+;;; Package management
+;;; ---------------------------------------------------------------------------
 (require 'package)
+
+;; Add MELPA Stable to package archives
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
 
+;; Helper: install a list of packages if they’re not already installed
 (defun ensure-package-installed (&rest packages)
   (dolist (pkg packages)
     (unless (package-installed-p pkg)
       (package-install pkg))))
 
+;; Packages to ensure are present
 (ensure-package-installed
  'vertico 'marginalia 'orderless 'consult
  'magit 'emms 'denote 'denote-journal 'bbdb 'nov)
 
+;;; ---------------------------------------------------------------------------
+;;; Backups and auto-saves
+;;; ---------------------------------------------------------------------------
+
+;; Store all backups in ~/.emacs.d/tmp/backups/
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "tmp/backups/" user-emacs-directory))))
-(make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
-(setq auto-save-list-file-prefix (expand-file-name "tmp/auto-saves/sessions/" user-emacs-directory)
-      auto-save-file-name-transforms `((".*" ,(expand-file-name "tmp/auto-saves/" user-emacs-directory) t)))
 
-(setq custom-file
-      (concat user-emacs-directory "custom.el"))
+;; Store auto-save files in ~/.emacs.d/tmp/auto-saves/
+(make-directory (expand-file-name "tmp/auto-saves/" user-emacs-directory) t)
+(setq auto-save-list-file-prefix (expand-file-name "tmp/auto-saves/sessions/"
+                                                  user-emacs-directory)
+      auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "tmp/auto-saves/" user-emacs-directory) t)))
+
+;;; ---------------------------------------------------------------------------
+;;; General UI/behavior tweaks
+;;; ---------------------------------------------------------------------------
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror 'nomessage)
 
-(setq use-dialog-box nil)
-(setq initial-scratch-message nil)
-(setq inhibit-startup-echo-area-message "keenban")
+(setq use-dialog-box nil)                 ;; Disable GUI dialog boxes
+(setq initial-scratch-message nil)        ;; Empty *scratch* buffer
+(setq inhibit-startup-echo-area-message "keenban") ;; Suppress startup message
 
-;; auto buffer revert
+;; Auto-reload buffers when files change on disk
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
+;; GPG pinentry in minibuffer
 (setq epa-pinentry-mode 'loopback)
 
+;;; ---------------------------------------------------------------------------
+;;; Theme and appearance
+;;; ---------------------------------------------------------------------------
+
 (require-theme 'modus-themes)
-(setq modus-themes-mixed-fonts t modus-themes-prompts
-      '(italic bold))
-(setq modus-themes-headings
-      '((0 1.75) (1 1.5) (2 1.375) (3 1.25) (t 1.125)))
-(setq modus-vivendi-tinted-palette-overrides
+
+(setq modus-themes-mixed-fonts t
+      modus-themes-prompts '(italic bold)
+      modus-themes-headings
+      '((0 1.75) (1 1.5) (2 1.375) (3 1.25) (t 1.125))
+      modus-vivendi-tinted-palette-overrides
       '((bg-mode-line-active bg-lavender)
-	(bg-paren-match bg-magenta-intense)
-	(bg-prose-block-contents bg-dim)
-	(bg-prose-block-delimiter bg-dim)
-	(fg-prose-block-delimiter fg-main)
-	(underline-err red-faint)
-	(underline-warning yellow-faint)
-	(underline-note cyan-faint)
-	(fg-heading-0 magenta-cooler)
-	(fg-heading-1 magenta-cooler)
-	(fg-heading-2 magenta-cooler)
-	(fg-heading-3 magenta-cooler)
-	(fg-heading-4 magenta-cooler)
-	(fg-heading-5 magenta-cooler)
-	(fg-heading-6 magenta-cooler)
-	(fg-heading-7 magenta-cooler)
-	(fg-heading-8 magenta-cooler)
-	(comment yellow-faint) (string green-warmer)))
+        (bg-paren-match bg-magenta-intense)
+        (bg-prose-block-contents bg-dim)
+        (bg-prose-block-delimiter bg-dim)
+        (fg-prose-block-delimiter fg-main)
+        (underline-err red-faint)
+        (underline-warning yellow-faint)
+        (underline-note cyan-faint)
+        (fg-heading-0 magenta-cooler)
+        (fg-heading-1 magenta-cooler)
+        (fg-heading-2 magenta-cooler)
+        (fg-heading-3 magenta-cooler)
+        (fg-heading-4 magenta-cooler)
+        (fg-heading-5 magenta-cooler)
+        (fg-heading-6 magenta-cooler)
+        (fg-heading-7 magenta-cooler)
+        (fg-heading-8 magenta-cooler)
+        (comment yellow-faint)
+        (string green-warmer))))
+
 (load-theme 'modus-vivendi-tinted t)
+
+;;; ---------------------------------------------------------------------------
+;;; Personal Information (BBDB)
+;;; ---------------------------------------------------------------------------
 
 (require 'bbdb)
 (setq bbdb-default-country "Canada")
+
+;;; ---------------------------------------------------------------------------
+;;; History and discoverability helpers
+;;; ---------------------------------------------------------------------------
 
 (require 'savehist)
 (add-hook 'after-init-hook #'savehist-mode)
 
 (require 'which-key)
 (add-hook 'after-init-hook #'which-key-mode)
+
+;;; ---------------------------------------------------------------------------
+;;; Completion and minibuffer setup
+;;; ---------------------------------------------------------------------------
 
 (require 'vertico)
 (add-hook 'after-init-hook #'vertico-mode)
@@ -142,10 +184,14 @@
     (setq emms-cache-dirty nil)))
 
 (emms-all)
+
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
 
+;;; ---------------------------------------------------------------------------
+;;; nov.el (EPUB reader)
+;;; ---------------------------------------------------------------------------
+
 (require 'nov)
-(setq nov-text-width 70)
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (setq nov-text-width 70)
