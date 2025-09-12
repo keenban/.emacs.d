@@ -10,7 +10,7 @@
 
 (ensure-package-installed
  'vertico 'marginalia 'orderless 'consult
- 'magit 'emms 'denote 'denote-journal)
+ 'magit 'emms 'denote 'denote-journal 'bbdb)
 
 (setq custom-file
       (concat user-emacs-directory "custom.el"))
