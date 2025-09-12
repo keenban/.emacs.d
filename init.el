@@ -3,9 +3,15 @@
 ;;; ---------------------------------------------------------------------------
 (require 'package)
 
-;; Add MELPA Stable to package archives
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; Define package archives and priorities
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+       ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+       ("melpa-stable" . "https://stable.melpa.org/packages/"))
+      package-archive-priorities
+      '(("gnu" . 3)
+	("nongnu" . 2)
+	("melpa-stable" . 1)))
 
 (package-initialize)
 (unless package-archive-contents
