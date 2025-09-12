@@ -129,7 +129,8 @@
 ;;; ---------------------------------------------------------------------------
 
 (setq dired-listing-switches "-ahgo --group-directories-first --time-style=long-iso"
-      dired-free-space nil)
+      dired-free-space nil
+      dired-kill-when-opening-new-dired-buffer t)
 
 ;; Hide details in dired
 (defun my-dired-init ()
