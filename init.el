@@ -28,6 +28,10 @@
 (setq initial-scratch-message nil)
 (setq inhibit-startup-echo-area-message "keenban")
 
+;; auto buffer revert
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
 (setq epa-pinentry-mode 'loopback)
 
 (require-theme 'modus-themes)
