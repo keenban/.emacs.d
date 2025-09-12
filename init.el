@@ -131,6 +131,13 @@
 (setq dired-listing-switches "-ahgo --group-directories-first --time-style=long-iso"
       dired-free-space nil)
 
+;; Hide details in dired
+(defun my-dired-init ()
+  "to be run as hook for `dired-mode'."
+  (dired-hide-details-mode 1))
+
+(add-hook 'dired-mode-hook 'my-dired-init)
+
 ;;; ---------------------------------------------------------------------------
 ;;; Org Mode configuration
 ;;; ---------------------------------------------------------------------------
