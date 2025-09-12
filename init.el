@@ -84,7 +84,7 @@
         (fg-heading-7 magenta-cooler)
         (fg-heading-8 magenta-cooler)
         (comment yellow-faint)
-        (string green-warmer))))
+	(string green-warmer)))
 
 (load-theme 'modus-vivendi-tinted t)
 
