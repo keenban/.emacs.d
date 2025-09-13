@@ -94,6 +94,22 @@
 
 (load-theme 'modus-vivendi-tinted t)
 
+;; Margin toggle
+
+(defun my-toggle-margins ()
+  "Set margins in current buffer."
+  (interactive)
+  (if (or (> left-margin-width 0) (> right-margin-width 0))
+      (progn
+        (setq left-margin-width 0)
+        (setq right-margin-width 0)
+        (set-window-buffer (selected-window) (current-buffer)))
+    (setq left-margin-width 26)
+    (setq right-margin-width 26)
+    (set-window-buffer (selected-window) (current-buffer))))
+
+(global-set-key [f5] 'my-toggle-margins)
+
 ;;; ---------------------------------------------------------------------------
 ;;; Personal Information (BBDB)
 ;;; ---------------------------------------------------------------------------
