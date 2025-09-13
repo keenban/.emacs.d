@@ -2,17 +2,6 @@
 ;;; Package management
 ;;; ---------------------------------------------------------------------------
 (require 'package)
-
-;; Define package archives and priorities
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-       ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-       ("melpa-stable" . "https://stable.melpa.org/packages/"))
-      package-archive-priorities
-      '(("gnu" . 3)
-	("nongnu" . 2)
-	("melpa-stable" . 1)))
-
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -25,8 +14,8 @@
 
 ;; Packages to ensure are present
 (ensure-package-installed
- 'vertico 'marginalia 'orderless 'consult 'company
- 'magit 'emms 'denote 'denote-journal 'bbdb 'nov)
+ 'vertico 'marginalia 'orderless 'consult
+ 'company 'magit 'emms 'denote 'denote-journal 'bbdb)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Backups and auto-saves
@@ -262,11 +251,3 @@
 
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
-
-;;; ---------------------------------------------------------------------------
-;;; nov.el (EPUB reader)
-;;; ---------------------------------------------------------------------------
-
-(require 'nov)
-(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-(setq nov-text-width 70)
