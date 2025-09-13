@@ -166,7 +166,7 @@
       org-log-done t
       org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org"))
 
-(add-hook 'org-mode 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'variable-pitch-mode)
 
 ;; Spell Checking
 (add-hook 'text-mode-hook 'flyspell-mode)
