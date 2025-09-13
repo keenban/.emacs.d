@@ -80,6 +80,7 @@
         (underline-err red-faint)
         (underline-warning yellow-faint)
         (underline-note cyan-faint)
+	(fringe unspecified)
         (fg-heading-0 magenta-cooler)
         (fg-heading-1 magenta-cooler)
         (fg-heading-2 magenta-cooler)
