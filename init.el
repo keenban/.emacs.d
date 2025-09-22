@@ -251,3 +251,11 @@
 
 (setq emms-player-list '(emms-player-mpv)
       emms-info-functions '(emms-info-native))
+
+;;; ---------------------------------------------------------------------------
+;;; Newsticker (RSS Feeds)
+;;; ---------------------------------------------------------------------------
+
+(require 'newsticker)
+(setq newsticker-url-list
+      '(("Lamba Land" "https://lambdaland.org/index.xml")))
