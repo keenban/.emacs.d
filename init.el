@@ -14,8 +14,14 @@
 
 ;; Packages to ensure are present
 (ensure-package-installed
- 'vertico 'marginalia 'orderless 'consult
+ 'vertico 'marginalia 'orderless 'consult 'exwm
  'company 'magit 'emms 'denote 'denote-journal 'bbdb)
+
+;;; ---------------------------------------------------------------------------
+;;; EXWM (Window Manager)
+;;; ---------------------------------------------------------------------------
+(require exwm)
+(exwm-config-example)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Backups and auto-saves
