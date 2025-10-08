@@ -57,6 +57,9 @@
 ;; GPG pinentry in minibuffer
 (setq epa-pinentry-mode 'loopback)
 
+;; shr maximum line width
+(setq shr-max-width 70)
+
 ;;; ---------------------------------------------------------------------------
 ;;; Theme and appearance
 ;;; ---------------------------------------------------------------------------
