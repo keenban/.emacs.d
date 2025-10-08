@@ -302,7 +302,17 @@
 (emms-all)
 
 (setq emms-player-list '(emms-player-mpv)
-      emms-info-functions '(emms-info-native))
+      emms-info-functions '(emms-info-native)
+      emms-browser-covers #'emms-browser-cache-thumbnail-async
+      emms-browser-thumbnail-small-size 64
+      emms-browser-thumbnail-medium-size 128)
+
+(global-set-key (kbd "C-c m b") 'emms-bookmarks-add)
+(global-set-key (kbd "<XF86AudioLowerVolume>") 'emms-volume-lower)
+(global-set-key (kbd "<XF86AudioRaiseVolume>") 'emms-volume-raise)
+(global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
+(global-set-key (kbd "<XF86AudioPlay>") 'emms-pause)
+(global-set-key (kbd "<XF86AudioNext>") 'emms-next)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Newsticker (RSS Feeds)
