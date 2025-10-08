@@ -21,7 +21,49 @@
 ;;; EXWM (Window Manager)
 ;;; ---------------------------------------------------------------------------
 (require 'exwm)
-(setq exwm-input-global-keys `(([?\s-r] . exwm-reset)))
+
+(setq display-time-default-load-average nil)
+(display-time-mode t)
+
+(add-hook 'exwm-update-class-hook
+  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+
+(define-key exwm-mode-map [?\C-q] #'exwm-input-send-next-key)
+
+(setq exwm-input-global-keys
+      `(([?\s-r] . exwm-reset)
+        ([?\s-w] . exwm-workspace-switch)
+        ([?\s-&] . (lambda (command)
+             (interactive (list (read-shell-command "$ ")))
+             (start-process-shell-command command nil command)))))
+
+;; The following example demonstrates how to use simulation keys to mimic
+;; the behavior of Emacs.  The value of `exwm-input-simulation-keys` is a
+;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
+;; and DEST is what EXWM actually sends to application.  Note that both SRC
+;; and DEST should be key sequences (vector or string).
+(setq exwm-input-simulation-keys
+      '(
+        ;; movement
+        ([?\C-b] . [left])
+        ([?\M-b] . [C-left])
+        ([?\C-f] . [right])
+        ([?\M-f] . [C-right])
+        ([?\C-p] . [up])
+        ([?\C-n] . [down])
+        ([?\C-a] . [home])
+        ([?\C-e] . [end])
+        ([?\M-v] . [prior])
+        ([?\C-v] . [next])
+        ([?\C-d] . [delete])
+        ([?\C-k] . [S-end delete])
+        ;; cut/paste.
+        ([?\C-w] . [?\C-x])
+        ([?\M-w] . [?\C-c])
+        ([?\C-y] . [?\C-v])
+        ;; search
+        ([?\C-s] . [?\C-f])))
+
 (exwm-wm-mode)
 
 ;;; ---------------------------------------------------------------------------
