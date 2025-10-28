@@ -258,7 +258,7 @@
 ;; Keybindings
 (global-set-key (kbd "C-c n n") 'denote)
 (global-set-key (kbd "C-c n r") 'denote-rename-file)
-(global-set-key (kbd "C-c n l") 'denote-link)
+(global-set-key (kbd "C-c n l") 'denote-link-or-create)
 (global-set-key (kbd "C-c n b") 'denote-backlinks)
 (global-set-key (kbd "C-c n d") 'denote-dired)
 (global-set-key (kbd "C-c n g") 'denote-grep)
