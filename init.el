@@ -42,27 +42,27 @@
 ;; list of cons cells (SRC . DEST), where SRC is the key sequence you press
 ;; and DEST is what EXWM actually sends to application.  Note that both SRC
 ;; and DEST should be key sequences (vector or string).
-(setq exwm-input-simulation-keys
-      '(
-        ;; movement
-        ([?\C-b] . [left])
-        ([?\M-b] . [C-left])
-        ([?\C-f] . [right])
-        ([?\M-f] . [C-right])
-        ([?\C-p] . [up])
-        ([?\C-n] . [down])
-        ([?\C-a] . [home])
-        ([?\C-e] . [end])
-        ([?\M-v] . [prior])
-        ([?\C-v] . [next])
-        ([?\C-d] . [delete])
-        ([?\C-k] . [S-end delete])
-        ;; cut/paste.
-        ([?\C-w] . [?\C-x])
-        ([?\M-w] . [?\C-c])
-        ([?\C-y] . [?\C-v])
-        ;; search
-        ([?\C-s] . [?\C-f])))
+;; (setq exwm-input-simulation-keys
+;;       '(
+;;         ;; movement
+;;         ([?\C-b] . [left])
+;;         ([?\M-b] . [C-left])
+;;         ([?\C-f] . [right])
+;;         ([?\M-f] . [C-right])
+;;         ([?\C-p] . [up])
+;;         ([?\C-n] . [down])
+;;         ([?\C-a] . [home])
+;;         ([?\C-e] . [end])
+;;         ([?\M-v] . [prior])
+;;         ([?\C-v] . [next])
+;;         ([?\C-d] . [delete])
+;;         ([?\C-k] . [S-end delete])
+;;         ;; cut/paste.
+;;         ([?\C-w] . [?\C-x])
+;;         ([?\M-w] . [?\C-c])
+;;         ([?\C-y] . [?\C-v])
+;;         ;; search
+;;         ([?\C-s] . [?\C-f])))
 
 (exwm-wm-mode)
 
