@@ -57,6 +57,9 @@
 ;;; Theme and appearance
 ;;; ---------------------------------------------------------------------------
 
+(when (string-equal system-type "android")
+  (toggle-frame-fullscreen))
+
 (require-theme 'modus-themes)
 
 (setq modus-themes-mixed-fonts t
