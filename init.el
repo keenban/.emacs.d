@@ -41,7 +41,7 @@
 
 (setq use-dialog-box nil)                 ;; Disable GUI dialog boxes
 (setq initial-scratch-message nil)        ;; Empty *scratch* buffer
-(setq inhibit-startup-echo-area-message "keenban") ;; Suppress startup message
+(setq inhibit-startup-echo-area-message user-login-name) ;; Suppress startup message
 
 ;; Auto-reload buffers when files change on disk
 (global-auto-revert-mode 1)
