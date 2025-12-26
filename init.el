@@ -180,6 +180,7 @@
       org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org"))
 
 (add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 ;; Spell Checking
 (add-hook 'text-mode-hook 'flyspell-mode)
