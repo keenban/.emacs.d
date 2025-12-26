@@ -218,6 +218,7 @@
 (global-set-key (kbd "C-c n b") 'denote-backlinks)
 (global-set-key (kbd "C-c n d") 'denote-dired)
 (global-set-key (kbd "C-c n g") 'denote-grep)
+(global-set-key (kbd "C-c n c") 'denote-link-after-creating)
 
 ;; Basic settings
 (setq denote-directory (expand-file-name "~/media/doc/notes/")
