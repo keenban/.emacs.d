@@ -1,9 +1,11 @@
+(set-face-attribute 'default nil :height 160 :background "#0d0e1c")
 
 (when (string-equal system-type "android")
   ;; Add Termux binaries to PATH environment
   (let ((termuxpath "/data/data/com.termux/files/usr/bin"))
     (setenv "PATH" (concat (getenv "PATH") ":" termuxpath))
-    (setq exec-path (append exec-path (list termuxpath)))))
+    (setq exec-path (append exec-path (list termuxpath))))
+  (set-face-attribute 'default nil :height 280))
 
 
 (setq inhibit-splash-screen t
@@ -15,4 +17,3 @@
       tool-bar-mode nil
       tooltip-mode nil)
 (set-scroll-bar-mode nil)
-(set-face-attribute 'default nil :height 160 :background "#0d0e1c")
