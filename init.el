@@ -177,7 +177,8 @@
       org-hide-leading-stars t
       org-hide-emphasis-markers t
       org-log-done t
-      org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org"))
+      org-agenda-files '("~/media/doc/notes/20250707T180240--agenda.org")
+      sentence-end-double-space nil)
 
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
