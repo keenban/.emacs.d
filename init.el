@@ -187,23 +187,6 @@
 (require 'company)
 (add-hook 'text-mode-hook 'company-mode)
 
-;; Capture templates
-(setq org-capture-templates
-      '(("f" "Fleeting thoughts and ideas" entry
-         (file+headline
-          "~/media/doc/notes/20250909T140227--inbox__important.org"
-          "Fleeting")
-         "* %^{Title}\n:PROPERTIES:\n:CAPTURED: %U\n:CUSTOM_ID: h:%(format-time-string \"%Y%m%dT%H%M%S\")\n:END:\n\n%?"
-         :empty-lines-after 1)))
-
-(with-eval-after-load 'org-capture
-  (add-to-list 'org-capture-templates
-               '("j" "Journal" entry
-                 (file denote-journal-path-to-new-or-existing-entry)
-                 "* %U %?\n%i\n%a"
-                 :kill-buffer t
-                 :empty-lines 1)))
-
 ;;; ---------------------------------------------------------------------------
 ;;; Denote (note-taking and journaling)
 ;;; ---------------------------------------------------------------------------
