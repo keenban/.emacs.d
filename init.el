@@ -16,7 +16,7 @@
 ;; Packages to ensure are present
 (ensure-package-installed
  'vertico 'marginalia 'orderless 'consult 'typescript-mode
- 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv)
+ 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv-mode)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Backups and auto-saves
