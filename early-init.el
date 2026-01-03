@@ -17,3 +17,4 @@
       tool-bar-mode nil
       tooltip-mode nil)
 (set-scroll-bar-mode nil)
+(set-fringe-mode 15)
