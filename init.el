@@ -189,6 +189,9 @@
 (require 'company)
 (add-hook 'text-mode-hook 'company-mode)
 
+;; Latex
+(add-to-list 'org-latex-packages-alist '("per-mode=symbol" "siunitx" t))
+
 ;;; ---------------------------------------------------------------------------
 ;;; Denote (note-taking and journaling)
 ;;; ---------------------------------------------------------------------------
