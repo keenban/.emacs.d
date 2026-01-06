@@ -214,30 +214,6 @@
       denote-rename-confirmations nil)
 (denote-rename-buffer-mode 1)
 
-;; LaTeX file type
-(defvar my-denote-latex-front-matter
-  "%% title:      %s
-%% date:       %s
-%% tags:       %s
-%% identifier: %s
-\n"
-  "LaTeX front matter for Denote.
-It is passed to `format' with arguments TITLE, DATE, KEYWORDS, ID.")
-
-(add-to-list 'denote-file-types
-             '(latex
-               :extension ".tex"
-               :date-function denote-date-iso-8601
-               :front-matter my-denote-latex-front-matter
-               :title-key-regexp "^%% title:\\s-*"
-               :title-value-function identity
-               :title-value-reverse-function denote-trim-whitespace
-               :keywords-key-regexp "^%% tags:\\s-*"
-               :keywords-value-function denote-format-keywords-for-text-front-matter
-               :keywords-value-reverse-function denote-extract-keywords-from-front-matter
-               :link "\\href{denote:%1$s}{%2$s}"
-               :link-in-context-regexp "\\\\href{denote:\\(?1:[0-9T]+\\)}{.*?}"))
-
 ;; Journal
 (require 'denote-journal)
 (add-hook 'calendar-mode-hook 'denote-journal-calendar-mode)
