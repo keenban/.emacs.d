@@ -15,8 +15,8 @@
 
 ;; Packages to ensure are present
 (ensure-package-installed
- 'vertico 'marginalia 'orderless 'consult 'typescript-mode
- 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv-mode)
+ 'vertico 'marginalia 'orderless 'consult 'typescript-mode 'auctex
+ 'cdlatex 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv-mode)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Backups and auto-saves
@@ -223,6 +223,22 @@
 (setq denote-journal-directory (expand-file-name "journal" denote-directory)
       denote-journal-keyword "journal"
       denote-journal-title-format 'day-date-month-year)
+
+;;; ---------------------------------------------------------------------------
+;;; LaTeX
+;;; ---------------------------------------------------------------------------
+
+(require 'auctex)
+
+(setq TeX-auto-save t
+      TeX-parse-self t
+      TeX-electric-sub-and-superscript t
+      LaTeX-electric-left-right-brace t)
+(prettify-symbols-mode t)
+(TeX-fold-mode t)
+
+(require 'cdlatex)
+(add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Git integration
