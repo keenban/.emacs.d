@@ -15,8 +15,8 @@
 
 ;; Packages to ensure are present
 (ensure-package-installed
- 'vertico 'marginalia 'orderless 'consult 'typescript-mode 'auctex
- 'cdlatex 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv-mode)
+ 'vertico 'marginalia 'orderless 'consult 'typescript-mode 'auctex 'auctex-latexmk
+ 'cdlatex 'company 'magit 'emms 'denote 'denote-journal 'bbdb 'csv-mode 'pdf-tools)
 
 ;;; ---------------------------------------------------------------------------
 ;;; Backups and auto-saves
@@ -228,17 +228,48 @@
 ;;; LaTeX
 ;;; ---------------------------------------------------------------------------
 
-(require 'auctex)
+(require 'tex)
 
+;; Basic settings
 (setq TeX-auto-save t
       TeX-parse-self t
+      TeX-master nil
       TeX-electric-sub-and-superscript t
-      LaTeX-electric-left-right-brace t)
+      LaTeX-electric-left-right-brace t
+      font-latex-fontify-script 'super-sub)
 (prettify-symbols-mode t)
 (TeX-fold-mode t)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
 
+;; Integration with PDF viewer
+(require 'pdf-tools)
+(pdf-loader-install)
+
+(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+      TeX-view-program-list '(("PDF Tools" "TeX-pdfview-sync-view")))
+
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-extract-index)
+
+(setq TeX-source-correlate-mode t
+      TeX-source-correlate-start-server t
+      TeX-source-correlate-method 'synctex)
+(add-hook 'doc-view-mode-hook #'auto-revert-mode)
+
+;; References management
+(require 'reftex)
+(add-hook 'LaTeX-mode-hook #'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+(setq reftex-bibliography-commands '("bibliography" "addbibresource"))
+
+;; Quick keys
 (require 'cdlatex)
 (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
+
+;; Auto make documents
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+(setq auctex-latexmk-inherit-TeX-PDF-mode t)
+(add-hook 'LaTeX-mode-hook (lambda () (setq TeX-command-default "Latexmk")))
 
 ;;; ---------------------------------------------------------------------------
 ;;; Git integration
